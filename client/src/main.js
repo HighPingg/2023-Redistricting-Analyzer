@@ -1,6 +1,5 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
-import store from './store'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
@@ -12,4 +11,8 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
-createApp(App).use(store).mount('#app')
+Vue.config.productionTip = false
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
