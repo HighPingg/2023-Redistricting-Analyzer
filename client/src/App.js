@@ -1,10 +1,10 @@
-import { Button } from '@mui/material';
+import Map from './components/MapComponent';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Button>Hello worldo</Button>
+      <Map />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 const store = configureStore({
   reducer: {
-
+    
   }
 });
 
