@@ -1,13 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Import reducers
+import { configureStore } from '@reduxjs/toolkit';
+import mapReducer from './reducers/MapReducer';
+
+//Configure Reducers
 const store = configureStore({
   reducer: {
-    
+    map: mapReducer
   }
 });
 
