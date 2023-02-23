@@ -12,6 +12,7 @@ function ControlButton(){
   const dispatch = useDispatch();
 
   // Functions that set the selected state, which are Ohio, Nevada, Illinois 
+
   function setSelectedStateOhio(){
     dispatch(setSelectedState('Ohio'))
   }
