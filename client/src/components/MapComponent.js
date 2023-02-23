@@ -13,12 +13,19 @@ function Map() {
     return {color: feature.properties.color, weight: 1};
   }
 
+  var onEachFeature = (feature, layer) => {
+    // Bind click to zoom in on state.
+    layer.on('click', function (event) {
+      console.log(feature);
+    });
+  }
+
   return (
     <MapContainer  style={{ width: "100%", height: "50vh" }} center={[37.6, -96]} zoom={5} scrollWheelZoom={false}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <GeoJSON data={mapOverview} style={getColor} onEachFeature={() => console.log("FUCK")} />
+      <GeoJSON data={mapOverview} style={getColor} onEachFeature={onEachFeature} />
     </MapContainer>
   );
 }
