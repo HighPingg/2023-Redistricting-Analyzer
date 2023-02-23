@@ -6,15 +6,19 @@ import Box from '@mui/material/Box';
 import { useSelector } from 'react-redux';
 
 function Map() {
-  //Get map from MapReducer
+  // Get map from MapReducer
   const map = useSelector(state => state.map);
+
+  var getColor = (feature) => {
+    return {color: feature.properties.color, weight: 1};
+  }
 
   return (
     <MapContainer  style={{ width: "100%", height: "50vh" }} center={[37.6, -96]} zoom={4} scrollWheelZoom={false}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <GeoJSON data={mapOverview} />
+      <GeoJSON data={mapOverview} style={getColor} onEachFeature={() => console.log("FUCK")} />
     </MapContainer>
   );
 }
