@@ -10,7 +10,7 @@ function Map() {
   const map = useSelector(state => state.map);
 
   return (
-    <MapContainer  style={{ width: "100%", height: "50vh" }} center={[37.6, -96]} zoom={4} scrollWheelZoom={false}>
+    <MapContainer  style={{ width: "100%", height: "50vh" }} center={[37.6, -96]} zoom={5} scrollWheelZoom={false}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
