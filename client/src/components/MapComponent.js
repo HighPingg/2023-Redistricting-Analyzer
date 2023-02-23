@@ -24,16 +24,41 @@ function Map() {
     return feature.properties.name;
   }
 
+  // var geojson
+
   var onEachFeature = (feature, layer) => {
     // Bind click to zoom in on state.
-    layer.on(
+    layer.on({
         //On click, change selected state.  
-      'click', function (event) {
-      console.log(getName(feature))
-      dispatch(setSelectedState(getName(feature)))
-    
+      'click': function (event) {
+        console.log(getName(feature))
+        dispatch(setSelectedState(getName(feature)))
+      },
+      //On hover, highlight
+      'mouseover' : highlightFeature,
+
+      //'mouseout' : resetHighlight TODO
+
+
     });
   }
+
+  function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront();
+  }
+
+  // function resetHighlight(e) { TODO
+  //   geojson.resetStyle(e.target);
+  // }
 
   return (
     <MapContainer  style={{ width: "100%", height: "50vh" }} center={[37.6, -96]} zoom={5} scrollWheelZoom={false}>
