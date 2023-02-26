@@ -26,7 +26,7 @@ export const mapReducer = createSlice({
             switch (action.payload) {
                 case "Illinois":
                     state.currentGeoJSON = illinois21Map;
-                    state.currentGraphData = graphingOverview.states.Ohio
+                    state.currentGraphData = graphingOverview.states.Illinois
                     break;
                 
                 case "Ohio":
