@@ -15,7 +15,8 @@ function Graph(){
 
     // Defining the graph to be rendered, gotten from data
     let options = null;
-    if (state_data != null)
+    if (state_data != null){
+
         options = {
             theme: state_data.theme, 
             animationEnabled: true,
@@ -26,9 +27,10 @@ function Graph(){
                 title: state_data.axisY.title
             },
             data: [{
-                type: "boxAndWhisker",
-                yValueFormatString: state_data.data.yValueFormatString,
-                // dataPoints: state_data.data.dataPoints //I dont know why this does not show
+                // type: "boxAndWhisker",
+                type: state_data.data[0].type,
+                yValueFormatString: state_data.data[0].yValueFormatString,
+                // dataPoints: state_data.data[0].dataPoints
 
                 dataPoints:[
                     { label: "Bread",  y: [179, 256, 300, 418, 274] },
@@ -41,6 +43,7 @@ function Graph(){
 
             }]
         }
+    }
 
 
     let chart = "Select a state to show more data";

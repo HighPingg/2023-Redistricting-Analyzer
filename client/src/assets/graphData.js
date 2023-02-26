@@ -10,7 +10,7 @@ var graphingOverview = {"states":{"Ohio":{
     },
     data: [{
         type: "boxAndWhisker",
-        yValueFormatString: "#,##0.# \"kcal/100g\"",
+        yValueFormatString: "#,##0.# \"kcap  l/100g\"",
         dataPoints: [
             { label: "District 1",  y: [179, 256, 300, 418, 274] },
             { label: "District 2",  y: [252, 346, 409, 437, 374.5] },
