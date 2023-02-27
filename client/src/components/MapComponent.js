@@ -1,33 +1,28 @@
 // Redux Imports
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedState } from '../reducers/MapReducer';
+import { setCurrentlyHovered, setSelectedState } from '../reducers/MapReducer';
 
 // Leaflet Imports
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // Mui Imports
-import { useRef } from 'react';
-import { Box, IconButton } from '@mui/material';
+import { useRef, useState } from 'react';
+import { alpha, Box, IconButton, Tooltip } from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
 
 
 function Map() {
   const mapRef = useRef(null);
   const geojsonRef = useRef(null);
+  const captionRef = useRef(null);
 
   // Get map from MapReducer
   const map = useSelector(state => state.map);
   const dispatch = useDispatch();
 
   var getColor = (feature, selectedState) => {
-    console.log(feature)
-
-    if (selectedState === null) {
-      return {color: feature.properties.color, weight: 1};
-    } else {
-      return {weight: 1};
-    }
+    return {fillColor: feature.properties.color, color:'white', weight: 1, fillOpacity: 0.8};
   }
 
   var getName = (feature) => {
@@ -46,15 +41,16 @@ function Map() {
           const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
           if (centerCoords[getName(feature)] != null)
             mapRef.current.flyTo(centerCoords[getName(feature)], 6);
-        },
-
-        // On hover, highlight
-        'mouseover' : highlightFeature,
-        'mouseout' : resetHighlight
+        }
       });
-    } else {
-      // When focused on a state, we want to instead display district info.
     }
+    
+    // When focused on a state, we want to instead display district info.
+    layer.on({
+      // On hover, highlight
+      'mouseover' : highlightFeature,
+      'mouseout' : resetHighlight
+    });
   }
 
   // Reset the map to overview.
@@ -65,7 +61,8 @@ function Map() {
   }
 
   // Highlights the state that cursur is currently over.
-  function highlightFeature(e) {
+  const highlightFeature = (e) => {
+    // Call reducer to set state currently being hovered over.
     var layer = e.target;
 
     layer.setStyle({
@@ -76,25 +73,45 @@ function Map() {
     });
 
     layer.bringToFront();
+
+    // Change caption info.
+    var feature = layer.feature;
+
+    if (map.selectedState === null) {
+      captionRef.current.innerHTML =  `<span>
+                                        <span style="font-weight: bold;" >${feature.properties.name}</span><br />
+                                        ${feature.properties.density} people/mi<sup>2</sup>
+                                      </span>`
+    } else {
+      captionRef.current.innerHTML =  `<span>
+                                        <span style="font-weight: bold;" >District ${feature.properties.DISTRICT}</span><br />
+                                        ${feature.properties.color}
+                                      </span>`
+    }
   }
 
   // Resets the style currently set to the state.
   function resetHighlight(e) {
     geojsonRef.current.resetStyle(e.target);
+
+    // Remove caption info.
+    captionRef.current.innerHTML = null
   }
 
   return (
     <Box>
       {
         // Hide reset button when no state is selected.
-        map.selectedState !== null && <IconButton style={{left: '10px', top: '10px', position: 'absolute', zIndex: 1}}
-                                                  onClick={resetMap}
-                                                >
-                                          <ReplayIcon style={{color: 'black'}}/>
-                                      </IconButton>
+        map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
+                                        <IconButton style={{left: '10px', top: '10px', position: 'absolute', zIndex: 1}}
+                                                    onClick={resetMap}
+                                                  >
+                                            <ReplayIcon style={{color: 'black'}}/>
+                                        </IconButton>
+                                      </Tooltip>
       }
 
-      <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: "50vh", zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={false}>
+      <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: "50vh", zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={true}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
@@ -105,6 +122,18 @@ function Map() {
                 onEachFeature={(feature, layer) => onEachFeature(feature, layer, map.selectedState)}
                 />
       </MapContainer>
+
+      <div style={{right: '10px',
+                   top: '10px',
+                   padding: '10px',
+                   position: 'absolute',
+                   zIndex: 1,
+                   backgroundColor: alpha('#E0E0E3', 0.5),
+                   textAlign: 'left'
+                  }}
+           ref={captionRef}
+        />
+    
     </Box>
   );
 }

@@ -20,8 +20,8 @@ export const mapReducer = createSlice({
     name: 'map', 
     initialState,
     reducers: {
-        setSelectedState:(state, action) => {
-            state.selectedState = action.payload
+        setSelectedState: (state, action) => {
+            state.selectedState = action.payload;
 
             switch (action.payload) {
                 case "Illinois":
