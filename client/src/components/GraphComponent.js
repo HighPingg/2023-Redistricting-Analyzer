@@ -1,7 +1,7 @@
 // Redux Imports
 import { useSelector } from 'react-redux';
 
-//Imports for graphing util.
+// Imports for graphing util.
 import {CanvasJSChart} from 'canvasjs-react-charts'
 
 
