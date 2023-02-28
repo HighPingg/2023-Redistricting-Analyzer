@@ -10,77 +10,92 @@ var graphingOverview = {
                 {
                     district: 1,
                     winner: "Greg Landsman",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 151418
                 },
                 {
                     district: 2,
                     winner: "Brad Wenstrup",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 188300
                 },
                 {
                     district: 3,
                     winner: "Joyce Beatty",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 174846
                 },
                 {
                     district: 4,
                     winner: "Jim Jordan",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 196655
                 },
                 {
                     district: 5,
                     winner: "Bob Latta",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 184205
                 },
                 {
                     district: 6,
                     winner: "Bill Johnson",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 186965
                 },
                 {
                     district: 7,
                     winner: "Max Miller",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 164904
                 },
                 {
                     district: 8,
                     winner: "Warren Davidson",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 177132
                 },
                 {
                     district: 9,
                     winner: "Marcy Kaptur",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 147512
                 },
                 {
                     district: 10,
                     winner: "Mike Turner",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 161792
                 },
                 {
                     district: 11,
                     winner: "Shontel Brown",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 162154
                 },
                 {
                     district: 12,
                     winner: "Troy Balderson",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 187322
                 },
                 {
                     district: 13,
                     winner: "Emilia Sykes",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 146621
                 },
                 {
                     district: 14,
                     winner: "David Joyce",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 180251
                 },
                 {
                     district: 15,
                     winner: "Mike Carey",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 140012
                 }
             ],
             graphTitle:"Ensemble Data for Ohio",
@@ -124,22 +139,26 @@ var graphingOverview = {
                 {
                     district: 1,
                     winner: "Dina Titus",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 114916
                 },
                 {
                     district: 2,
                     winner: "Mark Amodei",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 181689
                 },
                 {
                     district: 3,
                     winner: "Susie Lee",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 130237
                 },
                 {
                     district: 4,
                     winner: "Steven Horsford",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 115836
                 }
             ],
             graphTitle:"Ensemble Data for Nevada",
@@ -194,77 +213,92 @@ var graphingOverview = {
                 {
                     district: 3,
                     winner: "Delia Ramirez",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 111799
                 },
                 {
                     district: 4,
                     winner: "Chuy Garcia",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 87987
                 },
                 {
                     district: 5,
                     winner: "Mike Quigley",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 172040
                 },
                 {
                     district: 6,
                     winner: "Sean Casten",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 148279
                 },
                 {
                     district: 7,
                     winner: "Danny Davis",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 0
                 },
                 {
                     district: 8,
                     winner: "Raja Krishnamoorthi",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 117475
                 },
                 {
                     district: 9,
                     winner: "Janice Schakowsky",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 169009
                 },
                 {
                     district: 10,
                     winner: "Brad Schneider",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 144489
                 },
                 {
                     district: 11,
                     winner: " Bill Foster",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 145303
                 },
                 {
                     district: 12,
                     winner: "Mike Bost",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 213438
                 },
                 {
                     district: 13,
                     winner: "Nikki Budzinski",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 136123
                 },
                 {
                     district: 14,
                     winner: "Lauren Underwood",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 127458
                 },
                 {
                     district: 15,
                     winner: "Mary Miller",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 209191
                 },
                 {
                     district: 16,
                     winner: "Darin LaHood",
-                    house: "Republican"
+                    house: "Republican",
+                    votes: 196009
                 },
                 {
                     district: 17,
                     winner: "Eric Sorensen",
-                    house: "Democratic"
+                    house: "Democratic",
+                    votes: 119601
                 },
             ],
             graphTitle:"Ensemble Data for Illinois",
