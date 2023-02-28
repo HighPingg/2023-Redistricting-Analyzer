@@ -3,6 +3,7 @@ import * as React from 'react';
 
 // Imports for graphing util.
 import Chart from 'react-apexcharts';
+import { useDispatch, useSelector } from 'react-redux';
 
 // for future porting of data
 // function createData(district, incumbent, result, geovar, popvar) {
@@ -14,77 +15,87 @@ import Chart from 'react-apexcharts';
 // ];
 
 function TableComponent() {
-    // Fake data 
-    const series = [{
-        name: 'Republican',
-        data: [6, 0]
-      }, {
-        name: 'Democratic',
-        data: [3, 0]
-      }, {
-        name: 'Open',
-        data: [0, 1]
-      }];
 
-      const options = {
-        chart: {
-            type: 'bar',
-            height: 350,
-            stacked: true,
-          },
-          plotOptions: {
-            bar: {
-              horizontal: true,
-              dataLabels: {
-                total: {
-                  enabled: true,
-                  offsetX: 0,
-                  style: {
-                    fontSize: '13px',
-                    fontWeight: 900
-                  }
+    const map = useSelector(state => state.map)
+    const dispatch = useDispatch()
+    
+
+    let options, series = null
+    if (map.currentGraphData!= null) {
+        // Fake data 
+        series = [{
+            name: 'Republican',
+            data: [6, 0]
+        }, {
+            name: 'Democratic',
+            data: [3, 0]
+        }, {
+            name: 'Open',
+            data: [0, 1]
+        }];
+
+        options = {
+            chart: {
+                type: 'bar',
+                height: 350,
+                stacked: true,
+            },
+            plotOptions: {
+                bar: {
+                horizontal: true,
+                dataLabels: {
+                    total: {
+                    enabled: true,
+                    offsetX: 0,
+                    style: {
+                        fontSize: '13px',
+                        fontWeight: 900
+                    }
+                    }
                 }
-              }
+                },
             },
-          },
-          stroke: {
-            width: 1,
-            colors: ['#fff']
-          },
-          title: {
-            text: 'Incumbencies'
-          },
-          xaxis: {
-            categories: ["Incumbent", "Open"],
-            labels: {
-              formatter: function (val) {
-                return val + "K"
-              }
-            }
-          },
-          yaxis: {
+            stroke: {
+                width: 1,
+                colors: ['#fff']
+            },
             title: {
-              text: undefined
+                text: 'Incumbencies'
             },
-          },
-          tooltip: {
-            y: {
-              formatter: function (val) {
-                return val + "K"
-              }
+            xaxis: {
+                categories: ["Incumbent", "Open"],
+                labels: {
+                formatter: function (val) {
+                    return val + "K"
+                }
+                }
+            },
+            yaxis: {
+                title: {
+                text: undefined
+                },
+            },
+            tooltip: {
+                y: {
+                formatter: function (val) {
+                    return val + "K"
+                }
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'left',
+                offsetX: 40
             }
-          },
-          fill: {
-            opacity: 1
-          },
-          legend: {
-            position: 'top',
-            horizontalAlign: 'left',
-            offsetX: 40
-          }
-      };
+        }
+    };
       return (
         <div>
+            {map.currentGraphData != null ?
+            <div>
             <div>
                 Population Density: 198.2 <br></br>
                 District Plans: 14 <br></br>
@@ -95,6 +106,7 @@ function TableComponent() {
             <div>
                 <Chart options={options} type="bar" series={series} width="100%" />
             </div>
+            </div> : "Select a state to show table data"}
         </div>
 
       );
