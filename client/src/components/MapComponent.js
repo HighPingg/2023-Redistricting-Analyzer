@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 
 // Mui Imports
 import { useRef, useState } from 'react';
-import { alpha, Box, IconButton, Tooltip } from '@mui/material';
+import { alpha, Box, FormControl, IconButton, InputLabel, MenuItem, Select, Tooltip } from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
 
 
@@ -60,6 +60,17 @@ function Map() {
     mapRef.current.flyTo([37.6, -96], 5);
   }
 
+  function setMap(state) {
+    dispatch(setSelectedState(state));
+    const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
+    if (centerCoords[state] != null){
+      mapRef.current.flyTo(centerCoords[state], 6);
+    }
+    else{
+      mapRef.current.flyTo([37.6, -96], 5);
+    }
+  }
+
   // Highlights the state that cursur is currently over.
   const highlightFeature = (e) => {
     // Call reducer to set state currently being hovered over.
@@ -98,18 +109,48 @@ function Map() {
     captionRef.current.innerHTML = null
   }
 
+  var selectStateChange = (event) => {
+    let state = event.target.value
+    setMap(state);
+  }
+
+  
+
   return (
     <Box>
+
+      <Box sx={{top:'1%', left:'.5%', display:'flex', position:'absolute', justifyContent: 'flex-start', zIndex: 1 }}>
+        
+      <Tooltip title="Select State" placement='right' arrow>
+        <FormControl style={{backgroundColor:'white', minWidth:'100px'}}>
+          
+          {map.selectedState === null && 
+          <InputLabel  id="state-select-label">State</InputLabel>
+          }
+
+          <Select
+            labelId="state-select-label"
+            id="select-state"
+            value={map.selectedState}
+            onChange={selectStateChange}
+          >
+            <MenuItem value={"Ohio"}>Ohio</MenuItem>
+            <MenuItem value={"Illinois"}>Illinois</MenuItem>
+            <MenuItem value={"Nevada"}>Nevada</MenuItem>
+
+          </Select>
+        </FormControl>
+      </Tooltip>
+
       {
         // Hide reset button when no state is selected.
         map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
-                                        <IconButton style={{left: '10px', top: '10px', position: 'absolute', zIndex: 1}}
-                                                    onClick={resetMap}
-                                                  >
+                                        <IconButton onClick={resetMap}>
                                             <ReplayIcon style={{color: 'black'}}/>
                                         </IconButton>
                                       </Tooltip>
       }
+      </Box>
 
       <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: "50vh", zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={true}>
         <TileLayer
