@@ -83,13 +83,16 @@ function TableComponent() {
                 }
             },
             fill: {
-                opacity: 1
+                opacity: 1,
+                colors: ['#F44336', '#0000FF', '#808080']
             },
             legend: {
                 position: 'top',
                 horizontalAlign: 'left',
                 offsetX: 40
-            }
+            },
+            colors:['#F44336', '#0000FF', '#808080']
+
         }
     };
       return (
