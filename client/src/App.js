@@ -2,7 +2,7 @@ import './App.css';
 
 // Components.
 import Map from './components/MapComponent';
-import ControlButtons from './components/ControlButtons'
+import YearToggle from './components/YearToggleComponent'
 import Graph from './components/GraphComponent';
 import Table from './components/TableComponent';
 
@@ -16,14 +16,11 @@ function App() {
   return (
     <div className="App">
       <Map />
-      <ControlButtons/>
+      <YearToggle/>
       <Grid container spacing={2}>
-
-
         <Grid item xs={8}> 
           <Graph/>
         </Grid>
-
         <Grid item xs={4}>
           <Table/>
         </Grid>

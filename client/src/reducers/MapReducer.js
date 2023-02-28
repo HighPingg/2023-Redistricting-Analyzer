@@ -14,6 +14,7 @@ const initialState = {
     selectedState: null,
     currentGeoJSON: mapOverview,
     currentGraphData: null,
+    currentYear: '2022'
 }
 
 export const mapReducer = createSlice({
@@ -44,10 +45,20 @@ export const mapReducer = createSlice({
                     state.currentGraphData = null;
                     break;
             }
+        },
+        setSelectedYear:(state, action) => {
+            state.currentYear = action.payload
+
+            // switch(action.payload) {  TODO if we need other stuff to change.
+            //     case '2020':
+            // 
+            //          break;
+            //     case '2022':
+            // }
         }
     }
 })
 
-export const {setSelectedState} = mapReducer.actions
+export const {setSelectedState, setSelectedYear} = mapReducer.actions
 
 export default mapReducer.reducer
