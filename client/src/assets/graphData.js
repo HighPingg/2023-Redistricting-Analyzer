@@ -1,73 +1,73 @@
 //For now this is just dummy data
-var graphingOverview = {"states":{"Ohio":{
-    theme: "light2", 
-    animationEnabled: true,
-    title:{
-        text: "Ensemble Data For Ohio"
-    },
-    axisY: {
-        title: "Population maybe"
-    },
-    data: [{
-        type: "boxAndWhisker",
-        yValueFormatString: "#,##0.# \"kcap  l/100g\"",
-        dataPoints: [
-            { label: "District 1",  y: [179, 256, 300, 418, 274] },
-            { label: "District 2",  y: [252, 346, 409, 437, 374.5] },
-            { label: "Biscuit",  y: [236, 281.5, 336.5, 428, 313] },
-            { label: "Doughnut",  y: [340, 382, 430, 452, 417] },
-            { label: "Pancakes",  y: [194, 224.5, 342, 384, 251] },
-            { label: "Bagels",  y: [241, 255, 276.5, 294, 274.5] }
-        ]
-    }]
-},
-
-"Nevada":{
-    theme: "light2", 
-    animationEnabled: true,
-    title:{
-        text: "Ensemble Data For Nevada"
-    },
-    axisY: {
-        title: "Population maybe"
-    },
-    data: [{
-        type: "boxAndWhisker",
-        yValueFormatString: "#,##0.# \"kcal/100g\"",
-        dataPoints: [
-            { label: "Bread",  y: [179, 256, 300, 418, 274] },
-            { label: "Cake",  y: [252, 346, 409, 437, 374.5] },
-            { label: "Biscuit",  y: [236, 281.5, 336.5, 428, 313] },
-            { label: "Doughnut",  y: [340, 382, 430, 452, 417] },
-            { label: "Pancakes",  y: [194, 224.5, 342, 384, 251] },
-            { label: "Bagels",  y: [241, 255, 276.5, 294, 274.5] }
-        ]
-    }]
-},
-
-"Illinois":{
-    theme: "light2", 
-    animationEnabled: true,
-    title:{
-        text: "Ensemble Data For Illinois"
-    },
-    axisY: {
-        title: "Population maybe"
-    },
-    data: [{
-        type: "boxAndWhisker",
-        yValueFormatString: "#,##0.# \"kcal/100g\"",
-        dataPoints: [
-            { label: "Bread",  y: [179, 256, 300, 418, 274] },
-            { label: "Cake",  y: [252, 346, 409, 437, 374.5] },
-            { label: "Biscuit",  y: [236, 281.5, 336.5, 428, 313] },
-            { label: "Doughnut",  y: [340, 382, 430, 452, 417] },
-            { label: "Pancakes",  y: [194, 224.5, 342, 384, 251] },
-            { label: "Bagels",  y: [241, 255, 276.5, 294, 274.5] }
-        ]
-    }]
-}
-
-}};
+var graphingOverview = {
+    "states":
+    {
+        'Ohio':{
+            data: [
+                {
+                  x: 'Jan 2015',
+                  y: [54, 66, 69, 75, 88]
+                },
+                {
+                  x: 'Jan 2016',
+                  y: [43, 65, 69, 76, 81]
+                },
+                {
+                  x: 'Jan 2017',
+                  y: [31, 39, 45, 51, 59]
+                },
+                {
+                  x: 'Jan 2018',
+                  y: [39, 46, 55, 65, 71]
+                },
+                {
+                  x: 'Jan 2019',
+                  y: [29, 31, 35, 39, 44]
+                },
+                {
+                  x: 'Jan 2020',
+                  y: [41, 49, 58, 61, 67]
+                },
+                {
+                  x: 'Jan 2021',
+                  y: [54, 59, 66, 71, 88]
+                }
+              ]
+        
+        },
+        'Nevada':{
+            data: [
+                {
+                  x: 'Jan 2000',
+                  y: [54, 66, 69, 75, 88]
+                },
+                {
+                  x: 'Jan 2000',
+                  y: [43, 65, 69, 76, 81]
+                },
+                {
+                  x: 'Jan 2017',
+                  y: [31, 39, 45, 51, 59]
+                },
+                {
+                  x: 'Jan 2018',
+                  y: [39, 46, 55, 65, 71]
+                },
+                {
+                  x: 'Jan 2019',
+                  y: [29, 31, 35, 39, 44]
+                },
+                {
+                  x: 'Jan 2020',
+                  y: [41, 49, 58, 61, 67]
+                },
+                {
+                  x: 'Jan 2021',
+                  y: [54, 59, 66, 71, 88]
+                }
+              ]
+        }
+    }
+};
 
 export default graphingOverview;
