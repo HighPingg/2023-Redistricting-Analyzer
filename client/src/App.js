@@ -4,7 +4,7 @@ import './App.css';
 import Map from './components/MapComponent';
 import YearToggle from './components/YearToggleComponent'
 import Graph from './components/GraphComponent';
-import Table from './components/TableComponent';
+import TableComponent from './components/TableComponent';
 
 //Visual imports
 
@@ -22,7 +22,7 @@ function App() {
           <Graph/>
         </Grid>
         <Grid item xs={4}>
-          <Table/>
+          <TableComponent/>
         </Grid>
 
       </Grid>
