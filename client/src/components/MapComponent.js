@@ -1,6 +1,6 @@
 // Redux Imports
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentlyHovered, setSelectedState } from '../reducers/MapReducer';
+import { setCurrentlyHovered, setSelectedDistrict, setSelectedState } from '../reducers/MapReducer';
 
 // Leaflet Imports
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
@@ -43,6 +43,13 @@ function Map() {
             mapRef.current.flyTo(centerCoords[getName(feature)], 6);
         }
       });
+    } else {
+      // On districts bind click to select district.
+      layer.on({
+        'click': function (event) {
+          dispatch(setSelectedDistrict(feature.properties.DISTRICT));
+        }
+      })
     }
     
     // When focused on a state, we want to instead display district info.
