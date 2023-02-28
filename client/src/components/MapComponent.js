@@ -90,8 +90,7 @@ function Map() {
     layer.setStyle({
         weight: 5,
         color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
+        fillOpacity: 1
     });
 
     layer.bringToFront();
@@ -114,10 +113,11 @@ function Map() {
 
   // Resets the style currently set to the state.
   function resetHighlight(e) {
-    console.log(map.currentDistrict)
-    if (map.currentDistrict === null || map.currentDistrict !== e.target.feature.properties.DISTRICT) {
-      geojsonRef.current.resetStyle(e.target);
-    }
+    geojsonRef.current.setStyle({
+      weight: 1,
+      color: "white",
+      fillOpacity: 0.8
+    })
 
     // Remove caption info.
     captionRef.current.innerHTML = null
