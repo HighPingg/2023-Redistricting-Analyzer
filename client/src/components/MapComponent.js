@@ -134,45 +134,6 @@ function Map() {
 
   return (
     <Box>
-
-      <Box sx={{top:'1%', left:'.5%', display:'flex', flexDirection:'column', position:'absolute', alignItems:'left', justifyContent: 'left', zIndex: 1}}>
-
-        <Box>
-          <Tooltip title="Select State" placement='right' arrow>
-            <FormControl style={{backgroundColor:'white', minWidth:'100px'}}>
-              
-              {map.selectedState === null && 
-              <InputLabel  id="state-select-label">State</InputLabel>
-              }
-
-              <Select
-                labelId="state-select-label"
-                id="select-state"
-                value={map.selectedState}
-                onChange={selectStateChange}
-              >
-                <MenuItem value={"Ohio"}>Ohio</MenuItem>
-                <MenuItem value={"Illinois"}>Illinois</MenuItem>
-                <MenuItem value={"Nevada"}>Nevada</MenuItem>
-
-              </Select>
-            </FormControl>
-          </Tooltip>
-
-        {
-          // Hide reset button when no state is selected.
-          map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
-                                          <IconButton onClick={resetMap}>
-                                              <ReplayIcon style={{color: 'black'}}/>
-                                          </IconButton>
-                                        </Tooltip>
-        }
-        </Box>
-
-      <YearToggle/>
-      
-      </Box>
-
       <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: "50vh", zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={true}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -183,16 +144,51 @@ function Map() {
                 style={(feature) => getColor(feature, map.currentDistrict)}
                 onEachFeature={(feature, layer) => onEachFeature(feature, layer, map.selectedState)}
                 />
-        
+        <Box sx={{top:'1%', left:'.5%', display:'flex', flexDirection:'column', position:'absolute', alignItems:'left', justifyContent: 'left', zIndex: 1000}}>
+          <Box>
+            <Tooltip title="Select State" placement='right' arrow>
+              <FormControl style={{backgroundColor:'white', minWidth:'100px'}}>
+                
+                {map.selectedState === null && 
+                <InputLabel  id="state-select-label">State</InputLabel>
+                }
+
+                <Select
+                  labelId="state-select-label"
+                  id="select-state"
+                  value={map.selectedState}
+                  onChange={selectStateChange}
+                >
+                  <MenuItem value={"Ohio"}>Ohio</MenuItem>
+                  <MenuItem value={"Illinois"}>Illinois</MenuItem>
+                  <MenuItem value={"Nevada"}>Nevada</MenuItem>
+
+                </Select>
+              </FormControl>
+            </Tooltip>
+
+          {
+            // Hide reset button when no state is selected.
+            map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
+                                            <IconButton onClick={resetMap}>
+                                                <ReplayIcon style={{color: 'black'}}/>
+                                            </IconButton>
+                                          </Tooltip>
+          }
+          </Box>
+
+          <YearToggle/>
+        </Box>
+
         <div style={{right: '10px',
-                   top: '10px',
-                   padding: '10px',
-                   position: 'absolute',
-                   zIndex: 1000,
-                   backgroundColor: alpha('#E0E0E3', 0.5),
-                   textAlign: 'left'
+                    top: '10px',
+                    padding: '10px',
+                    position: 'absolute',
+                    zIndex: 1000,
+                    backgroundColor: alpha('#E0E0E3', 0.5),
+                    textAlign: 'left'
                   }}
-           ref={captionRef}
+            ref={captionRef}
         />
       </MapContainer>
     </Box>
