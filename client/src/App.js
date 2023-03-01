@@ -10,6 +10,7 @@ import TableComponent from './components/TableComponent';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import DisplayToggle from './components/DisplayToggleComponent';
 // import Item from '@mui/material/Item';
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
           <TableComponent/>
         </Grid>
       </Grid>
-
+      <DisplayToggle/>
       <Graph/>
     </div>
   );

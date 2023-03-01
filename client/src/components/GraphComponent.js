@@ -11,8 +11,8 @@ function Graph(){
     
     
     let options, series = null
-    if (map.currentGraphData!= null)
-    {
+    if (map.selectedState!= null){
+
       series =  [
           {
           type: 'boxPlot',
@@ -38,6 +38,7 @@ function Graph(){
             }
           }
       };
+      
     }
       
   return (
