@@ -15,17 +15,16 @@ import Grid from '@mui/material/Grid';
 function App() {
   return (
     <div className="App">
-      <Map />
-      <YearToggle/>
       <Grid container spacing={2}>
         <Grid item xs={8}> 
-          <Graph/>
+          <Map />
         </Grid>
         <Grid item xs={4}>
           <TableComponent/>
         </Grid>
-
       </Grid>
+
+      <Graph/>
     </div>
   );
 }

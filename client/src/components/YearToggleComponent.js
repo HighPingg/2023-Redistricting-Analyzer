@@ -17,7 +17,8 @@ function YearToggle(){
 
 
   return(
-    <Box>
+    <Box
+    >
       <ToggleButtonGroup
         color="primary"
         value={map.currentYear}

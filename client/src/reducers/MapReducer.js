@@ -15,7 +15,8 @@ const initialState = {
     currentGeoJSON: mapOverview,
     currentGraphData: null,
     currentYear: '2022',
-    currentDistrict: null
+    currentDistrict: null,
+    currentDisplay:null
 }
 
 export const mapReducer = createSlice({
@@ -53,6 +54,9 @@ export const mapReducer = createSlice({
         },
         setSelectedDistrict:(state, action) => {
             state.currentDistrict = action.payload
+        },
+        setSelectedDisplay:(state, action) => {
+            state.currentDisplay = action.payload
         }
     }
 })

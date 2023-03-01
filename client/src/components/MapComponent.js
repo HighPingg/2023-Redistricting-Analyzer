@@ -8,9 +8,11 @@ import 'leaflet/dist/leaflet.css';
 
 // Mui Imports
 import { useRef, useState } from 'react';
-import { alpha, Box, FormControl, IconButton, InputLabel, MenuItem, Select, Tooltip } from '@mui/material';
+import { alpha, Box, FormControl, IconButton, InputLabel, MenuItem, Select, Tooltip, Grid } from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
 
+// Component imports
+import YearToggle from './YearToggleComponent';
 
 function Map() {
   const mapRef = useRef(null);
@@ -133,37 +135,46 @@ function Map() {
   return (
     <Box>
 
-      <Box sx={{top:'1%', left:'.5%', display:'flex', position:'absolute', justifyContent: 'flex-start', zIndex: 1 }}>
-        
-      <Tooltip title="Select State" placement='right' arrow>
-        <FormControl style={{backgroundColor:'white', minWidth:'100px'}}>
-          
-          {map.selectedState === null && 
-          <InputLabel  id="state-select-label">State</InputLabel>
-          }
+      <Box sx={{top:'1%', display:'flex', position:'absolute', justifyContent: 'flex-start', zIndex: 1 }}>
+      <Grid container spacing={.5}>
+        <Grid item xs={6}>
+          <Tooltip title="Select State" placement='right' arrow>
+            <FormControl style={{backgroundColor:'white', minWidth:'100px'}}>
+              
+              {map.selectedState === null && 
+              <InputLabel  id="state-select-label">State</InputLabel>
+              }
 
-          <Select
-            labelId="state-select-label"
-            id="select-state"
-            value={map.selectedState}
-            onChange={selectStateChange}
-          >
-            <MenuItem value={"Ohio"}>Ohio</MenuItem>
-            <MenuItem value={"Illinois"}>Illinois</MenuItem>
-            <MenuItem value={"Nevada"}>Nevada</MenuItem>
+              <Select
+                labelId="state-select-label"
+                id="select-state"
+                value={map.selectedState}
+                onChange={selectStateChange}
+              >
+                <MenuItem value={"Ohio"}>Ohio</MenuItem>
+                <MenuItem value={"Illinois"}>Illinois</MenuItem>
+                <MenuItem value={"Nevada"}>Nevada</MenuItem>
 
-          </Select>
-        </FormControl>
-      </Tooltip>
+              </Select>
+            </FormControl>
+          </Tooltip>
+      </Grid>
+      <Grid item xs={1}>
+        {
+          // Hide reset button when no state is selected.
+          map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
+                                          <IconButton onClick={resetMap}>
+                                              <ReplayIcon style={{color: 'black'}}/>
+                                          </IconButton>
+                                        </Tooltip>
+        }
+      </Grid>
+      <Grid item xs={7}>
+      <YearToggle/>
+      </Grid>
 
-      {
-        // Hide reset button when no state is selected.
-        map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
-                                        <IconButton onClick={resetMap}>
-                                            <ReplayIcon style={{color: 'black'}}/>
-                                        </IconButton>
-                                      </Tooltip>
-      }
+      
+      </Grid>
       </Box>
 
       <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: "50vh", zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={true}>
