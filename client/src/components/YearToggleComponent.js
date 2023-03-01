@@ -21,9 +21,8 @@ function YearToggle(){
         <Select
         labelId="state-select-label"
         id="select-state"
-        value={map.setSelectedYear}
+        value={map.currentYear}
         onChange={selectYearChange}
-        defaultValue={'2022'}
         style={{backgroundColor: 'white'}}
         >
           <MenuItem value={"2022"}>2022</MenuItem>
