@@ -125,8 +125,16 @@ function Graph(){
           case "Demographic":
             // Fake data 
             series = [{
-                name: '',
+                name: '2022',
                 data: [6, 3, 5 ,7]
+            },
+            {
+                name: '2020',
+                data: [1, 10, 8 ,4]
+            },
+            {
+                name: 'Random Plan',
+                data: [5, 5, 5 ,5]
             },
           ];
   
