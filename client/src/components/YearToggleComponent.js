@@ -22,6 +22,7 @@ function YearToggle(){
       <ToggleButtonGroup
         color="primary"
         value={map.currentYear}
+        style={{ backgroundColor: 'white' }}
         exclusive
         onChange={selectYearChange}
         aria-label="Platform"
