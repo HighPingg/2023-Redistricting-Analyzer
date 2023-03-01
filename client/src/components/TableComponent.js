@@ -108,7 +108,9 @@ function TableComponent() {
 
     //     }
     // };
+    if (map.selectedState != null){
       return (
+        
         // <div>
         //     {map.selectedState != null ?
         //     <div>
@@ -124,6 +126,7 @@ function TableComponent() {
         //     </div> */}
         //     </div> : "Select a state to show table data"}
         // </div>
+
         <TableContainer component={Paper}>
           <Table aria-aria-label='simple table'>
             <TableHead>
@@ -143,7 +146,10 @@ function TableComponent() {
             </TableBody>
           </Table>
         </TableContainer>
-      );
+      );}
+      else{
+        return "Select a state to show table data";
+      }
     }
 
 export default TableComponent;
