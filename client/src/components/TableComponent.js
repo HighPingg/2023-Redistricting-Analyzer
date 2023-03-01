@@ -127,21 +127,30 @@ function TableComponent() {
         //     </div> : "Select a state to show table data"}
         // </div>
 
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{ maxHeight: '95vh' }}>
           <Table aria-aria-label='simple table'>
             <TableHead>
               <TableRow>
                 <TableCell>District</TableCell>
                 <TableCell>Incumbent</TableCell>
                 <TableCell>Party</TableCell>
-                <TableCell>2022 W/L</TableCell>
+                {/* <TableCell>2022 W/L</TableCell> */}
                 <TableCell>Geographic Variation</TableCell>
                 <TableCell>Population Variation</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow></TableRow>
+                console.log(row),
+                <TableRow key={row[0]}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th">{row[0]}</TableCell>
+                  <TableCell>{row[1]}</TableCell>
+                  <TableCell>{row[3]}</TableCell>
+                  {/* <TableCell>{row[2]}</TableCell> */}
+                  <TableCell>Dummy Data</TableCell>
+                  <TableCell>Dummy Data</TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>
