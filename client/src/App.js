@@ -19,13 +19,13 @@ function App() {
       <Grid container spacing={2}>
         <Grid item xs={8}> 
           <Map />
-          <DisplayToggle/>
         </Grid>
         <Grid item xs={4}>
           {/* <TableComponent/> */}
           <EnsembleData/>
         </Grid>
         <Grid item xs={8}>
+        <DisplayToggle/>
           <Graph/>
         </Grid>
         <Grid item xs={4}>
