@@ -118,7 +118,7 @@ function Graph(){
             
 
           }
-          display = <Chart options={options} type="bar" series={series} width="100%" height="100%" key ={map.currentDisplay}/>;
+          display = <Chart options={options} type="bar" series={series} width="100%" height="200%" key ={map.currentDisplay}/>;
           break;
             
         default:
