@@ -26,6 +26,11 @@ function TableComponent() {
       console.log(district);
       dispatch(setSelectedDistrict(district));
     };
+
+    const resetClickHandler = (e) => {
+      console.log("reset the district");
+      dispatch(setSelectedDistrict(null));
+    };
     
     let rows = [];
     if (map.currentGraphData != null) {
@@ -116,7 +121,7 @@ function TableComponent() {
                 ))} */}
               </TableBody>
             </Table>
-            <Button variant="contained">Reset</Button>
+            <Button onClick={resetClickHandler} sx={{marginBottom:'10px'}} variant="outlined">Reset</Button>
           </TableContainer>
           
           </Box>
