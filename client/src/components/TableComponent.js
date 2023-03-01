@@ -28,7 +28,7 @@ function TableComponent() {
       if (map.setSelectedDistrict == null) {
         return (
   
-          <TableContainer component={Paper} sx={{ maxHeight: '95vh' }}>
+          <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
             <Table aria-aria-label='simple table'>
               <TableHead>
                 <TableRow>
