@@ -207,8 +207,8 @@ var graphingOverview = {
                 },
 
               ],
-              ensembleData:"Ensemble Data for Ohio",
-              data: 
+              ensembleDataTitle:"Ensemble Data for Ohio",
+              ensembleData: 
                 {
                   populationDensity: 123.2,
                   districtPlans: 14,
@@ -279,8 +279,8 @@ var graphingOverview = {
                 y: [39, 46, 55, 65, 71]
               },
             ],
-            ensembleData:"Ensemble Data for Nevada",
-            data: 
+            ensembleDataTitle:"Ensemble Data for Nevada",
+            ensembleData: 
               {
                 populationDensity: 25.9,
                 districtPlans: 4,
@@ -519,8 +519,8 @@ var graphingOverview = {
                 y: [41, 49, 58, 61, 67]
               },
               ],
-              ensembleData:"Ensemble Data for Illinois",
-              data: 
+              ensembleDataTitle:"Ensemble Data for Illinois",
+              ensembleData: 
                 {
                   populationDensity: 198.2,
                   districtPlans: 14,

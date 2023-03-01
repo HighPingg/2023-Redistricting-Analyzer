@@ -16,6 +16,7 @@ function Graph(){
       
       switch(map.currentDisplay){
         case "BoxWhisker":
+          console.log("BoxDisplay")
           series =  [
             {
             type: 'boxPlot',
