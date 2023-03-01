@@ -58,7 +58,7 @@ function TableComponent() {
                 {rows.map((row) => (
                   // console.log(row),
                   <TableRow onClick={(event)=>tableCellClickHandler(event, row[0])} key={row[0]}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  hover={true} sx={{  '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell component="th">{row[0]}</TableCell>
                     <TableCell>{row[1]}</TableCell>
                     <TableCell>{row[3]}</TableCell>
@@ -88,7 +88,7 @@ function TableComponent() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow key={map.currentDistrict-1}
+                <TableRow key={map.currentDistrict-1} hover={true}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell component="th">{rows[map.currentDistrict-1][0]}</TableCell>
                     <TableCell>{rows[map.currentDistrict-1][1]}</TableCell>
@@ -98,7 +98,7 @@ function TableComponent() {
                     <TableCell>Dummy Data</TableCell>
                 </TableRow>
                 {rows[map.currentDistrict-1][4].map((incumbent, index) => (
-                  <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
+                  <TableRow hover={true} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                     <TableCell>{map.currentDistrict}</TableCell>
                     <TableCell>{incumbent}</TableCell>
                     <TableCell>{rows[map.currentDistrict-1][5][index]}</TableCell>
