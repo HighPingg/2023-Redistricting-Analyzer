@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedYear } from '../reducers/MapReducer';
 
 // Mui imports
-import { Box, ToggleButton , ToggleButtonGroup} from '@mui/material';
+import { Box, ToggleButton , ToggleButtonGroup, MenuItem, Select} from '@mui/material';
 
 function YearToggle(){
   // Get map from MapReducer
@@ -15,21 +15,28 @@ function YearToggle(){
     dispatch(setSelectedYear(year));
   }
 
-
+  if (map.selectedState!= null){
   return(
-    <Box
-    >
-      <ToggleButtonGroup
-        color="primary"
-        value={map.currentYear}
-        style={{ backgroundColor: 'white' }}
-        exclusive
+    <Box>
+        <Select
+        labelId="state-select-label"
+        id="select-state"
+        value={map.setSelectedYear}
         onChange={selectYearChange}
-        aria-label="Platform"
-      >
-        <ToggleButton value="2022">2022</ToggleButton>
-        <ToggleButton value="2020">2020</ToggleButton>
-      </ToggleButtonGroup>
+        defaultValue={'2022'}
+        >
+          <MenuItem value={"2022"}>2022</MenuItem>
+          <MenuItem value={"2020"}>2020</MenuItem>
+          <MenuItem value={"Plan1"}>Plan1</MenuItem>
+          <MenuItem value={"Plan2"}>Plan2</MenuItem>
+          <MenuItem value={"Plan3"}>Plan3</MenuItem>
+
+        </Select>
       </Box>
   )}
+  else{
+    return;
+  }
+
+}
 export default YearToggle
