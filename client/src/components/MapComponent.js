@@ -183,19 +183,18 @@ function Map() {
                 style={(feature) => getColor(feature, map.currentDistrict)}
                 onEachFeature={(feature, layer) => onEachFeature(feature, layer, map.selectedState)}
                 />
-      </MapContainer>
-
-      <div style={{right: '10px',
+        
+        <div style={{right: '10px',
                    top: '10px',
                    padding: '10px',
                    position: 'absolute',
-                   zIndex: 1,
+                   zIndex: 1000,
                    backgroundColor: alpha('#E0E0E3', 0.5),
                    textAlign: 'left'
                   }}
            ref={captionRef}
         />
-    
+      </MapContainer>
     </Box>
   );
 }
