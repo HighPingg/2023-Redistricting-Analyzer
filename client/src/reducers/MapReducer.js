@@ -61,6 +61,6 @@ export const mapReducer = createSlice({
     }
 })
 
-export const {setSelectedState, setSelectedYear, setSelectedDistrict} = mapReducer.actions
+export const {setSelectedState, setSelectedYear, setSelectedDistrict, setSelectedDisplay} = mapReducer.actions
 
 export default mapReducer.reducer
