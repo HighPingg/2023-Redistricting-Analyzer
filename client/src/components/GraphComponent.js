@@ -44,7 +44,15 @@ function Graph(){
           display = <ReactApexChart options={options} series={series} type="boxPlot" height={350} key ={map.currentDisplay}/> ;
           break;
 
+<<<<<<< Updated upstream
         case "SplitParty":
+=======
+
+
+
+          
+        case "Incumbency":
+>>>>>>> Stashed changes
           // Fake data 
           series = [{
               name: 'Republican',
