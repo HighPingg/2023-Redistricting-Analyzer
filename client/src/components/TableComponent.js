@@ -116,7 +116,7 @@ function TableComponent() {
                 ))} */}
               </TableBody>
             </Table>
-            <Button variant="contained">Reset</Button>
+            <Button sx={{marginBottom:'10px'}} variant="outlined">Reset</Button>
           </TableContainer>
           
           </Box>
