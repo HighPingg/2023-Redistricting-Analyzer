@@ -2,8 +2,9 @@
 import * as React from 'react';
 
 // Imports for graphing util.
-import Chart from 'react-apexcharts';
+// import Chart from 'react-apexcharts';
 import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentlyHovered, setSelectedDistrict, setSelectedState } from '../reducers/MapReducer';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -109,53 +110,57 @@ function TableComponent() {
     //     }
     // };
     if (map.selectedState != null){
-      return (
+      if (map.setSelectedDistrict == null) {
+        return (
         
-        // <div>
-        //     {map.selectedState != null ?
-        //     <div>
-        //     <div>
-        //         Population Density: 198.2 <br></br>
-        //         District Plans: 14 <br></br>
-        //         Incumbents Predicted to Win: 0 <br></br>
-        //         Average Geographic Variation: 0 <br></br>
-        //         Population Variation in Incumbent Districts: 0 <br></br>
-        //     </div>
-        //     {/* <div>
-        //         <Chart options={options} type="bar" series={series} width="100%" />
-        //     </div> */}
-        //     </div> : "Select a state to show table data"}
-        // </div>
-
-        <TableContainer component={Paper} sx={{ maxHeight: '95vh' }}>
-          <Table aria-aria-label='simple table'>
-            <TableHead>
-              <TableRow>
-                <TableCell>District</TableCell>
-                <TableCell>Incumbent</TableCell>
-                <TableCell>Party</TableCell>
-                {/* <TableCell>2022 W/L</TableCell> */}
-                <TableCell>Geographic Variation</TableCell>
-                <TableCell>Population Variation</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                console.log(row),
-                <TableRow key={row[0]}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component="th">{row[0]}</TableCell>
-                  <TableCell>{row[1]}</TableCell>
-                  <TableCell>{row[3]}</TableCell>
-                  {/* <TableCell>{row[2]}</TableCell> */}
-                  <TableCell>Dummy Data</TableCell>
-                  <TableCell>Dummy Data</TableCell>
+          // <div>
+          //     {map.selectedState != null ?
+          //     <div>
+          //     <div>
+          //         Population Density: 198.2 <br></br>
+          //         District Plans: 14 <br></br>
+          //         Incumbents Predicted to Win: 0 <br></br>
+          //         Average Geographic Variation: 0 <br></br>
+          //         Population Variation in Incumbent Districts: 0 <br></br>
+          //     </div>
+          //     {/* <div>
+          //         <Chart options={options} type="bar" series={series} width="100%" />
+          //     </div> */}
+          //     </div> : "Select a state to show table data"}
+          // </div>
+  
+          <TableContainer component={Paper} sx={{ maxHeight: '95vh' }}>
+            <Table aria-aria-label='simple table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell>District</TableCell>
+                  <TableCell>Incumbent</TableCell>
+                  <TableCell>Party</TableCell>
+                  {/* <TableCell>2022 W/L</TableCell> */}
+                  <TableCell>Geographic Variation</TableCell>
+                  <TableCell>Population Variation</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      );}
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  console.log(row),
+                  <TableRow key={row[0]}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th">{row[0]}</TableCell>
+                    <TableCell>{row[1]}</TableCell>
+                    <TableCell>{row[3]}</TableCell>
+                    {/* <TableCell>{row[2]}</TableCell> */}
+                    <TableCell>Dummy Data</TableCell>
+                    <TableCell>Dummy Data</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        );
+      }
+      }
+      
       else{
         return "Select a state to show table data";
       }
