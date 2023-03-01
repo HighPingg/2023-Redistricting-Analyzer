@@ -164,7 +164,7 @@ function Graph(){
                     colors: ['#fff']
                 },
                 title: {
-                    text: 'Incumbencies'
+                    text: 'Demographic distribution'
                 },
                 xaxis: {
                     categories: ["African American", "Asian", "White", "Hispanic"],
