@@ -13,7 +13,7 @@ function EnsembleData(){
     if (map.selectedState!= null){
         display =
         <div>
-            <b>{map.currentGraphData.ensembleData}</b>
+            <b>{map.currentGraphData.ensembleData + ' ' + map.currentYear}</b>
             <Box
                 component="div"
                 sx={{
