@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 
 // Mui Imports
 import { useRef, useState } from 'react';
-import { alpha, Box, FormControl, IconButton, InputLabel, MenuItem, Select, Tooltip, Grid } from '@mui/material';
+import { alpha, Box, FormControl, IconButton, InputLabel, MenuItem, Select, Tooltip} from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
 
 // Component imports
@@ -135,9 +135,9 @@ function Map() {
   return (
     <Box>
 
-      <Box sx={{top:'1%', display:'flex', position:'absolute', justifyContent: 'flex-start', zIndex: 1 }}>
-      <Grid container spacing={.5}>
-        <Grid item xs={6}>
+      <Box sx={{top:'1%', left:'.5%', display:'flex', flexDirection:'column', position:'absolute', alignItems:'left', justifyContent: 'left', zIndex: 1}}>
+
+        <Box>
           <Tooltip title="Select State" placement='right' arrow>
             <FormControl style={{backgroundColor:'white', minWidth:'100px'}}>
               
@@ -158,8 +158,7 @@ function Map() {
               </Select>
             </FormControl>
           </Tooltip>
-      </Grid>
-      <Grid item xs={1}>
+
         {
           // Hide reset button when no state is selected.
           map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
@@ -168,13 +167,10 @@ function Map() {
                                           </IconButton>
                                         </Tooltip>
         }
-      </Grid>
-      <Grid item xs={7}>
-      <YearToggle/>
-      </Grid>
+        </Box>
 
+      <YearToggle/>
       
-      </Grid>
       </Box>
 
       <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: "50vh", zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={true}>

@@ -20,84 +20,84 @@ function TableComponent() {
     const dispatch = useDispatch()
     
 
-    let options, series = null
-    if (map.currentGraphData!= null) {
-        // Fake data 
-        series = [{
-            name: 'Republican',
-            data: [6, 0]
-        }, {
-            name: 'Democratic',
-            data: [3, 0]
-        }, {
-            name: 'Open',
-            data: [0, 1]
-        }];
+    // let options, series = null
+    // if (map.currentGraphData!= null) {
+    //     // Fake data 
+    //     series = [{
+    //         name: 'Republican',
+    //         data: [6, 0]
+    //     }, {
+    //         name: 'Democratic',
+    //         data: [3, 0]
+    //     }, {
+    //         name: 'Open',
+    //         data: [0, 1]
+    //     }];
 
-        options = {
-            chart: {
-                type: 'bar',
-                height: 350,
-                stacked: true,
-            },
-            plotOptions: {
-                bar: {
-                horizontal: true,
-                dataLabels: {
-                    total: {
-                    enabled: true,
-                    offsetX: 0,
-                    style: {
-                        fontSize: '13px',
-                        fontWeight: 900
-                    }
-                    }
-                }
-                },
-            },
-            stroke: {
-                width: 1,
-                colors: ['#fff']
-            },
-            title: {
-                text: 'Incumbencies'
-            },
-            xaxis: {
-                categories: ["Incumbent", "Open"],
-                labels: {
-                formatter: function (val) {
-                    return val + "K"
-                }
-                }
-            },
-            yaxis: {
-                title: {
-                text: undefined
-                },
-            },
-            tooltip: {
-                y: {
-                formatter: function (val) {
-                    return val + "K"
-                }
-                }
-            },
-            fill: {
-                opacity: 1,
-                colors: ['#F44336', '#0000FF', '#808080']
-            },
-            legend: {
-                position: 'top',
-                horizontalAlign: 'left',
-                offsetX: 40
-            },
-            colors:['#F44336', '#0000FF', '#808080']
+    //     options = {
+    //         chart: {
+    //             type: 'bar',
+    //             height: 350,
+    //             stacked: true,
+    //         },
+    //         plotOptions: {
+    //             bar: {
+    //             horizontal: true,
+    //             dataLabels: {
+    //                 total: {
+    //                 enabled: true,
+    //                 offsetX: 0,
+    //                 style: {
+    //                     fontSize: '13px',
+    //                     fontWeight: 900
+    //                 }
+    //                 }
+    //             }
+    //             },
+    //         },
+    //         stroke: {
+    //             width: 1,
+    //             colors: ['#fff']
+    //         },
+    //         title: {
+    //             text: 'Incumbencies'
+    //         },
+    //         xaxis: {
+    //             categories: ["Incumbent", "Open"],
+    //             labels: {
+    //             formatter: function (val) {
+    //                 return val + "K"
+    //             }
+    //             }
+    //         },
+    //         yaxis: {
+    //             title: {
+    //             text: undefined
+    //             },
+    //         },
+    //         tooltip: {
+    //             y: {
+    //             formatter: function (val) {
+    //                 return val + "K"
+    //             }
+    //             }
+    //         },
+    //         fill: {
+    //             opacity: 1,
+    //             colors: ['#F44336', '#0000FF', '#808080']
+    //         },
+    //         legend: {
+    //             position: 'top',
+    //             horizontalAlign: 'left',
+    //             offsetX: 40
+    //         },
+    //         colors:['#F44336', '#0000FF', '#808080']
 
-        }
-    };
+    //     }
+    // };
       return (
         <div>
-            {map.currentGraphData != null ?
+            {map.selectedState != null ?
             <div>
             <div>
                 Population Density: 198.2 <br></br>
@@ -106,9 +106,9 @@ function TableComponent() {
                 Average Geographic Variation: 0 <br></br>
                 Population Variation in Incumbent Districts: 0 <br></br>
             </div>
-            <div>
+            {/* <div>
                 <Chart options={options} type="bar" series={series} width="100%" />
-            </div>
+            </div> */}
             </div> : "Select a state to show table data"}
         </div>
 
