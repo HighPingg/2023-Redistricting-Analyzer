@@ -206,7 +206,16 @@ var graphingOverview = {
                   y: [43, 65, 69, 76, 81]
                 },
 
-              ]
+              ],
+              ensembleData:"Ensemble Data for Ohio",
+              data: 
+                {
+                  populationDensity: 123.2,
+                  districtPlans: 14,
+                  incumbentsPredictedToWin: 0,
+                  averageGeographicVariation: 0,
+                  populationVariationInIncumbentDistricts: 0
+                },
         
         },
         'Nevada':{
@@ -269,7 +278,16 @@ var graphingOverview = {
                 x: 'District 4',
                 y: [39, 46, 55, 65, 71]
               },
-              ]
+            ],
+            ensembleData:"Ensemble Data for Nevada",
+            data: 
+              {
+                populationDensity: 25.9,
+                districtPlans: 4,
+                incumbentsPredictedToWin: 3,
+                averageGeographicVariation: 2,
+                populationVariationInIncumbentDistricts: 23
+              },
         },
         'Illinois':{
             incumbents2020: [
@@ -500,7 +518,16 @@ var graphingOverview = {
                 x: 'District 17',
                 y: [41, 49, 58, 61, 67]
               },
-              ]
+              ],
+              ensembleData:"Ensemble Data for Illinois",
+              data: 
+                {
+                  populationDensity: 198.2,
+                  districtPlans: 14,
+                  incumbentsPredictedToWin: 0,
+                  averageGeographicVariation: 0,
+                  populationVariationInIncumbentDistricts: 0
+                },
         }
     }
 };
