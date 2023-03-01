@@ -8,7 +8,6 @@ import TableComponent from './components/TableComponent';
 
 //Visual imports
 
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import DisplayToggle from './components/DisplayToggleComponent';
 // import Item from '@mui/material/Item';
@@ -19,13 +18,13 @@ function App() {
       <Grid container spacing={2}>
         <Grid item xs={8}> 
           <Map />
+          <DisplayToggle/>
+          <Graph/>
         </Grid>
         <Grid item xs={4}>
           <TableComponent/>
         </Grid>
       </Grid>
-      <DisplayToggle/>
-      <Graph/>
     </div>
   );
 }
