@@ -1,5 +1,8 @@
 import './App.css';
 
+// Redux Imports
+import { useSelector } from 'react-redux';
+
 // Components.
 import Map from './components/MapComponent';
 import YearToggle from './components/YearToggleComponent'
@@ -14,26 +17,36 @@ import DisplayToggle from './components/DisplayToggleComponent';
 // import Item from '@mui/material/Item';
 
 function App() {
-  return (
-    <div className="App">
-      <Grid container spacing={2}>
-        <Grid item xs={8}> 
-          <Map />
+  const map = useSelector(state => state.map);
+
+  if (map.selectedState === null) {
+    return (
+      <div className="App">
+        <Map />
+      </div>
+    );
+  } else {
+    return (
+      <div className="App">
+        <Grid container spacing={2}>
+          <Grid item xs={8}> 
+            <Map />
+          </Grid>
+          <Grid item xs={4}>
+            {/* <TableComponent/> */}
+            <EnsembleData/>
+          </Grid>
+          <Grid item xs={8}>
+          <DisplayToggle/>
+            <Graph/>
+          </Grid>
+          <Grid item xs={4}>
+          <TableComponent/>
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          {/* <TableComponent/> */}
-          <EnsembleData/>
-        </Grid>
-        <Grid item xs={8}>
-        <DisplayToggle/>
-          <Graph/>
-        </Grid>
-        <Grid item xs={4}>
-        <TableComponent/>
-        </Grid>
-      </Grid>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;

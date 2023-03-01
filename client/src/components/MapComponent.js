@@ -134,7 +134,7 @@ function Map() {
 
   return (
     <Box>
-      <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: "50vh", zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={true}>
+      <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: map.selectedState === null ? '100vh' : '50vh', zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={true}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
