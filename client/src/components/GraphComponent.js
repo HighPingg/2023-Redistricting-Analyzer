@@ -15,7 +15,7 @@ function Graph(){
     if (map.selectedState!= null){
       
       switch(map.currentDisplay){
-        case "Ensemble":
+        case "BoxWhisker":
           series =  [
             {
             type: 'boxPlot',
@@ -44,7 +44,7 @@ function Graph(){
           display = <ReactApexChart options={options} series={series} type="boxPlot" height={350} key ={map.currentDisplay}/> ;
           break;
 
-        case "Incumbency":
+        case "SplitParty":
           // Fake data 
           series = [{
               name: 'Republican',

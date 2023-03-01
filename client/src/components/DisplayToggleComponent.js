@@ -26,8 +26,8 @@ function DisplayToggle(){
         onChange={selectDisplayChange}
         aria-label="Platform"
       >
-        <ToggleButton value="Ensemble">Ensemble</ToggleButton>
-        <ToggleButton value="Incumbency">Incumbency</ToggleButton>
+        <ToggleButton value="BoxWhisker">Box and Whisker</ToggleButton>
+        <ToggleButton value="SplitParty">Split Party View</ToggleButton>
       </ToggleButtonGroup>
       </Box>
   )}
