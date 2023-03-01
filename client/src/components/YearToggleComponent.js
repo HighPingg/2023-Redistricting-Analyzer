@@ -24,6 +24,7 @@ function YearToggle(){
         value={map.setSelectedYear}
         onChange={selectYearChange}
         defaultValue={'2022'}
+        style={{backgroundColor: 'white'}}
         >
           <MenuItem value={"2022"}>2022</MenuItem>
           <MenuItem value={"2020"}>2020</MenuItem>
