@@ -15,7 +15,7 @@ function DisplayToggle(){
     dispatch(setSelectedDisplay(displayMode));
   }
 
-
+  if (map.selectedState!= null){
   return(
     <Box
     >
@@ -28,7 +28,13 @@ function DisplayToggle(){
       >
         <ToggleButton value="BoxWhisker">Box and Whisker</ToggleButton>
         <ToggleButton value="SplitParty">Split Party View</ToggleButton>
+        <ToggleButton value="Demographic">Demographic</ToggleButton>
       </ToggleButtonGroup>
       </Box>
   )}
+  else{
+    return;
+  }
+
+}
 export default DisplayToggle

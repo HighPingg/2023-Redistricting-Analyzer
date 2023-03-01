@@ -24,9 +24,10 @@ export const mapReducer = createSlice({
     initialState,
     reducers: {
         setSelectedState: (state, action) => {
-            state.currentDistrict = null
+            state.currentDistrict = null;
             state.selectedState = action.payload;
-            state.currentYear = '2022'
+            state.currentYear = '2022';
+            state.currentDisplay = null;
 
             switch (action.payload) {
                 case "Illinois":

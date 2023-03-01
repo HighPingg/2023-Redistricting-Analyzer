@@ -121,6 +121,78 @@ function Graph(){
           }
           display = <Chart options={options} type="bar" series={series} width="100%" height="200%" key ={map.currentDisplay}/>;
           break;
+
+          case "Demographic":
+            // Fake data 
+            series = [{
+                name: '',
+                data: [6, 3, 5 ,7]
+            },
+          ];
+  
+            options = {
+                chart: {
+                    type: 'bar',
+                    height: 350,
+                    stacked: true,
+                },
+                plotOptions: {
+                    bar: {
+                    horizontal: true,
+                    dataLabels: {
+                        total: {
+                        enabled: true,
+                        offsetX: 0,
+                        style: {
+                            fontSize: '13px',
+                            fontWeight: 900
+                        }
+                        }
+                    }
+                    },
+                },
+                stroke: {
+                    width: 1,
+                    colors: ['#fff']
+                },
+                title: {
+                    text: 'Incumbencies'
+                },
+                xaxis: {
+                    categories: ["African American", "Asian", "White", "Hispanic"],
+                    labels: {
+                    formatter: function (val) {
+                        return val + "K"
+                    }
+                    }
+                },
+                yaxis: {
+                    title: {
+                    text: undefined
+                    },
+                },
+                tooltip: {
+                    y: {
+                    formatter: function (val) {
+                        return val + "K"
+                    }
+                    }
+                },
+                fill: {
+                    opacity: 1,
+                    colors: ['#F44336', '#0000FF', '#808080']
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'left',
+                    offsetX: 40
+                },
+                colors:['#F44336', '#0000FF', '#808080']
+              
+  
+            }
+            display = <Chart options={options} type="bar" series={series} width="100%" height="200%" key ={map.currentDisplay}/>;
+            break;
             
         default:
           display = "Select a graph type to display"
