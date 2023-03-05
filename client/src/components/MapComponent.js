@@ -25,14 +25,20 @@ function Map() {
 
   var getColor = (feature, selectedState) => {
     if (map.currentDistrict !== null && map.currentDistrict === feature.properties.DISTRICT) {
-      return {fillColor: 'purple', color:'white', weight: 1, fillOpacity: 1};
+      return {
+        fillColor: 'purple',
+        color:'white',
+        weight: 1,
+        fillOpacity: 1
+      };
     } else {
-      return {fillColor: feature.properties.color, color:'white', weight: 1, fillOpacity: 0.8};
+      return {
+        fillColor: feature.properties.color,
+        color:'white',
+        weight: 1,
+        fillOpacity: 0.8
+      };
     }
-  }
-
-  var getName = (feature) => {
-    return feature.properties.name;
   }
 
   // Apply interactions to the map polygons
@@ -42,11 +48,11 @@ function Map() {
       layer.on({
         // On click, change selected state.  
         'click': function (event) {
-          dispatch(setSelectedState(getName(feature)))
+          dispatch(setSelectedState(feature.properties.name))
 
           const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
-          if (centerCoords[getName(feature)] != null)
-            mapRef.current.flyTo(centerCoords[getName(feature)], 6);
+          if (centerCoords[feature.properties.name] != null)
+            mapRef.current.flyTo(centerCoords[feature.properties.name], 6);
         },
 
         // On hover, highlight
