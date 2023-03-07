@@ -19,7 +19,8 @@ public class ServerApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/data").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/graphdata").allowedOrigins("http://localhost:3000");
 			}
 		};
 	}
