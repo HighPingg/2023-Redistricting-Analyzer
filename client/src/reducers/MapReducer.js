@@ -3,9 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // For MapComponent
 import mapOverview from '../assets/geoJSON';
-import illinois21Map from '../assets/illinois_21';
-import ohio21Map from '../assets/ohio_21';
-import nevada21Map from '../assets/nevada_21';
 
 // For Graph Component
 import graphingOverview from "../assets/graphData";
@@ -31,18 +28,15 @@ export const mapReducer = createSlice({
 
             switch (action.payload) {
                 case "Illinois":
-                    state.currentGeoJSON = illinois21Map;
-                    state.currentGraphData = graphingOverview.states.Illinois
+                    state.currentGraphData = graphingOverview.states.Illinois;
                     break;
                 
                 case "Ohio":
-                    state.currentGeoJSON = ohio21Map;
-                    state.currentGraphData = graphingOverview.states.Ohio
+                    state.currentGraphData = graphingOverview.states.Ohio;
                     break;
 
                 case "Nevada":
-                    state.currentGeoJSON = nevada21Map;
-                    state.currentGraphData = graphingOverview.states.Nevada
+                    state.currentGraphData = graphingOverview.states.Nevada;
                     break;
             
                 default:
@@ -51,18 +45,21 @@ export const mapReducer = createSlice({
                     break;
             }
         },
+        setCurrentGeoJSON:(state, action) => {
+            state.currentGeoJSON = action.payload;
+        },
         setSelectedYear:(state, action) => {
-            state.currentYear = action.payload
+            state.currentYear = action.payload;
         },
         setSelectedDistrict:(state, action) => {
-            state.currentDistrict = action.payload
+            state.currentDistrict = action.payload;
         },
         setSelectedDisplay:(state, action) => {
-            state.currentDisplay = action.payload
+            state.currentDisplay = action.payload;
         }
     }
 })
 
-export const {setSelectedState, setSelectedYear, setSelectedDistrict, setSelectedDisplay} = mapReducer.actions
+export const {setSelectedState, setCurrentGeoJSON, setSelectedYear, setSelectedDistrict, setSelectedDisplay} = mapReducer.actions;
 
-export default mapReducer.reducer
+export default mapReducer.reducer;

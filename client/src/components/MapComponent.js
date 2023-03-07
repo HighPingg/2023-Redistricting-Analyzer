@@ -1,6 +1,6 @@
 // Redux Imports
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentlyHovered, setSelectedDistrict, setSelectedState } from '../reducers/MapReducer';
+import { setCurrentGeoJSON, setCurrentlyHovered, setSelectedDistrict, setSelectedState } from '../reducers/MapReducer';
 
 // Leaflet Imports
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
@@ -41,19 +41,58 @@ function Map() {
     }
   }
 
+  var handleSetSelectedState = (name) => {
+    // Switch state code
+    let selectedState = null;
+    switch (name) {
+      case "Illinois":
+        selectedState = 'IL';
+        break;
+      
+      case "Ohio":
+        selectedState = 'OH';
+        break;
+
+      case "Nevada":
+        selectedState = 'NV';
+        break;
+    }
+
+    // If we're not resetting, then we want to fetch the state GeoJSON as well.
+    if (selectedState !== null) {
+      fetch("http://127.0.0.1:8080/geojson", {
+        method: "POST",
+        body: JSON.stringify({
+            mapType: selectedState
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.text())
+        .then((data) => {
+            dispatch(setCurrentGeoJSON(JSON.parse(data)));
+            dispatch(setSelectedState(name));
+
+            const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
+            mapRef.current.flyTo(centerCoords[name], 6);
+        });
+
+    // Otherwise just use the default view.
+    } else {
+      dispatch(setSelectedState(null));
+
+      mapRef.current.flyTo([37.6, -96], 5);
+    }
+  }
+
   // Apply interactions to the map polygons
   var onEachFeature = (feature, layer, selectedState) => {
     if (selectedState === null) {
       // Bind click to zoom in on state.
       layer.on({
         // On click, change selected state.  
-        'click': function (event) {
-          dispatch(setSelectedState(feature.properties.name))
-
-          const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
-          if (centerCoords[feature.properties.name] != null)
-            mapRef.current.flyTo(centerCoords[feature.properties.name], 6);
-        },
+        'click': (event) => handleSetSelectedState(feature.properties.name),
 
         // On hover, highlight
         'mouseover' : highlightFeature,
@@ -69,24 +108,6 @@ function Map() {
         'mouseover' : highlightFeature,
         'mouseout' : resetHighlight
       })
-    }
-  }
-
-  // Reset the map to overview.
-  var resetMap = (event) => {
-    dispatch(setSelectedState(null));
-
-    mapRef.current.flyTo([37.6, -96], 5);
-  }
-
-  function setMap(state) {
-    dispatch(setSelectedState(state));
-    const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
-    if (centerCoords[state] != null){
-      mapRef.current.flyTo(centerCoords[state], 6);
-    }
-    else{
-      mapRef.current.flyTo([37.6, -96], 5);
     }
   }
 
@@ -131,12 +152,6 @@ function Map() {
     captionRef.current.innerHTML = null
   }
 
-  var selectStateChange = (event) => {
-    let state = event.target.value
-    setMap(state);
-  }
-
-  
 
   return (
     <Box>
@@ -163,7 +178,7 @@ function Map() {
                   labelId="state-select-label"
                   id="select-state"
                   value={map.selectedState}
-                  onChange={selectStateChange}
+                  onChange={(event) => handleSetSelectedState(event.target.value)}
                 >
                   <MenuItem value={"Ohio"}>Ohio</MenuItem>
                   <MenuItem value={"Illinois"}>Illinois</MenuItem>
@@ -176,7 +191,7 @@ function Map() {
           {
             // Hide reset button when no state is selected.
             map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
-                                            <IconButton onClick={resetMap}>
+                                            <IconButton onClick={() => handleSetSelectedState(null)}>
                                                 <ReplayIcon style={{color: 'black'}}/>
                                             </IconButton>
                                           </Tooltip>
