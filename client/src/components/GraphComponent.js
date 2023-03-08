@@ -12,7 +12,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 function Graph(){
     // Get selected state from reducer
     const map = useSelector(state => state.map);
-    const { data, error, isLoading } = useSWR('http://localhost:8080/data', fetcher)
+    const { data, error, isLoading } = useSWR('http://localhost:8080/graphdata', fetcher)
 
     let display = "Select a state to show more data"
     
@@ -214,7 +214,7 @@ function Graph(){
       }
       if (error) return <div>failed to load</div>
       if (isLoading) return <div>loading...</div>
-      return <div>hello{data.name} !</div>
+      return <div>hello{data.state} !</div>
     
   return (
   <div>
