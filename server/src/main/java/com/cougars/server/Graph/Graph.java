@@ -1,19 +1,20 @@
 package com.cougars.server;
-
+//import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
 import lombok.Data;
-//This class will deal with the graphing of stuff.
 @Data
-public class Graph {
+public class Graph{
     public enum States{OH,NV,IL} //Three states we can have
-    public enum GraphType{BOXWHISKER,PIE,STACKEDBAR}//Types of graphs
-    String state;
-    GraphType graphType;
-//    JSONObject data;
 
-//    public Graph(States state, GraphType graphType,JSONObject data){
-    public Graph(States state, GraphType graphType){
+    public String state;
+    public String graphTitle;
+
+    public ArrayList<Datapoint> data;
+
+    public Graph(States state, String graphTitle, ArrayList<Datapoint> data){
         this.state = state.name();
-        this.graphType = graphType;
-//        this.data = data;
+        this.graphTitle = graphTitle;
+        this.data = data;
     }
 }
