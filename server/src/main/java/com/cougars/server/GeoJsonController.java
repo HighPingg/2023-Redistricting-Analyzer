@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -18,11 +18,11 @@ public class GeoJsonController {
      * 
      * @return the GeoJSON object requested.
      */
-    @PostMapping("/geojson")
-    public String getGeoJSON(@RequestBody GeoJSONRequest obj) throws FileNotFoundException {
+    @GetMapping("/geojson/{state}")
+    public String getGeoJSON(@PathVariable String state) throws FileNotFoundException {
         String fileName = null;
 
-        switch (obj.mapType) {
+        switch (state) {
             case "IL":
                 fileName = "src/assets/illinois_21.json";
                 break;
@@ -37,7 +37,7 @@ public class GeoJsonController {
 
             default:
                 throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "GeoJSON for " + obj.mapType + " not found."
+                    HttpStatus.NOT_FOUND, "GeoJSON for " + state + " not found."
                 );
         }
 

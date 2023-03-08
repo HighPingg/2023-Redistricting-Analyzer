@@ -60,11 +60,8 @@ function Map() {
 
     // If we're not resetting, then we want to fetch the state GeoJSON as well.
     if (selectedState !== null) {
-      fetch("http://127.0.0.1:8080/geojson", {
-        method: "POST",
-        body: JSON.stringify({
-            mapType: selectedState
-        }),
+      fetch("http://127.0.0.1:8080/geojson/" + selectedState, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
