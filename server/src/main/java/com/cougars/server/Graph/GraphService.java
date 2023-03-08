@@ -28,6 +28,8 @@ public class GraphService {
         list.add(2);
         list.add(3);
         list.add(7);
+        list.add(7);
+        list.add(10);
 
         //Create datapoint
         ArrayList<Datapoint> data = new ArrayList<>();
