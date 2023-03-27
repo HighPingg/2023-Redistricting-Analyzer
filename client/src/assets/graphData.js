@@ -210,8 +210,8 @@ var graphingOverview = {
               ensembleDataTitle:"Ensemble Data for Ohio",
               ensembleData: 
                 {
-                  populationDensity: 123.2,
-                  districtPlans: 14,
+                  populationDensity: 282.3,
+                  districtPlans: 15,
                   incumbentsPredictedToWin: 0,
                   averageGeographicVariation: 0,
                   populationVariationInIncumbentDistricts: 0
