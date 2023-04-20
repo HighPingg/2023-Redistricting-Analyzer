@@ -1,20 +1,34 @@
 package com.cougars.server;
-import java.util.ArrayList;
 import lombok.Data;
-import java.util.HashMap;
 
+import java.util.HashMap;
+import java.util.ArrayList;
 @Data
 public class District{
-    private String name;
-    private Integer number;
-    private String winner;
-    private String house;
-    private Integer votes;
-    private ArrayList<String> loser;
-    private ArrayList<String> lowerHouse;
-    private ArrayList<String> loservotes;
-    private Integer totalPopulation;
-    private HashMap<Year, Float> geographicSizes;
-    private HashMap<Year, HashMap<Race, Integer>> demographics;
+    private Integer districtNumber;
+    private Candidate incumbent;
+    private ArrayList<Candidate> candidates;
+    private Candidate winner;
 
+    private Double geometricArea;
+
+    private Double medianIncome;
+    private Double averageAge;
+
+    private String raceGraph;
+    private String ageGraph;
+    private String incomeGraph;
+
+    public District(Integer districtNumber, Candidate incumbent, ArrayList<Candidate> candidates, Candidate winner, Double geometricArea, Double medianIncome, Double averageAge, String raceGraph, String ageGraph, String incomeGraph) {
+        this.districtNumber = districtNumber;
+        this.incumbent = incumbent;
+        this.candidates = candidates;
+        this.winner = winner;
+        this.geometricArea = geometricArea;
+        this.medianIncome = medianIncome;
+        this.averageAge = averageAge;
+        this.raceGraph = raceGraph;
+        this.ageGraph = ageGraph;
+        this.incomeGraph = incomeGraph;
+    }
 }

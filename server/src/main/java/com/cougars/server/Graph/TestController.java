@@ -12,9 +12,17 @@ public class TestController {
 
     @Autowired
     @Qualifier("Nevada")
-    private State state;
-    @RequestMapping(value = "/testing", produces="application/json")
-    public State getGraph() {
-        return this.state;
+    private State stateNevada;
+
+    @Autowired
+    @Qualifier("Ohio")
+    private State stateasdf;
+
+    @Autowired
+    @Qualifier("Nevada")
+    private State stateOhi;
+    @RequestMapping(value = "/testing{state}", produces="application/json")
+    public State getGraph(@PathVariable String state) {
+        return stateNevada;
     }
 }
