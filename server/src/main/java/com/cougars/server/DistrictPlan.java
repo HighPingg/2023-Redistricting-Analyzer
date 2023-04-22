@@ -11,7 +11,7 @@ public class DistrictPlan{
     private Integer numIncumbents;
     private String incumbentsData; //TODO json in diagram
 
-    public DistrictPlan(String name, String geoJson, ArrayList<District> districts, Integer numDistrictPlan, Integer numIncumbents, String incumbentsData) {
+    public DistrictPlan(String name, Object geoJson, ArrayList<District> districts, Integer numDistrictPlan, Integer numIncumbents, String incumbentsData) {
         this.name = name;
         this.geoJson = geoJson;
         this.districts = districts;

@@ -1,7 +1,8 @@
 package com.cougars.server;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
-
+@Data
 public class StateData {
 
     @Id

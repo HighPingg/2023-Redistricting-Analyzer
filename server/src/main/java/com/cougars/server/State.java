@@ -1,21 +1,21 @@
 package com.cougars.server;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.ArrayList;
 @Data
 public class State{
     private String name;
-    private Set<DistrictPlan> districts;
+    private ArrayList<DistrictPlan> districtPlans;
     private Ensemble ensemble;
 
-    public State(String name, Set<DistrictPlan> districts, Ensemble ensemble) {
+    public State(String name, ArrayList<DistrictPlan> districts, Ensemble ensemble) {
         this.name = name;
-        this.districts = districts;
+        this.districtPlans = districts;
         this.ensemble = ensemble;
     }
 
-    public State(String name, Set<DistrictPlan> districts){
+    public State(String name, ArrayList<DistrictPlan> districts){
         this.name = name;
-        this.districts = districts;
+        this.districtPlans = districts;
     }
 }
