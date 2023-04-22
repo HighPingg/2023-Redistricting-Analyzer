@@ -5,7 +5,7 @@ import java.util.ArrayList;
 @Data
 public class DistrictPlan{
     private String name;
-    private String geoJson; //TODO geoJSON in diagram
+    private Object geoJson; //TODO geoJSON in diagram
     private ArrayList<District> districts;
     private Integer numDistrictPlan;
     private Integer numIncumbents;
