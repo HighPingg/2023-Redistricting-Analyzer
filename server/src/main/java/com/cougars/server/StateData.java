@@ -9,7 +9,7 @@ public class StateData {
     @Id
     public String id;
     public String name;
-    public HashMap<String, Object> districtPlansGeoJson;
+    public HashMap<String, Object> districtPlanGeoJson;
     public StateData() {}
     public StateData(String name) {
         this.name = name;
@@ -18,8 +18,8 @@ public class StateData {
     @Override
     public String toString() {
         return String.format(
-                "StateTest:[id=%s, name='%s]",
-                id, name);
+                "StateTest:[id=%s, name=%s, districtPlansGeoJson=%s ]",
+                id, name, districtPlanGeoJson);
     }
 
 }

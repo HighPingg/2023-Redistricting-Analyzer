@@ -18,15 +18,15 @@ public class GeoJsonController {
 
     @Autowired
     @Qualifier("Nevada")
-    private State stateNevada;
+    private State Nevada;
 
     @Autowired
     @Qualifier("Ohio")
     private State Ohio;
 
     @Autowired
-    @Qualifier("Nevada")
-    private State stateOhi;
+    @Qualifier("Illinois")
+    private State Illinois;
 
     /**
      * Gets GeoJSON object requested through POST request.
@@ -34,36 +34,24 @@ public class GeoJsonController {
      * @return the GeoJSON object requested.
      */
     @RequestMapping(value = "/geojson/{state}", produces="application/json")
-    public Object getGeoJSON(@PathVariable String state) throws FileNotFoundException {
+    public Object getGeoJSON(@PathVariable String state){
         String fileName = null;
 
         switch (state) {
             case "IL":
-                fileName = "src/assets/illinois_21.json";
-                break;
+                return Illinois.getDistrictPlans().get("2020").getGeoJson();
             
             case "OH":
-//                System.out.println(Ohio.getDistrictPlans().get("2020").getGeoJson());
                 return Ohio.getDistrictPlans().get("2020").getGeoJson();
 
             case "NV":
-                fileName = "src/assets/nevada_21.json";
-                break; 
+                return Nevada.getDistrictPlans().get("2020").getGeoJson();
 
             default:
                 throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "GeoJSON for " + state + " not found."
                 );
         }
-
-        // Read all contents of file.
-        Scanner filein = new Scanner(new File(fileName));
-        String fileContent = "";
-        while (filein.hasNext()) {
-            fileContent += filein.nextLine();
-        }
-
-        return fileContent;
     }
 }
 

@@ -17,9 +17,8 @@ public class StateConfig {
     @Bean
     @Qualifier("Ohio")
     public State Ohio() {
-        StateData OhioData = repository.findByName("Ohio");
-        HashMap<String, Object> geoJson = OhioData.getDistrictPlansGeoJson(); //get all plans
-        System.out.println(geoJson);
+        StateData data = repository.findByName("Ohio");
+        HashMap<String, Object> geoJson = data.getDistrictPlanGeoJson(); //get all plans
         HashMap<String, DistrictPlan> districtPlans =  new HashMap<>();
         for(String plan:geoJson.keySet()){
             DistrictPlan districtPlan = new DistrictPlan(plan, geoJson.get(plan), new ArrayList<>(), 1, 2, "What?");
@@ -31,13 +30,26 @@ public class StateConfig {
     @Bean
     @Qualifier("Nevada")
     public State Nevada() {
-        Ensemble ensemble = new Ensemble(1, 2, 3, 1.0, 2.0, "hello1", "Testing2", "3x", "4x", "5x");
-        return new State("Nevada", new HashMap<>(), ensemble);
+        StateData data = repository.findByName("Nevada");
+        HashMap<String, Object> geoJson = data.getDistrictPlanGeoJson(); //get all plans
+        HashMap<String, DistrictPlan> districtPlans =  new HashMap<>();
+        for(String plan:geoJson.keySet()){
+            DistrictPlan districtPlan = new DistrictPlan(plan, geoJson.get(plan), new ArrayList<>(), 1, 2, "What?");
+            districtPlans.put(plan, districtPlan);
+        }
+        return new State("Nevada",districtPlans);
     }
 
     @Bean
     @Qualifier("Illinois")
     public State Illinois() {
-        return new State("Illinois", new HashMap<>());
+        StateData data = repository.findByName("Illinois");
+        HashMap<String, Object> geoJson = data.getDistrictPlanGeoJson(); //get all plans
+        HashMap<String, DistrictPlan> districtPlans =  new HashMap<>();
+        for(String plan:geoJson.keySet()){
+            DistrictPlan districtPlan = new DistrictPlan(plan, geoJson.get(plan), new ArrayList<>(), 1, 2, "What?");
+            districtPlans.put(plan, districtPlan);
+        }
+        return new State("Illinois",districtPlans);
     }
 }
