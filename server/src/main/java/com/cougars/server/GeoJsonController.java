@@ -43,7 +43,8 @@ public class GeoJsonController {
                 break;
             
             case "OH":
-                return Ohio.getDistricts().get(0).getGeoJson();
+//                System.out.println(Ohio.getDistrictPlans().get("2020").getGeoJson());
+                return Ohio.getDistrictPlans().get("2020").getGeoJson();
 
             case "NV":
                 fileName = "src/assets/nevada_21.json";

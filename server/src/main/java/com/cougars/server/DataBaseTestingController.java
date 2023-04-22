@@ -15,6 +15,6 @@ public class DataBaseTestingController {
     @RequestMapping(value = "/database", produces="application/json")
 //    @PathVariable String state
     public StateData getDataBaseData() {
-        return(repository.findByName("Nevada"));
+        return(repository.findByName("Ohio"));
     }
 }
