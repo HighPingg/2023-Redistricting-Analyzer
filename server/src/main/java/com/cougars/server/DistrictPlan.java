@@ -2,21 +2,25 @@ package com.cougars.server;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 @Data
 public class DistrictPlan{
-    private String name;
-    private Object geoJson; //TODO geoJSON in diagram
+    private Object geoJson;
     private ArrayList<District> districts;
     private Integer numDistrictPlan;
     private Integer numIncumbents;
-    private String incumbentsData; //TODO json in diagram
+    private Ensemble ensemble;
+    private ArrayList<Candidate> incumbentsData;
+    private HashMap<String, Object> graphs;
 
-    public DistrictPlan(String name, Object geoJson, ArrayList<District> districts, Integer numDistrictPlan, Integer numIncumbents, String incumbentsData) {
-        this.name = name;
+
+    public DistrictPlan(Object geoJson, ArrayList<District> districts, Integer numDistrictPlan, Integer numIncumbents, Ensemble ensemble, ArrayList<Candidate> incumbentsData, HashMap<String, Object> graphs) {
         this.geoJson = geoJson;
         this.districts = districts;
         this.numDistrictPlan = numDistrictPlan;
         this.numIncumbents = numIncumbents;
+        this.ensemble = ensemble;
         this.incumbentsData = incumbentsData;
+        this.graphs = graphs;
     }
 }

@@ -12,9 +12,19 @@ public class DataBaseTestingController {
 
     @Autowired
     private StateRepository repository;
+
+    @Autowired
+    @Qualifier("Nevada")
+    private State Nevada;
+
     @RequestMapping(value = "/database", produces="application/json")
 //    @PathVariable String state
-    public StateData getDataBaseData() {
+    public State getDataBaseData() {
         return(repository.findByName("Ohio"));
+    }
+    @RequestMapping(value = "/2database", produces="application/json")
+//    @PathVariable String state
+    public Object getOhioTest() {
+        return(Nevada.getDistrictPlans().get("2022").getEnsemble());
     }
 }

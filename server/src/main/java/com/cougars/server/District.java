@@ -9,17 +9,12 @@ public class District{
     private Candidate incumbent;
     private ArrayList<Candidate> candidates;
     private Candidate winner;
-
     private Double geometricArea;
-
     private Double medianIncome;
     private Double averageAge;
 
-    private String raceGraph;
-    private String ageGraph;
-    private String incomeGraph;
 
-    public District(Integer districtNumber, Candidate incumbent, ArrayList<Candidate> candidates, Candidate winner, Double geometricArea, Double medianIncome, Double averageAge, String raceGraph, String ageGraph, String incomeGraph) {
+    public District(Integer districtNumber, Candidate incumbent, ArrayList<Candidate> candidates, Candidate winner, Double geometricArea, Double medianIncome, Double averageAge) {
         this.districtNumber = districtNumber;
         this.incumbent = incumbent;
         this.candidates = candidates;
@@ -27,8 +22,5 @@ public class District{
         this.geometricArea = geometricArea;
         this.medianIncome = medianIncome;
         this.averageAge = averageAge;
-        this.raceGraph = raceGraph;
-        this.ageGraph = ageGraph;
-        this.incomeGraph = incomeGraph;
     }
 }

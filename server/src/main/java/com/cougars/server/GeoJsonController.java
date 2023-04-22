@@ -40,10 +40,8 @@ public class GeoJsonController {
         switch (state) {
             case "IL":
                 return Illinois.getDistrictPlans().get("2020").getGeoJson();
-            
             case "OH":
                 return Ohio.getDistrictPlans().get("2020").getGeoJson();
-
             case "NV":
                 return Nevada.getDistrictPlans().get("2020").getGeoJson();
 
