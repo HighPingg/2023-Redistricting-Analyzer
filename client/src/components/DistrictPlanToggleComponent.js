@@ -11,8 +11,21 @@ function YearToggle(){
   const dispatch = useDispatch()
 
   var selectYearChange = (event) => {
-    let year = event.target.value
-    dispatch(setSelectedDistrictPlan(year));
+    const mappings = { "Nevada": "NV", "Ohio": "OH", "Illinois": "IL" }
+    let plan = event.target.value
+    
+    fetch("http://localhost:8080/districtPlan/" + mappings[map.selectedState] + "/" + plan, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        let planData = JSON.parse(data)
+        
+        dispatch(setSelectedDistrictPlan({ "planName": plan, "geoJSON": planData.geoJson, "ensemble": planData.ensemble }));
+      })
   }
 
   if (map.selectedState!= null){

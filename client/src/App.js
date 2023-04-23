@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 // Components.
 import Map from './components/MapComponent';
-import YearToggle from './components/YearToggleComponent'
+import DistrictPlanToggle from './components/DistrictPlanToggleComponent'
 import Graph from './components/GraphComponent';
 import TableComponent from './components/TableComponent';
 import EnsembleData from './components/EnsembleDataComponent';

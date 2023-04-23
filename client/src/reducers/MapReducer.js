@@ -59,7 +59,9 @@ export const mapReducer = createSlice({
             }
         },
         setSelectedDistrictPlan:(state, action) => {
-            state.currentDistrictPlan = action.payload;
+            state.currentDistrictPlan = action.payload.planName;
+            state.currentGeoJSON = action.payload.geoJSON;
+            state.ensembleData = action.payload.ensemble;
         },
         setSelectedDistrict:(state, action) => {
             state.currentDistrict = action.payload;

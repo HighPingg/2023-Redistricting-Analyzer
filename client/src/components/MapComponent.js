@@ -12,7 +12,7 @@ import { alpha, Box, FormControl, IconButton, InputLabel, MenuItem, Select, Tool
 import ReplayIcon from '@mui/icons-material/Replay';
 
 // Component imports
-import YearToggle from './YearToggleComponent';
+import YearToggle from './DistrictPlanToggleComponent';
 
 function Map() {
   const mapRef = useRef(null);
@@ -79,7 +79,6 @@ function Map() {
             .then((response) => response.text())
             .then((plans) => {
               let districtPlan = JSON.parse(data);
-              console.log(districtPlan)
 
               dispatch(setSelectedState({"name": name, "geoJSON": districtPlan.geoJson, "plans": JSON.parse(plans), "ensemble": districtPlan.ensemble}));
 
