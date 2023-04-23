@@ -8,7 +8,6 @@ public class District{
     private Integer districtNumber;
     private Candidate incumbent;
     private ArrayList<Candidate> candidates;
-    private Candidate winner;
     private Double geometricArea;
     private Double medianIncome;
     private Double averageAge;
