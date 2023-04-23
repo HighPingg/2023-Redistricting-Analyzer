@@ -85,7 +85,8 @@ function Map() {
                 "geoJSON": districtPlan.geoJson,
                 "plans": JSON.parse(plans),
                 "ensemble": districtPlan.ensemble,
-                "mapCenter": districtPlan.geoJSONCenter
+                "mapCenter": districtPlan.geoJSONCenter,
+                "districts": districtPlan.districts
               }));
             });
         });

@@ -28,7 +28,8 @@ function DistrictPlanToggle(){
           "planName": plan,
           "geoJSON": planData.geoJson,
           "ensemble": planData.ensemble,
-          "mapCenter": planData.geoJSONCenter
+          "mapCenter": planData.geoJSONCenter,
+          "districts": planData.districts
         }));
       })
   }
