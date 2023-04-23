@@ -1,6 +1,6 @@
 // Redux imports
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedYear } from '../reducers/MapReducer';
+import { setSelectedDistrictPlan } from '../reducers/MapReducer';
 
 // Mui imports
 import { Box, ToggleButton , ToggleButtonGroup, MenuItem, Select} from '@mui/material';
@@ -12,8 +12,10 @@ function YearToggle(){
 
   var selectYearChange = (event) => {
     let year = event.target.value
-    dispatch(setSelectedYear(year));
+    dispatch(setSelectedDistrictPlan(year));
   }
+
+  console.log(map.availableDistrictPlans)
 
   if (map.selectedState!= null){
   return(
@@ -21,15 +23,15 @@ function YearToggle(){
         <Select
         labelId="state-select-label"
         id="select-state"
-        value={map.currentYear}
+        value={map.currentDistrictPlan}
         onChange={selectYearChange}
         style={{backgroundColor: 'white'}}
         >
-          <MenuItem value={"2022"}>2022</MenuItem>
-          <MenuItem value={"2020"}>2020</MenuItem>
-          <MenuItem value={"Plan1"}>Plan1</MenuItem>
-          <MenuItem value={"Plan2"}>Plan2</MenuItem>
-          <MenuItem value={"Plan3"}>Plan3</MenuItem>
+          {
+            map.availableDistrictPlans.forEach(element => 
+              <MenuItem value={element}>element</MenuItem>
+            )
+          }
 
         </Select>
       </Box>

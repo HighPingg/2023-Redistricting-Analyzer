@@ -11,9 +11,10 @@ const initialState = {
     selectedState: null,
     currentGeoJSON: mapOverview,
     currentGraphData: null,
-    currentYear: '2022',
+    currentDistrictPlan: '2022',
     currentDistrict: null,
-    currentDisplay:null
+    currentDisplay: null,
+    availableDistrictPlans: []
 }
 
 export const mapReducer = createSlice({
@@ -22,34 +23,38 @@ export const mapReducer = createSlice({
     reducers: {
         setSelectedState: (state, action) => {
             state.currentDistrict = null;
-            state.selectedState = action.payload;
-            state.currentYear = '2022';
+            state.selectedState = action.payload.name;
+            state.currentDistrictPlan = '2022';
             state.currentDisplay = null;
 
-            switch (action.payload) {
+            switch (action.payload.name) {
                 case "Illinois":
                     state.currentGraphData = graphingOverview.states.Illinois;
+                    state.currentGeoJSON = action.payload.geoJSON;
+                    state.availableDistrictPlans = action.payload.plans;
                     break;
                 
                 case "Ohio":
                     state.currentGraphData = graphingOverview.states.Ohio;
+                    state.currentGeoJSON = action.payload.geoJSON;
+                    state.availableDistrictPlans = action.payload.plans;
                     break;
 
                 case "Nevada":
                     state.currentGraphData = graphingOverview.states.Nevada;
+                    state.currentGeoJSON = action.payload.geoJSON;
+                    state.availableDistrictPlans = action.payload.plans;
                     break;
             
                 default:
                     state.currentGeoJSON = mapOverview;
                     state.currentGraphData = null;
+                    state.availableDistrictPlans = [];
                     break;
             }
         },
-        setCurrentGeoJSON:(state, action) => {
-            state.currentGeoJSON = action.payload;
-        },
-        setSelectedYear:(state, action) => {
-            state.currentYear = action.payload;
+        setSelectedDistrictPlan:(state, action) => {
+            state.currentDistrictPlan = action.payload;
         },
         setSelectedDistrict:(state, action) => {
             state.currentDistrict = action.payload;
@@ -60,6 +65,6 @@ export const mapReducer = createSlice({
     }
 })
 
-export const {setSelectedState, setCurrentGeoJSON, setSelectedYear, setSelectedDistrict, setSelectedDisplay} = mapReducer.actions;
+export const {setSelectedState, setCurrentGeoJSON, setSelectedDistrictPlan, setSelectedYear, setSelectedDistrict, setSelectedDisplay} = mapReducer.actions;
 
 export default mapReducer.reducer;

@@ -1,6 +1,6 @@
 // Redux Imports
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentGeoJSON, setCurrentlyHovered, setSelectedDistrict, setSelectedState } from '../reducers/MapReducer';
+import { setCurrentlyHovered, setSelectedDistrict, setSelectedState } from '../reducers/MapReducer';
 
 // Leaflet Imports
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
@@ -60,24 +60,34 @@ function Map() {
 
     // If we're not resetting, then we want to fetch the state GeoJSON as well.
     if (selectedState !== null) {
-      fetch("http://127.0.0.1:8080/geojson/" + selectedState, {
+      fetch("http://localhost:8080/geojson/" + selectedState + "/2022", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
       })
         .then((response) => response.text())
-        .then((data) => {
-            dispatch(setCurrentGeoJSON(JSON.parse(data)));
-            dispatch(setSelectedState(name));
+        .then((geojson) => {
+          
+          // Fetch all available district plans from the new selected state
+          fetch("http://localhost:8080/availablePlans/" + selectedState, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+          })
+            .then((response) => response.text())
+            .then((plans) => {
+              dispatch(setSelectedState({"name": name, "geoJSON": JSON.parse(geojson), "plans": JSON.parse(plans)}));
 
-            const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
-            mapRef.current.flyTo(centerCoords[name], 6);
+              const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
+              mapRef.current.flyTo(centerCoords[name], 6);
+            });
         });
 
     // Otherwise just use the default view.
     } else {
-      dispatch(setSelectedState(null));
+      dispatch(setSelectedState({"name": null}));
 
       mapRef.current.flyTo([37.6, -96], 5);
     }
