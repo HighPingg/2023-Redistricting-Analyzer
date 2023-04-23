@@ -12,11 +12,27 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 function Graph(){
     // Get selected state from reducer
     const map = useSelector(state => state.map);
-    const { data, error, isLoading } = useSWR('http://localhost:8080/graphdata', fetcher)
-
+    let selectedPlan = map.currentDistrictPlan;
     let display = "Select a state to show more data"
-    
+
+    let selectedState = null;
+    switch (map.selectedState) {
+      case "Illinois":
+        selectedState = 'IL';
+        break;
+      
+      case "Ohio":
+        selectedState = 'OH';
+        break;
+
+      case "Nevada":
+        selectedState = 'NV';
+        break;
+    }
     let options, series = null
+    const { data, error, isLoading } = useSWR('http://localhost:8080/graphs/'+ selectedState +'/'+ selectedPlan, fetcher)
+    // const { data, error, isLoading } = useSWR('http://localhost:8080/graph', fetcher)
+    console.log(data)
     if (map.selectedState!= null){
       
       switch(map.currentDisplay){
@@ -25,7 +41,7 @@ function Graph(){
           series =  [
             {
             type: 'boxPlot',
-            data: map.currentGraphData.data
+            data: data.geographic.graphData
             }
           ];
   
@@ -35,7 +51,7 @@ function Graph(){
               height: 350
               },
               title: {
-              text: map.currentGraphData.graphTitle,
+              text: data.geographic.graphTitle,
               align: 'left'
               },
               plotOptions: {
@@ -51,7 +67,6 @@ function Graph(){
           break;
 
         case "SplitParty":
-          // Fake data 
           series = [{
               name: 'Republican',
               data: [6, 0]
@@ -214,7 +229,7 @@ function Graph(){
       }
       if (error) return <div>failed to load</div>
       if (isLoading) return <div>loading...</div>
-      return <div>hello{data.state} !</div>
+      return <div>{display}</div>
     
   return (
   <div>
