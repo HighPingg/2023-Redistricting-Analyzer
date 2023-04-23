@@ -10,7 +10,6 @@ public class District{
     private ArrayList<Candidate> candidates;
     private Double geometricArea;
     private Double medianIncome;
-    private Double averageAge;
 
 
     public District(Integer districtNumber, Candidate incumbent, ArrayList<Candidate> candidates, Candidate winner, Double geometricArea, Double medianIncome, Double averageAge) {
