@@ -6,12 +6,14 @@ public class Candidate{
     private Boolean winner;
     private Integer totalVotes;
     private String party;
-    private Double medianIncome;
-    private Double geometricArea;
+    private Double geographicVariation;
+    private Double populationVariation;
 
-    public Candidate(String name, Integer totalVotes, String party) {
+    public Candidate(String name, Integer totalVotes, String party, Double geographicVariation, Double populationVariation) {
         this.name = name;
         this.totalVotes = totalVotes;
         this.party = party;
+        this.geographicVariation = geographicVariation;
+        this.populationVariation = populationVariation;
     }
 }
