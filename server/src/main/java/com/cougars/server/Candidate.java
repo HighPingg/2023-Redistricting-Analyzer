@@ -6,11 +6,8 @@ public class Candidate{
     private Boolean winner;
     private Integer totalVotes;
     private String party;
-
     private Double medianIncome;
     private Double geometricArea;
-
-
 
     public Candidate(String name, Integer totalVotes, String party) {
         this.name = name;
