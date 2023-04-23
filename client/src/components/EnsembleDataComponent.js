@@ -29,29 +29,29 @@ function EnsembleData(){
             <div>
                 <b>{map.currentGraphData.ensembleDataTitle + ' ' + map.currentDistrictPlan}</b>
                 <Box component="div" sx={style} >
-                    Population Density: {map.currentGraphData.ensembleData.populationDensity}
+                    Number of District Plans: {map.ensembleData.numDistrictPlans}
                 </Box>
 
 
                 <Box component="div" sx={style} >
-                    District Plans: {map.currentGraphData.ensembleData.districtPlans}
-                </Box>
-
-
-
-                <Box component="div" sx={style} >
-                    Incumbents Predicted To Win: {map.currentGraphData.ensembleData.incumbentsPredictedToWin}
-                </Box>
-
-
-                <Box component="div" sx={style} >
-                    Average Geographic Variation: {map.currentGraphData.ensembleData.averageGeographicVariation}
+                    Number of Incumbents: {map.ensembleData.numIncumbents}
                 </Box>
 
 
 
                 <Box component="div" sx={style} >
-                    Population Variation In Incumbent District: {map.currentGraphData.ensembleData.populationVariationInIncumbentDistricts}
+                    Incumbents Predicted To Win: {map.ensembleData.numIncumbentsPredictedtoWin}
+                </Box>
+
+
+                <Box component="div" sx={style} >
+                    Average Geographic Variation: {map.ensembleData.averageGeoVariation}
+                </Box>
+
+
+
+                <Box component="div" sx={style} >
+                    Average Population Variation: {map.ensembleData.averagePopVariation}
                 </Box>
             </div>
         )
