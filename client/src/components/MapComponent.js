@@ -60,14 +60,14 @@ function Map() {
 
     // If we're not resetting, then we want to fetch the state GeoJSON as well.
     if (selectedState !== null) {
-      fetch("http://localhost:8080/geojson/" + selectedState + "/2022", {
+      fetch("http://localhost:8080/districtPlan/" + selectedState + "/2022", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
       })
         .then((response) => response.text())
-        .then((geojson) => {
+        .then((data) => {
           
           // Fetch all available district plans from the new selected state
           fetch("http://localhost:8080/availablePlans/" + selectedState, {
@@ -78,7 +78,10 @@ function Map() {
           })
             .then((response) => response.text())
             .then((plans) => {
-              dispatch(setSelectedState({"name": name, "geoJSON": JSON.parse(geojson), "plans": JSON.parse(plans)}));
+              let districtPlan = JSON.parse(data);
+              console.log(districtPlan)
+
+              dispatch(setSelectedState({"name": name, "geoJSON": districtPlan.geoJson, "plans": JSON.parse(plans), "ensemble": districtPlan.ensemble}));
 
               const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
               mapRef.current.flyTo(centerCoords[name], 6);

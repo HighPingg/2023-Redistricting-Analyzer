@@ -14,7 +14,8 @@ const initialState = {
     currentDistrictPlan: '2022',
     currentDistrict: null,
     currentDisplay: null,
-    availableDistrictPlans: []
+    availableDistrictPlans: [],
+    ensembleData: null
 }
 
 export const mapReducer = createSlice({
@@ -32,24 +33,28 @@ export const mapReducer = createSlice({
                     state.currentGraphData = graphingOverview.states.Illinois;
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
+                    state.ensembleData = action.payload.ensemble;
                     break;
                 
                 case "Ohio":
                     state.currentGraphData = graphingOverview.states.Ohio;
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
+                    state.ensembleData = action.payload.ensemble;
                     break;
 
                 case "Nevada":
                     state.currentGraphData = graphingOverview.states.Nevada;
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
+                    state.ensembleData = action.payload.ensemble;
                     break;
             
                 default:
                     state.currentGeoJSON = mapOverview;
                     state.currentGraphData = null;
                     state.availableDistrictPlans = [];
+                    state.ensembleData = null;
                     break;
             }
         },
