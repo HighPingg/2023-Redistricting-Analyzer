@@ -17,35 +17,18 @@ public class StateConfig {
     @Bean
     @Qualifier("Ohio")
     public State Ohio() {
-//        StateData data = repository.findByName("Ohio");
-//        HashMap<String, Object> geoJson = data.getDistrictPlanGeoJson(); //get all plans
-//        HashMap<String, DistrictPlan> districtPlans =  new HashMap<>();
-//        for(String plan:geoJson.keySet()){
-//            DistrictPlan districtPlan = new DistrictPlan(plan, geoJson.get(plan), new ArrayList<>(), 1, 2, "What?", new Ensemble());
-//            districtPlans.put(plan, districtPlan);
-//        }
-//        return new State("Ohio",districtPlans);
-        return  new State();
+        return repository.findByName("Ohio");
     }
 
     @Bean
     @Qualifier("Illinois")
     public State Illinois() {
-//        StateData data = repository.findByName("Nevada");
-//        HashMap<String, Object> geoJson = data.getDistrictPlanGeoJson(); //get all plans
-//        HashMap<String, DistrictPlan> districtPlans =  new HashMap<>();
-//        for(String plan:geoJson.keySet()){
-//            DistrictPlan districtPlan = new DistrictPlan(plan, geoJson.get(plan), new ArrayList<>(), 1, 2, "What?", new Ensemble());
-//            districtPlans.put(plan, districtPlan);
-//        }
-//        return new State("Nevada",districtPlans);
-        return new State();
+        return repository.findByName("Illinois");
     }
 
     @Bean
     @Qualifier("Nevada")
     public State Nevada() {
-        State data = repository.findByName("Nevada");
-        return data;
+      return repository.findByName("Nevada");
     }
 }
