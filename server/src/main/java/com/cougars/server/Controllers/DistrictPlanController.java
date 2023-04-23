@@ -39,4 +39,20 @@ public class DistrictPlanController {
                 );
         }
     }
+    @RequestMapping(value = "/districtPlan/{state}/{plan}", produces="application/json")
+    public Object getDistrictPlan(@PathVariable("state") String state, @PathVariable("plan") String plan) {
+        switch (state) {
+            case "IL":
+                return Illinois.getDistrictPlans().get(plan);
+            case "OH":
+                return Ohio.getDistrictPlans().get(plan);
+            case "NV":
+                return Nevada.getDistrictPlans().get(plan);
+
+            default:
+                throw new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "GeoJSON for " + state + " not found."
+                );
+        }
+    }
 }

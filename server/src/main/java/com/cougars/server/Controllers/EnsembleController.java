@@ -24,7 +24,7 @@ public class EnsembleController {
 
 
     @RequestMapping(value = "/ensemble/{state}/{plan}", produces="application/json")
-    public Object getEnsemble(@PathVariable("state") String state, @PathVariable("plan") String plan){
+    public Ensemble getEnsemble(@PathVariable("state") String state, @PathVariable("plan") String plan){
         switch (state) {
             case "IL":
                 return Illinois.getDistrictPlans().get(plan).getEnsemble();
