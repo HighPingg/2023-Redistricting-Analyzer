@@ -15,8 +15,6 @@ function YearToggle(){
     dispatch(setSelectedDistrictPlan(year));
   }
 
-  console.log(map.availableDistrictPlans)
-
   if (map.selectedState!= null){
   return(
     <Box>
@@ -28,9 +26,9 @@ function YearToggle(){
         style={{backgroundColor: 'white'}}
         >
           {
-            map.availableDistrictPlans.forEach(element => 
-              <MenuItem value={element}>element</MenuItem>
-            )
+            map.availableDistrictPlans.map((element) => (
+              <MenuItem value={element}>{element}</MenuItem>
+            ))
           }
 
         </Select>
