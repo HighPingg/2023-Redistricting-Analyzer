@@ -79,6 +79,7 @@ function Map() {
             .then((response) => response.text())
             .then((plans) => {
               let districtPlan = JSON.parse(data);
+              console.log(districtPlan)
 
               dispatch(setSelectedState({"name": name, "geoJSON": districtPlan.geoJson, "plans": JSON.parse(plans), "ensemble": districtPlan.ensemble}));
 
