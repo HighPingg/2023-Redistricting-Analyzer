@@ -12,7 +12,7 @@ import { alpha, Box, FormControl, IconButton, InputLabel, MenuItem, Select, Tool
 import ReplayIcon from '@mui/icons-material/Replay';
 
 // Component imports
-import YearToggle from './DistrictPlanToggleComponent';
+import DistrictPlanToggle from './DistrictPlanToggleComponent';
 
 function Map() {
   const mapRef = useRef(null);
@@ -79,20 +79,20 @@ function Map() {
             .then((response) => response.text())
             .then((plans) => {
               let districtPlan = JSON.parse(data);
-              console.log(districtPlan)
 
-              dispatch(setSelectedState({"name": name, "geoJSON": districtPlan.geoJson, "plans": JSON.parse(plans), "ensemble": districtPlan.ensemble}));
-
-              const centerCoords = {"Ohio": [40.4173, -82.9071], "Nevada": [38.8026, -116.4194], "Illinois": [40.6331, -89.3985]};
-              mapRef.current.flyTo(centerCoords[name], 6);
+              dispatch(setSelectedState({
+                "name": name,
+                "geoJSON": districtPlan.geoJson,
+                "plans": JSON.parse(plans),
+                "ensemble": districtPlan.ensemble,
+                "mapCenter": districtPlan.geoJSONCenter
+              }));
             });
         });
 
     // Otherwise just use the default view.
     } else {
       dispatch(setSelectedState({"name": null}));
-
-      mapRef.current.flyTo([37.6, -96], 5);
     }
   }
 
@@ -165,7 +165,14 @@ function Map() {
 
   return (
     <Box>
-      <MapContainer zoomControl={false} ref={mapRef} style={{ width: "100%", height: map.selectedState === null ? '100vh' : '50vh', zIndex: 0 }} center={[37.6, -96]} zoom={5} scrollWheelZoom={true}>
+      <MapContainer key={map.selectedState + map.currentDistrictPlan}
+                    zoomControl={false}
+                    ref={mapRef}
+                    style={{ width: "100%", height: map.selectedState === null ? '100vh' : '50vh', zIndex: 0 }}
+                    center={[map.mapCenter.x, map.mapCenter.y]}
+                    zoom={map.mapCenter.zoom}
+                    scrollWheelZoom={true}
+      >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
@@ -208,7 +215,7 @@ function Map() {
           }
           </Box>
 
-          <YearToggle/>
+          <DistrictPlanToggle/>
         </Box>
 
         <div style={{right: '10px',

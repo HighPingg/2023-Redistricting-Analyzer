@@ -12,10 +12,10 @@ public class DistrictPlan{
     private Ensemble ensemble;
     private ArrayList<Candidate> incumbentsData;
     private HashMap<String, Object> graphs;
-    private HashMap<String, Double> center;
+    private HashMap<String, Double> geoJSONCenter;
 
 
-    public DistrictPlan(Object geoJson, ArrayList<District> districts, Integer numDistrictPlan, Integer numIncumbents, Ensemble ensemble, ArrayList<Candidate> incumbentsData, HashMap<String, Object> graphs, HashMap<String, Double> center) {
+    public DistrictPlan(Object geoJson, ArrayList<District> districts, Integer numDistrictPlan, Integer numIncumbents, Ensemble ensemble, ArrayList<Candidate> incumbentsData, HashMap<String, Object> graphs, HashMap<String, Double> geoJSONCenter) {
         this.geoJson = geoJson;
         this.districts = districts;
         this.numDistrictPlan = numDistrictPlan;
@@ -23,6 +23,6 @@ public class DistrictPlan{
         this.ensemble = ensemble;
         this.incumbentsData = incumbentsData;
         this.graphs = graphs;
-        this.center = center;
+        this.geoJSONCenter = geoJSONCenter;
     }
 }

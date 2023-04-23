@@ -5,7 +5,7 @@ import { setSelectedDistrictPlan } from '../reducers/MapReducer';
 // Mui imports
 import { Box, ToggleButton , ToggleButtonGroup, MenuItem, Select} from '@mui/material';
 
-function YearToggle(){
+function DistrictPlanToggle(){
   // Get map from MapReducer
   const map = useSelector(state => state.map)
   const dispatch = useDispatch()
@@ -24,7 +24,12 @@ function YearToggle(){
       .then((data) => {
         let planData = JSON.parse(data)
         
-        dispatch(setSelectedDistrictPlan({ "planName": plan, "geoJSON": planData.geoJson, "ensemble": planData.ensemble }));
+        dispatch(setSelectedDistrictPlan({
+          "planName": plan,
+          "geoJSON": planData.geoJson,
+          "ensemble": planData.ensemble,
+          "mapCenter": planData.geoJSONCenter
+        }));
       })
   }
 
@@ -52,4 +57,4 @@ function YearToggle(){
   }
 
 }
-export default YearToggle
+export default DistrictPlanToggle

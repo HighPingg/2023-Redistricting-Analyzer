@@ -15,7 +15,8 @@ const initialState = {
     currentDistrict: null,
     currentDisplay: null,
     availableDistrictPlans: [],
-    ensembleData: null
+    ensembleData: null,
+    mapCenter: {"x": 37.6, "y": -96, "zoom": 5}
 }
 
 export const mapReducer = createSlice({
@@ -34,6 +35,7 @@ export const mapReducer = createSlice({
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
                     state.ensembleData = action.payload.ensemble;
+                    state.mapCenter = action.payload.mapCenter;
                     break;
                 
                 case "Ohio":
@@ -41,6 +43,7 @@ export const mapReducer = createSlice({
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
                     state.ensembleData = action.payload.ensemble;
+                    state.mapCenter = action.payload.mapCenter;
                     break;
 
                 case "Nevada":
@@ -48,6 +51,7 @@ export const mapReducer = createSlice({
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
                     state.ensembleData = action.payload.ensemble;
+                    state.mapCenter = action.payload.mapCenter;
                     break;
             
                 default:
@@ -55,6 +59,7 @@ export const mapReducer = createSlice({
                     state.currentGraphData = null;
                     state.availableDistrictPlans = [];
                     state.ensembleData = null;
+                    state.mapCenter = {"x": 37.6, "y": -96, "zoom": 5};
                     break;
             }
         },
@@ -62,6 +67,7 @@ export const mapReducer = createSlice({
             state.currentDistrictPlan = action.payload.planName;
             state.currentGeoJSON = action.payload.geoJSON;
             state.ensembleData = action.payload.ensemble;
+            state.mapCenter = action.payload.mapCenter;
         },
         setSelectedDistrict:(state, action) => {
             state.currentDistrict = action.payload;
