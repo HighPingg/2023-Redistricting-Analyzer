@@ -1,9 +1,5 @@
 package com.cougars.server;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,17 +29,15 @@ public class GeoJsonController {
      * 
      * @return the GeoJSON object requested.
      */
-    @RequestMapping(value = "/geojson/{state}", produces="application/json")
-    public Object getGeoJSON(@PathVariable String state){
-        String fileName = null;
-
+    @RequestMapping(value = "/geojson/{state}/{plan}", produces="application/json")
+    public Object getGeoJSON(@PathVariable("state") String state, @PathVariable("plan") String plan){
         switch (state) {
             case "IL":
-                return Illinois.getDistrictPlans().get("2020").getGeoJson();
+                return Illinois.getDistrictPlans().get(plan).getGeoJson();
             case "OH":
-                return Ohio.getDistrictPlans().get("2020").getGeoJson();
+                return Ohio.getDistrictPlans().get(plan).getGeoJson();
             case "NV":
-                return Nevada.getDistrictPlans().get("2020").getGeoJson();
+                return Nevada.getDistrictPlans().get(plan).getGeoJson();
 
             default:
                 throw new ResponseStatusException(
