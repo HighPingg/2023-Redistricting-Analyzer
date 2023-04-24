@@ -33,7 +33,7 @@ function Graph(){
     const { data, error, isLoading } = useSWR('http://localhost:8080/graphs/'+ selectedState +'/'+ selectedPlan, fetcher)
     console.log(data)
     if (map.selectedState!= null){
-      
+      if(isLoading != true){
       switch(map.currentDisplay){
         case "BoxWhisker":
           console.log("BoxDisplay")
@@ -56,7 +56,7 @@ function Graph(){
                 }
               }
             };
-          display = <ReactApexChart options={options} series={series} type="boxPlot" height={350} key ={map.currentDisplay}/> ;
+          display = <ReactApexChart options={options} series={series} type="boxPlot" height={350} key ={map.currentDistrictPlan + map.currentDisplay}/> ;
           break;
 
         case "SplitParty":
@@ -132,7 +132,7 @@ function Graph(){
             
 
           }
-          display = <Chart options={options} type="bar" series={series} width="100%" height="200%" key ={map.currentDisplay}/>;
+          display = <Chart options={options} type="bar" series={series} width="100%" height="200%" key ={map.currentDistrictPlan + map.currentDisplay}/>;
           break;
 
           case "Demographic":
@@ -212,7 +212,7 @@ function Graph(){
               
   
             }
-            display = <Chart options={options} type="bar" series={series} width="100%" height="200%" key ={map.currentDisplay}/>;
+            display = <Chart options={options} type="bar" series={series} width="100%" height="200%" key ={map.currentDistrictPlan + map.currentDisplay}/>;
             break;
             
         default:
@@ -220,6 +220,7 @@ function Graph(){
         
           };
       }
+    }
       if (error) return <div>failed to load</div>
       if (isLoading) return <div>loading...</div>
       return <div>{display}</div>
