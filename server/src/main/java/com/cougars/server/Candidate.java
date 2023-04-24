@@ -4,16 +4,14 @@ import lombok.Data;
 public class Candidate{
     private String name;
     private Boolean winner;
+    private Boolean incumbent;
     private Integer totalVotes;
     private String party;
-    private Double geographicVariation;
-    private Double populationVariation;
 
-    public Candidate(String name, Integer totalVotes, String party, Double geographicVariation, Double populationVariation) {
+    public Candidate(String name, Boolean winner, Integer totalVotes, String party) {
         this.name = name;
+        this.winner = winner;
         this.totalVotes = totalVotes;
         this.party = party;
-        this.geographicVariation = geographicVariation;
-        this.populationVariation = populationVariation;
     }
 }
