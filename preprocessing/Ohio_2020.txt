@@ -1,0 +1,68 @@
+1
+Republican Steve_Chabot 199560 W
+Democratic Kate_Schroder 172022 L
+Libertarian Kevin_David_Kahn 13692 L
+
+2
+Republican Brad_Wenstrup 230430 W
+Democratic Jaime_Castle 146781 L
+
+3
+Democratic Joyce_Beatty 227420 W
+Republican Mark_Richardson 93569 L
+
+4
+Republican Jim_Jordan 235875 W
+Democratic Shannon_Freshour 101897 L
+Libertarian Steve_Perkins 9584 L
+
+5
+Republican Bob_Latta 257019 W
+Democratic Nick_Rubando 120962 L
+
+6
+Republican Bill_Johnson 249130 W
+Democratic Shawna_Roberts 85661 L
+
+7
+Republican Bob_Gibbs 236607 W
+Democratic Quentin_Potter 102271 L
+Libertarian Brandon_Lape 11671 L
+
+8
+Republican Warren_Davidson 246277 W
+Democratic Vanessa_Enoch 110766 L
+
+9
+Democratic March_Kaptur 190328 W
+Republican Rob_Weber 111385 L
+
+10
+Republican Mike_Turner 212972 W
+Democratic Desiree_Tims 151976 L
+
+11
+Democratic Marcia_Fudge 242098 W
+Republican Laverne_Gore 60323 L
+
+12
+Republican Troy_Balderson 241790 W
+Democratic Alaina_Shearer 182847 L
+Libertarian John_S_Stewart 13035 L
+
+13
+Democratic Tim_Ryan 173631 W
+Republican Christina_Hagan 148648 L
+Libertarian Michael_Fricke 8522 L
+
+14
+Republican David_Joyce 238864 W
+Democratic Hillary_"Toro"_O'Connor_Mueri 158586 L
+
+15
+Republican Steve_Stivers 243103 W
+Democratic Joel_Newby 140183 L
+
+16
+Republican Anthony_Gonzalez 247335 W
+Democratic Aaron_Paul_Godfrey 144071 L

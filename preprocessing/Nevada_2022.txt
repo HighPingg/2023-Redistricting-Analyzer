@@ -1,0 +1,18 @@
+1
+Democratic Dina_Titus 115700 W
+Republican Mark_Robertson 103115 L
+Libertarian Ken_Cavanaugh 5534 L
+
+2
+Republican Mark_Amodei 185467 W
+Democratic Elizabeth_Mercedes_Krause 117371 L
+Independent_American Russell_Best 4194 L
+Libertarian Darryl_Baber 3466 L
+
+3
+Democratic Susie_Lee 131086 W
+Republican April_Becker 121083 L
+
+4
+Democratic Steven_Horsford 116617 W
+Republican Sam_Peters 105870 L

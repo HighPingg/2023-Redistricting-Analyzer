@@ -1,0 +1,74 @@
+1
+Democratic Bobby_Rush 239943 W
+Republican Philanise_White 85027 L
+
+2
+Democratic Robin_Kelly 234869 W
+Republican Theresa_Raborn 63142 L
+
+3
+Democratic Marie_Newman 172997 W
+Republican Mike_Fricilone 133851 L
+
+4
+Democratic Chuy_Garcia 187219 W
+Republican Jesus_E._Solorio_Jr. 35518 L
+
+5
+Democratic Mike_Quigley 255661 W
+Republican Tom_Hanson 96200 L
+Green Thomas_J._Wilda 9408 L
+
+6
+Democratic Sean_Casten 213777 W
+Republican Jeanne_Ives 183891 L
+Libertarian Bill_Redpath 7079 L
+
+7
+Democratic Danny_K._Davis 248383 W
+Republican Craig_Cameron 41390 L
+Independent Tracy_Jennings 19355 L
+
+8
+Democratic Raja_Krishnamoorthi 186251 W
+Republican Preston_Gabriel_Nelson 68327 L
+
+9
+Democratic Jan_Schakowsky 262045 W
+Republican Sargis_Sangari 107125 L
+
+10
+Democratic Brad_Schneider 202402 W
+Republican Valerie_Ramirez_Mukherjee 114442 L
+
+11
+Democratic Bill_Foster 194557 W
+Republican Rick_Laib 112807 L
+
+12
+Republican Mike_Bost 194839 W
+Democratic Raymond_Lenzi 127577 L
+
+13
+Republican Rodney_Davis 181373 W
+Democratic Betsy_Dirksen_Londrigan 151648 L
+
+14
+Democratic Lauren_Underwood 203209 W
+Republican Jim_Oberweis 197835 L
+
+15
+Republican Mary_Miller 244947 W
+Democratic Erika_Weaver 88559 L
+
+16
+Republican Adam_Kinzinger 218839 W
+Democratic Dani_Brzozowski 119313 L
+
+17
+Democratic Cheri_Bustos 156011 W
+Republican Esther_Joy_King 143863 L
+
+18
+Republican Darin_LaHood 261840 W
+Democratic George_Petrilli 110039 L

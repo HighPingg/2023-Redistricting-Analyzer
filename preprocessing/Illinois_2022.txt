@@ -1,0 +1,68 @@
+1
+Democratic Jonathan_Jackson 159142 W
+Republican Eric_Carlson 78258 L
+
+2
+Democratic Robin_Kelly 140414 W
+Republican Thomas_Lynch 68761 L
+
+3
+Democratic Delia_Ramirez 121764 W
+Republican Justin_Burau 55995 L
+
+4
+Democratic Chuy_García 91036 W
+Republican James_Falakos 37352 L
+Working_Class Edward_Hershey 4605 L
+
+5
+Democratic Mike_Quigley 190999 W
+Republican Tommy_Hanson 79112 L
+Independent Jerico_Matias_Cruz 4439 L
+
+6
+Democratic Sean_Casten 150496 W
+Republican Keith_Pekau 126351 L
+
+7
+Democratic Danny_K._Davis 167650 W
+
+8
+Democratic Raja_Krishnamoorthi 117880 W
+Republican Chris_Dargis 89335 L
+
+9
+Democratic Jan_Schakowsky 175635 W
+Republican Max_Rice 70915 L
+
+10
+Democratic Brad_Schneider 152566 W
+Republican Joseph_Severino 89599 L
+
+11
+Democratic Bill_Foster 149172 W
+Republican Catalina_Lauf 115069 L
+
+12
+Republican Mike_Bost 218379 W
+Democratic Chip_Markel 72791 L
+
+13
+Democratic Nikki_Budzinski 141788 W
+Republican Regan_Deering 108646 L
+
+14
+Democratic Lauren_Underwood 128141 W
+Republican Scott_Gryder 108451 L
+
+15
+Republican Mary_Miller 213007 W
+Democratic Paul_Lange 86396 L
+
+16
+Republican Adam_Kinzinger 197621 W
+Democratic Elizabeth_Haderlein 100325 L
+
+17
+Democratic Eric_Sorensen 121186 W
+Republican Esther_Joy_King 111931 L

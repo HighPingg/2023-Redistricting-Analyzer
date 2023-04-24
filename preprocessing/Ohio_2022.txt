@@ -1,0 +1,59 @@
+1
+Democratic Greg_Landsman 156416 W
+Republican Steve_Chabot 199560 L
+
+2
+Republican Brad_Wenstrup 192117 W
+Democratic Samantha_Meadows 65745 L
+
+3
+Democratic Joyce_Beatty 182324 W
+Republican Lee_Stahley 76455 L
+
+4
+Republican Jim_Jordan 200773 W
+Democratic Tamie_Wilson 89383 L
+
+5
+Republican Bob_Latta 187303 W
+Democratic Craig_Swartz 92634 L
+
+6
+Republican Bill_Johnson 189883 W
+Democratic Louis_Lyras 90500 L
+
+7
+Republican Max_Miller 168002 W
+Democratic Matthew_Diemer 135485 L
+
+8
+Republican Warren_Davidson 180287 W
+Democratic Vanessa_Enoch 98629 L
+
+9
+Democratic March_Kaptur 150655 W
+Republican J.R._Majewski 115362 L
+
+10
+Republican Mike_Turner 168327 W
+Democratic David_Esrati 104634 L
+
+11
+Democratic Shontel_Brown 167722 W
+Republican Eric_J._Brewer 47988 L
+
+12
+Republican Troy_Balderson 191344 W
+Democratic Amy_Rippel-Elton 84893 L
+
+13
+Democratic Emilia_Sykes 149816 W
+Republican Madison_Gesiotto_Gilbert 134593 L
+
+14
+Republican David_Joyce 183389 W
+Democratic Matt_Kilboy 113639 L
+
+15
+Republican Mike_Carey 143112 W
+Democratic Gary_Josephson 108139 L

@@ -1,0 +1,22 @@
+1
+Democratic Dina_Titus 137868 W
+Republican Joyce_Bentley 74490 L
+Independent_American Kamau_Baker 6190 L
+Libertarian Robert_Van_Strawder 4665 L
+
+2
+Republican Mark_Amodei 216078 W
+Democratic Patricia_Ackerman 155780 L
+Independent_American Janine_Hansen 10815 L
+
+3
+Democratic Susie_Lee 203421 W
+Republican Dan_Rodimer 190975 L
+Libertarian Steve_Brown 12315 L
+Independent_American Edward_Bridges_III 10541 L
+
+4
+Democratic Steven_Horsford 168457 W
+Republican Jim_Marchant 152284 L
+Libertarian Jonathan_Royce_Esteban 7978 L
+Independent_American Barry_Rubinson 3750 L
