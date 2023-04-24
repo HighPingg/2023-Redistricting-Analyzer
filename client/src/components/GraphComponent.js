@@ -37,13 +37,7 @@ function Graph(){
       switch(map.currentDisplay){
         case "BoxWhisker":
           console.log("BoxDisplay")
-          series =  [
-            {
-            type: 'boxPlot',
-            data: null
-            }
-          ];
-  
+          series = data.geographic.graphSeries;
           options = {
               chart: {
               type: 'boxPlot',
