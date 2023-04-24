@@ -81,7 +81,7 @@ function TableComponent() {
               <TableCell sx={titleStyle} >District</TableCell>
               <TableCell sx={titleStyle} >Incumbent</TableCell>
               <TableCell sx={titleStyle} >Party</TableCell>
-              <TableCell sx={titleStyle} >W/L</TableCell>
+              <TableCell sx={titleStyle} >{ map.currentDistrictPlan + " W/L" }</TableCell>
               <TableCell sx={titleStyle} >Geographic Variation</TableCell>
               <TableCell sx={titleStyle} >Population Variation</TableCell>
             </TableRow>
@@ -90,8 +90,10 @@ function TableComponent() {
             {
               incumbents.map((incumbent) => incumbent[1] === null ? 
                 // Display placeholder with no incumbent
-                <TableRow
-                  sx={{  '&:last-child td, &:last-child th': { border: 0 } }}
+                <TableRow onClick={(event)=>tableCellClickHandler(event, incumbent[0])}
+                          key={incumbent[0]}
+                          hover={true}
+                          sx={{  '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell sx={rowStyle} >{ incumbent[0] }</TableCell>
                   <TableCell sx={rowStyle} > No Incumbent </TableCell>
@@ -132,7 +134,7 @@ function TableComponent() {
               <TableCell sx={titleStyle} >District</TableCell>
               <TableCell sx={titleStyle} >Candidate</TableCell>
               <TableCell sx={titleStyle} >Party</TableCell>
-              <TableCell sx={titleStyle} >2022 W/L</TableCell>
+              <TableCell sx={titleStyle} >{ map.currentDistrictPlan + " W/L" }</TableCell>
               <TableCell sx={titleStyle} >Total Votes</TableCell>
             </TableRow>
           </TableHead>
