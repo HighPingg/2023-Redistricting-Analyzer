@@ -61,7 +61,6 @@ function Graph(){
 
         case "SplitParty":
         console.log(data.partySplitView)
-        console.log("DATA^^^^^^^^^^^^^")
           series = data.partySplitView.graphData;
 
           options = {
@@ -129,83 +128,31 @@ function Graph(){
           break;
 
           case "Demographic":
-            // Fake data 
-            series = [{
-                name: '2022',
-                data: [6, 3, 5 ,7]
-            },
-            {
-                name: '2020',
-                data: [1, 10, 8 ,4]
-            },
-            {
-                name: 'Random Plan',
-                data: [5, 5, 5 ,5]
-            },
-          ];
-  
-            options = {
-                chart: {
-                    type: 'bar',
-                    height: 350,
-                    stacked: true,
+        console.log(data.race)
+          series = data.race.graphSeries;
+            options= {
+                title:{
+                    text: data.race.graphTitle
                 },
-                plotOptions: {
-                    bar: {
-                    horizontal: true,
-                    dataLabels: {
-                        total: {
-                        enabled: true,
-                        offsetX: 0,
-                        style: {
-                            fontSize: '13px',
-                            fontWeight: 900
-                        }
-                        }
-                    }
-                    },
-                },
-                stroke: {
-                    width: 1,
-                    colors: ['#fff']
-                },
-                title: {
-                    text: 'Demographic distribution'
-                },
-                xaxis: {
-                    categories: ["African American", "Asian", "White", "Hispanic"],
-                    labels: {
-                    formatter: function (val) {
-                        return val + "K"
-                    }
-                    }
-                },
-                yaxis: {
-                    title: {
-                    text: undefined
-                    },
-                },
-                tooltip: {
-                    y: {
-                    formatter: function (val) {
-                        return val + "K"
-                    }
-                    }
-                },
-                fill: {
-                    opacity: 1,
-                    colors: ['#F44336', '#0000FF', '#808080']
-                },
-                legend: {
-                    position: 'top',
-                    horizontalAlign: 'left',
-                    offsetX: 40
-                },
-                colors:['#F44336', '#0000FF', '#808080']
-              
-  
+              chart: {
+                width: 380,
+                type: 'pie',
+              },
+              labels: data.race.graphLabels,
+              responsive: [{
+                breakpoint: 480,
+                options: {
+                  chart: {
+                    width: 200
+                  },
+                  legend: {
+                    position: 'bottom'
+                  }
+                }
+              }]
             }
-            display = <Chart options={options} type="bar" series={series} width="100%" height="200%" key ={map.currentDistrictPlan + map.currentDisplay}/>;
+
+            display = <Chart options={options} type="pie" series={series} width="100%" height="200%" key ={map.currentDistrictPlan + map.currentDisplay}/>;
             break;
             
         default:
