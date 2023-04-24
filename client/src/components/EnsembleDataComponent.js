@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // Mui Imports
-import { useRef, useState } from 'react';
-import { alpha, Box, FormControl, IconButton, InputLabel, MenuItem, Select, Tooltip} from '@mui/material';
-import ReplayIcon from '@mui/icons-material/Replay';
+import { Box } from '@mui/material';
 
 function EnsembleData(){
     const map = useSelector(state => state.map);
