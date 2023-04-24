@@ -17,7 +17,6 @@ public class DistrictPlanController {
     @Autowired
     @Qualifier("Ohio")
     private State Ohio;
-
     @Autowired
     @Qualifier("Illinois")
     private State Illinois;

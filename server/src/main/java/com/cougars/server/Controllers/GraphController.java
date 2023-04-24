@@ -22,7 +22,6 @@ public class GraphController {
     @Qualifier("Illinois")
     private State Illinois;
 
-
     @RequestMapping(value = "/graphs/{state}/{plan}", produces="application/json")
     public HashMap<String, Object> getGraphs(@PathVariable("state") String state, @PathVariable("plan") String plan){
         switch (state) {
