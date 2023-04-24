@@ -29,18 +29,18 @@ function App() {
     return (
       <div className="App">
         <Grid container spacing={2}>
-          <Grid item xs={8}> 
+          <Grid item xs={7}> 
             <Map />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={5}>
             {/* <TableComponent/> */}
             <EnsembleData/>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={7}>
           <DisplayToggle/>
             <Graph/>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={5}>
           <TableComponent/>
           </Grid>
         </Grid>

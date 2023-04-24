@@ -10,7 +10,6 @@ import graphingOverview from "../assets/graphData";
 const initialState = {
     selectedState: null,
     currentGeoJSON: mapOverview,
-    currentGraphData: null,
     currentDistrictPlan: '2022',
     currentDistrictsInfo: null,
     currentDistrict: null,
@@ -32,7 +31,6 @@ export const mapReducer = createSlice({
 
             switch (action.payload.name) {
                 case "Illinois":
-                    state.currentGraphData = graphingOverview.states.Illinois;
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
                     state.ensembleData = action.payload.ensemble;
@@ -41,7 +39,6 @@ export const mapReducer = createSlice({
                     break;
                 
                 case "Ohio":
-                    state.currentGraphData = graphingOverview.states.Ohio;
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
                     state.ensembleData = action.payload.ensemble;
@@ -50,7 +47,6 @@ export const mapReducer = createSlice({
                     break;
 
                 case "Nevada":
-                    state.currentGraphData = graphingOverview.states.Nevada;
                     state.currentGeoJSON = action.payload.geoJSON;
                     state.availableDistrictPlans = action.payload.plans;
                     state.ensembleData = action.payload.ensemble;
@@ -60,7 +56,6 @@ export const mapReducer = createSlice({
             
                 default:
                     state.currentGeoJSON = mapOverview;
-                    state.currentGraphData = null;
                     state.availableDistrictPlans = [];
                     state.ensembleData = null;
                     state.mapCenter = {"x": 37.6, "y": -96, "zoom": 5};

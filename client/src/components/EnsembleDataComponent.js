@@ -6,10 +6,8 @@ import { Box } from '@mui/material';
 function EnsembleData(){
     const map = useSelector(state => state.map);
     const style = {
-        textOverflow: 'clip',
-        overflow: 'hidden',
-        my: 2,
-        p: 1,
+        margin: 1.5,
+        padding: 0.8,
         bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
         color: (theme) =>
@@ -18,38 +16,43 @@ function EnsembleData(){
         borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         borderRadius: 2,
-        fontSize: '0.875rem',
-        fontWeight: '700',
+        "text-align": 'left'
+    }
+
+    const outerTextStyle = {
+        fontSize: '11pt',
+        fontWeight: 'bold',
+        margin: 0
+    }
+
+    const innerTextStyle = {
+        marginLeft: '8px',
+        fontSize: '11pt',
+        fontWeight: 'normal'
     }
 
     if (map.selectedState!= null){
         return(
             <div>
-                <b>{map.currentGraphData.ensembleDataTitle + ' ' + map.currentDistrictPlan}</b>
+                <b>{'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}</b>
                 <Box component="div" sx={style} >
-                    Number of District Plans: {map.ensembleData.numDistrictPlans}
+                    <p style={outerTextStyle} > Number of District Plans: <span style={innerTextStyle} >{ map.ensembleData.numDistrictPlans }</span></p>
                 </Box>
 
-
                 <Box component="div" sx={style} >
-                    Number of Incumbents: {map.ensembleData.numIncumbents}
+                    <p style={outerTextStyle} > Number of Incumbents: <span style={innerTextStyle} >{ map.ensembleData.numIncumbents }</span></p>
                 </Box>
 
-
-
                 <Box component="div" sx={style} >
-                    Incumbents Predicted To Win: {map.ensembleData.numIncumbentsPredictedtoWin}
+                    <p style={outerTextStyle} > Incumbents Predicted To Win: <span style={innerTextStyle} >{ map.ensembleData.numIncumbentsPredictedtoWin }</span></p>
                 </Box>
 
-
                 <Box component="div" sx={style} >
-                    Average Geographic Variation: {map.ensembleData.averageGeoVariation}
+                    <p style={outerTextStyle} > Average Geographic Variation: <span style={innerTextStyle} >{ map.ensembleData.averageGeoVariation }</span></p>
                 </Box>
 
-
-
                 <Box component="div" sx={style} >
-                    Average Population Variation: {map.ensembleData.averagePopVariation}
+                    <p style={outerTextStyle} > Average Population Variation: <span style={innerTextStyle} >{ map.ensembleData.averagePopVariation }</span></p>
                 </Box>
             </div>
         )

@@ -28,7 +28,26 @@ function TableComponent() {
     dispatch(setSelectedDistrict(null));
   };
 
-  console.log(map.currentDistrictsInfo)
+  const getPartyColor = (party) => {
+    switch (party) {
+      case "Democratic":
+        return "Blue";
+      case "Republican":
+        return "Red";
+      default:
+        return "Black";
+    }
+  }
+
+  const titleStyle = {
+    "fontWeight": "bold",
+    "fontSize": "10pt",
+    "padding": "15px"
+  }
+
+  const rowStyle = {
+    "padding": "15px"
+  }
 
   // Default view with all of the incumbents for each district
   if (map.currentDistrict == null) {
@@ -37,12 +56,12 @@ function TableComponent() {
         <Table aria-aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell>District</TableCell>
-              <TableCell>Incumbent</TableCell>
-              <TableCell>Party</TableCell>
-              <TableCell>W/L</TableCell>
-              <TableCell>Geographic Variation</TableCell>
-              <TableCell>Population Variation</TableCell>
+              <TableCell sx={titleStyle} >District</TableCell>
+              <TableCell sx={titleStyle} >Incumbent</TableCell>
+              <TableCell sx={titleStyle} >Party</TableCell>
+              <TableCell sx={titleStyle} >W/L</TableCell>
+              <TableCell sx={titleStyle} >Geographic Variation</TableCell>
+              <TableCell sx={titleStyle} >Population Variation</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -53,12 +72,12 @@ function TableComponent() {
                           hover={true}
                           sx={{  '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th">{district.districtNumber}</TableCell>
-                  <TableCell>{ district.incumbent.name }</TableCell>
-                  <TableCell>{ district.incumbent.party }</TableCell>
-                  <TableCell>{ district.incumbent.winner ? "Winner" : "Loser" }</TableCell>
-                  <TableCell>{ district.incumbent.geographicVariation }</TableCell>
-                  <TableCell>{ district.incumbent.populationVariation }</TableCell>
+                  <TableCell sx={rowStyle} >{ district.districtNumber }</TableCell>
+                  <TableCell sx={rowStyle} >{ district.incumbent.name }</TableCell>
+                  <TableCell sx={{ ...rowStyle, ...{"color": getPartyColor(district.incumbent.party) }}} >{ district.incumbent.party }</TableCell>
+                  <TableCell sx={{ ...rowStyle, ...{"color": district.incumbent.winner ? "Green" : "Red" } }} >{ district.incumbent.winner ? "Winner" : "Loser" }</TableCell>
+                  <TableCell sx={rowStyle} >{ district.incumbent.geographicVariation }</TableCell>
+                  <TableCell sx={rowStyle} >{ district.incumbent.populationVariation }</TableCell>
                 </TableRow>
               ))
             }
@@ -87,12 +106,12 @@ function TableComponent() {
             {
               map.currentDistrictsInfo[map.currentDistrict - 1].candidates.map((candidate) => (
                 <TableRow hover={true} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
-                  <TableCell>{ map.currentDistrict }</TableCell>
-                  <TableCell>{ candidate.name }</TableCell>
-                  <TableCell>{ candidate.party }</TableCell>
-                  <TableCell>{ candidate.winner ? "Winner" : "Loser" }</TableCell>
-                  <TableCell>{ candidate.geographicVariation }</TableCell>
-                  <TableCell>{ candidate.populationVariation }</TableCell>
+                  <TableCell sx={rowStyle} >{ map.currentDistrict }</TableCell>
+                  <TableCell sx={rowStyle} >{ candidate.name }</TableCell>
+                  <TableCell sx={{ ...rowStyle, ...{"color": getPartyColor(candidate.party) }}} >{ candidate.party }</TableCell>
+                  <TableCell sx={{ ...rowStyle, ...{"color": candidate.winner ? "Green" : "Red" } }} >{ candidate.winner ? "Winner" : "Loser" }</TableCell>
+                  <TableCell sx={rowStyle} >{ candidate.geographicVariation }</TableCell>
+                  <TableCell sx={rowStyle} >{ candidate.populationVariation }</TableCell>
                 </TableRow>
               ))
             }
