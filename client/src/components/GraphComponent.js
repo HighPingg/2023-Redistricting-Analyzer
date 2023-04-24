@@ -60,16 +60,9 @@ function Graph(){
           break;
 
         case "SplitParty":
-          series = [{
-              name: 'Republican',
-              data: [6, 0]
-          }, {
-              name: 'Democratic',
-              data: [3, 0]
-          }, {
-              name: 'Open',
-              data: [0, 1]
-          }];
+        console.log(data.partySplitView)
+        console.log("DATA^^^^^^^^^^^^^")
+          series = data.partySplitView.graphData;
 
           options = {
               chart: {
@@ -97,7 +90,7 @@ function Graph(){
                   colors: ['#fff']
               },
               title: {
-                  text: 'Incumbencies'
+                  text: data.partySplitView.graphTitle
               },
               xaxis: {
                   categories: ["Incumbent", "Open"],
