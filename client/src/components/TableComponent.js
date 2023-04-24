@@ -53,7 +53,7 @@ function TableComponent() {
   if (map.currentDistrict == null) {
     return (
       <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
-        <Table aria-aria-label='simple table'>
+        <Table aria-aria-label='simple table' stickyHeader >
           <TableHead>
             <TableRow>
               <TableCell sx={titleStyle} >District</TableCell>
@@ -91,7 +91,7 @@ function TableComponent() {
   else {
     return (
       <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
-        <Table aria-aria-label='simple table'>
+        <Table aria-aria-label='simple table' stickyHeader >
           <TableHead>
             <TableRow>
               <TableCell>District</TableCell>
