@@ -31,7 +31,6 @@ function Graph(){
     }
     let options, series = null
     const { data, error, isLoading } = useSWR('http://localhost:8080/graphs/'+ selectedState +'/'+ selectedPlan, fetcher)
-    // const { data, error, isLoading } = useSWR('http://localhost:8080/graph', fetcher)
     console.log(data)
     if (map.selectedState!= null){
       
@@ -41,7 +40,7 @@ function Graph(){
           series =  [
             {
             type: 'boxPlot',
-            data: data.geographic.graphData
+            data: null
             }
           ];
   
