@@ -3,6 +3,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Data
 public class DistrictPlan{
     private Object geoJson;
@@ -11,6 +12,7 @@ public class DistrictPlan{
     private Integer numIncumbents;
     private Ensemble ensemble;
     private ArrayList<Candidate> incumbentsData;
+    @JsonIgnore
     private HashMap<String, Object> graphs;
     private HashMap<String, Double> geoJSONCenter;
 
