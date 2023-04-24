@@ -39,4 +39,20 @@ public class GraphController {
                 );
         }
     }
+    @RequestMapping(value = "/graph/{state}/{plan}/{type}", produces="application/json")
+    public Object getGraph(@PathVariable("state") String state, @PathVariable("plan") String plan, @PathVariable("type") String type){
+        switch (state) {
+            case "IL":
+                return Illinois.getDistrictPlans().get(plan).getGraphs().get(type);
+            case "OH":
+                return Ohio.getDistrictPlans().get(plan).getGraphs().get(type);
+            case "NV":
+                return Nevada.getDistrictPlans().get(plan).getGraphs().get(type);
+
+            default:
+                throw new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Graph for " + state + " not found."
+                );
+        }
+    }
 }
