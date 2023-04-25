@@ -52,8 +52,19 @@ function BoxAndWhiskerGraph() {
                 }
             }
         };
+        
+        // Sort data points
+        data.graphSeries[0].data = data.graphSeries[0].data.sort((x, y) => {
+            return x.y[2] - y.y[2];
+        });
 
-
+        // Make sure points are sorted
+        let arr = []
+        data.graphSeries[0].data.forEach((elem) => {
+            arr.push(data.graphSeries[1].data.find((x) => x.x === elem.x))
+        });
+        data.graphSeries[1].data = arr;
+        
         return (
             <ReactApexChart options={options}
                             series={data.graphSeries}
