@@ -1,6 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 import numpy as np
+# import pygeos
 # import maup
 
 from collections import defaultdict
@@ -89,6 +90,13 @@ def findPopulationVar(precincts, dist2020, dist2022):
         
         print(numerator / denominator)
 
+def addInDistrictNum(precincts, sepDist):
+    for district in range(len(sepDist)):
+        for precinct in sepDist[district]:
+            precincts.loc[precincts["VTDST20"] == precinct, 'districtNum'] = district+1
+            # precincts[precincts["VTDST20"] == precinct]['districtNum'] = district
+    return precincts
+
 
 # precincts = gpd.read_file('preprocessing/GeoJSON/OH_PRECINCTS_FIXED.json')
 # precincts = precincts.to_crs(3857)
@@ -114,5 +122,6 @@ precincts = pushPopulationData(precinct_info, precincts) #set the population
 precincts["Tot_2020_cvap"] = precincts["Tot_2020_cvap"].fillna(0)
 findGeoVar(precincts, sep_dis2020, sep_dis2022)
 findPopulationVar(precincts, sep_dis2020, sep_dis2022)
+precincts = addInDistrictNum(precincts, sep_dis2020)
 
 exportToFile(precincts, "OhioPrecincts.geojson")
