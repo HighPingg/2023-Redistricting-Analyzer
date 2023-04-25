@@ -1,4 +1,6 @@
 import geopandas as gpd
+import pandas as pd
+import numpy as np
 # import maup
 
 from collections import defaultdict
@@ -54,15 +56,30 @@ def separateDistricts(precincts, districts):
     
     return separated
 
-precincts = gpd.read_file('GeoJSON/OH_PRECINCTS_FIXED.json')
-districts = gpd.read_file('GeoJSON/oh_pl2020.json')
-districts = districts.to_crs(3857)
+def pushPopulationData(precinctinfo, precincts):
+    keep_columns = list(precincts.columns)
+    keep_columns.extend(['Tot_2020_cvap','Wh_2020_cvap','His_2020_cvap','BlC_2020_cvap','NatC_2020_cvap','AsnC_2020_cvap','PacC_2020_cvap'])
+    precincts = pd.merge(precincts, precinctinfo,how='left', left_on='GEOID20', right_on='GEOID20')
+    precincts = precincts.loc[:, keep_columns]
+    return precincts
+
+precincts = gpd.read_file('preprocessing/GeoJSON/OH_PRECINCTS_FIXED.json')
+districts2020 = gpd.read_file('preprocessing/GeoJSON/oh_pl2020.json')
+districts2022 = gpd.read_file('preprocessing/GeoJSON/ohio_21.json')
+precinct_info = pd.read_csv('preprocessing/2020_census_OH-3.csv')
+districts2020 = districts2020.to_crs(3857)
+districts2022 = districts2022.to_crs(3857)
+# precincts = precincts.to_crs(3857)
 
 # df['NEIGHBORS'] = getNeighbors(df)
-separateDistricts(precincts, districts)
+sep_dis2020 = separateDistricts(precincts, districts2020) # seperated distrcits for 2020
+sep_dis2022 = separateDistricts(precincts, districts2022) #for 2022
 # print(df['NEIGHBORS'].to_string())
 #079AEM
 # vid = df['VTDST20'].tolist()
 # neighbors = df['NEIGHBORS'].tolist()
 # for v, n in zip(vid, neighbors):
 #     print(v, n)
+
+precincts = pushPopulationData(precinct_info, precincts) #set the population
+
