@@ -63,23 +63,56 @@ def pushPopulationData(precinctinfo, precincts):
     precincts = precincts.loc[:, keep_columns]
     return precincts
 
+def findGeoVar(precincts, dist2020, dist2022):
+    for i in range(len(dist2022)):
+        # Sum all area precincts in 2022 plan
+        numerator = 0
+        for precinct in dist2022[i] - dist2022[i].intersection(dist2020[i]):
+            numerator += precincts[precincts["VTDST20"] == precinct]['geometry'].area.values[0]
+        
+        denominator = 0
+        for precinct in dist2020[i]:
+            denominator += precincts[precincts["VTDST20"] == precinct]['geometry'].area.values[0]
+        
+        print(numerator / denominator)
+
+def findPopulationVar(precincts, dist2020, dist2022):
+    for i in range(len(dist2022)):
+        # Sum all area precincts in 2022 plan
+        numerator = 0
+        for precinct in dist2022[i] - dist2022[i].intersection(dist2020[i]):
+            numerator += precincts[precincts["VTDST20"] == precinct]['Tot_2020_cvap'].values[0]
+        
+        denominator = 0
+        for precinct in dist2020[i]:
+            denominator += precincts[precincts["VTDST20"] == precinct]['Tot_2020_cvap'].values[0]
+        
+        print(numerator / denominator)
+
+
+# precincts = gpd.read_file('preprocessing/GeoJSON/OH_PRECINCTS_FIXED.json')
+# precincts = precincts.to_crs(3857)
+
+# df['NEIGHBORS'] = getNeighbors(df)
+# print(df['NEIGHBORS'].to_string())
+# vid = df['VTDST20'].tolist()
+# neighbors = df['NEIGHBORS'].tolist()
+# for v, n in zip(vid, neighbors):
+#     print(v, n)
+
 precincts = gpd.read_file('preprocessing/GeoJSON/OH_PRECINCTS_FIXED.json')
 districts2020 = gpd.read_file('preprocessing/GeoJSON/oh_pl2020.json')
 districts2022 = gpd.read_file('preprocessing/GeoJSON/ohio_21.json')
 precinct_info = pd.read_csv('preprocessing/2020_census_OH-3.csv')
 districts2020 = districts2020.to_crs(3857)
 districts2022 = districts2022.to_crs(3857)
-# precincts = precincts.to_crs(3857)
-
-# df['NEIGHBORS'] = getNeighbors(df)
 sep_dis2020 = separateDistricts(precincts, districts2020) # seperated distrcits for 2020
 sep_dis2022 = separateDistricts(precincts, districts2022) #for 2022
-# print(df['NEIGHBORS'].to_string())
-#079AEM
-# vid = df['VTDST20'].tolist()
-# neighbors = df['NEIGHBORS'].tolist()
-# for v, n in zip(vid, neighbors):
-#     print(v, n)
+
 
 precincts = pushPopulationData(precinct_info, precincts) #set the population
+precincts["Tot_2020_cvap"] = precincts["Tot_2020_cvap"].fillna(0)
+findGeoVar(precincts, sep_dis2020, sep_dis2022)
+findPopulationVar(precincts, sep_dis2020, sep_dis2022)
 
+exportToFile(precincts, "OhioPrecincts.geojson")
