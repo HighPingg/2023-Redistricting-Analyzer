@@ -32,10 +32,35 @@ def getNeighbors(df):
 def exportToFile(df, fileName):
     df.to_file(fileName, driver="GeoJSON")
 
-df = gpd.read_file('GeoJSON/OH_PRECINCTS_FIXED.json')
-df['NEIGHBORS'] = getNeighbors(df)
+def separateDistricts(precincts, districts):
+    separated = [set() for _ in range(districts.shape[0])]
 
-print(df['NEIGHBORS'].to_string())
+    intersections = districts.overlay(precincts, how='intersection')
+    for i in range(intersections.shape[0]):
+        separated[intersections["DISTRICT"][i] - 1].add(intersections["VTDST20"][i])
+
+    # Resolve precincts in multiple districts conflicts
+    for i in range(len(separated)):
+        for j in range(len(separated)):
+            if i != j:
+                for vid in separated[i].intersection(separated[j]):
+                    iValue = intersections[(intersections["DISTRICT"] == i + 1) & (intersections["VTDST20"] == vid)]['geometry'].area.values[0]
+                    jValue = intersections[(intersections["DISTRICT"] == j + 1) & (intersections["VTDST20"] == vid)]['geometry'].area.values[0]
+
+                    if iValue < jValue:
+                        separated[i].remove(vid)
+                    else:
+                        separated[j].remove(vid)
+    
+    return separated
+
+precincts = gpd.read_file('GeoJSON/OH_PRECINCTS_FIXED.json')
+districts = gpd.read_file('GeoJSON/oh_pl2020.json')
+districts = districts.to_crs(3857)
+
+# df['NEIGHBORS'] = getNeighbors(df)
+separateDistricts(precincts, districts)
+# print(df['NEIGHBORS'].to_string())
 #079AEM
 # vid = df['VTDST20'].tolist()
 # neighbors = df['NEIGHBORS'].tolist()
