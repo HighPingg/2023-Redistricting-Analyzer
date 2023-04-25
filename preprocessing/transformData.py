@@ -97,6 +97,11 @@ def addInDistrictNum(precincts, sepDist):
             # precincts[precincts["VTDST20"] == precinct]['districtNum'] = district
     return precincts
 
+def addInArea(precincts):
+    for index, row in precincts.iterrows():
+        precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'geographicArea'] = row['geometry'].area
+
+    return precincts
 
 # precincts = gpd.read_file('preprocessing/GeoJSON/OH_PRECINCTS_FIXED.json')
 # precincts = precincts.to_crs(3857)
@@ -123,5 +128,6 @@ precincts["Tot_2020_cvap"] = precincts["Tot_2020_cvap"].fillna(0)
 findGeoVar(precincts, sep_dis2020, sep_dis2022)
 findPopulationVar(precincts, sep_dis2020, sep_dis2022)
 precincts = addInDistrictNum(precincts, sep_dis2020)
+precincts = addInArea(precincts)
 
 exportToFile(precincts, "OhioPrecincts.geojson")
