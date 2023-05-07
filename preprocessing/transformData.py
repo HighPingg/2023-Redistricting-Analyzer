@@ -59,7 +59,7 @@ def separateDistricts(precincts, districts):
 
 def pushPopulationData(precinctinfo, precincts):
     keep_columns = list(precincts.columns)
-    keep_columns.extend(['Tot_2020_cvap','Wh_2020_cvap','His_2020_cvap','BlC_2020_cvap','NatC_2020_cvap','AsnC_2020_cvap','PacC_2020_cvap'])
+    keep_columns.extend(['Tot_2020_vap','Wh_2020_vap','His_2020_vap','BlC_2020_vap','NatC_2020_vap','AsnC_2020_vap','PacC_2020_vap'])
     precincts = pd.merge(precincts, precinctinfo,how='left', left_on='GEOID20', right_on='GEOID20')
     precincts = precincts.loc[:, keep_columns]
     return precincts
@@ -82,11 +82,11 @@ def findPopulationVar(precincts, dist2020, dist2022):
         # Sum all area precincts in 2022 plan
         numerator = 0
         for precinct in dist2022[i] - dist2022[i].intersection(dist2020[i]):
-            numerator += precincts[precincts["VTDST20"] == precinct]['Tot_2020_cvap'].values[0]
+            numerator += precincts[precincts["VTDST20"] == precinct]['Tot_2020_vap'].values[0]
         
         denominator = 0
         for precinct in dist2020[i]:
-            denominator += precincts[precincts["VTDST20"] == precinct]['Tot_2020_cvap'].values[0]
+            denominator += precincts[precincts["VTDST20"] == precinct]['Tot_2020_vap'].values[0]
         
         print(numerator / denominator)
 
@@ -124,7 +124,7 @@ sep_dis2022 = separateDistricts(precincts, districts2022) #for 2022
 
 
 precincts = pushPopulationData(precinct_info, precincts) #set the population
-precincts["Tot_2020_cvap"] = precincts["Tot_2020_cvap"].fillna(0)
+precincts["Tot_2020_vap"] = precincts["Tot_2020_vap"].fillna(0)
 findGeoVar(precincts, sep_dis2020, sep_dis2022)
 findPopulationVar(precincts, sep_dis2020, sep_dis2022)
 precincts = addInDistrictNum(precincts, sep_dis2020)

@@ -16,9 +16,9 @@ shapefile['geometry'] = shapefile['geometry'].buffer(0.001)
 
 graph = Graph.from_geodataframe(shapefile)
 
-my_updaters = {"population": updaters.Tally("Tot_2020_cvap", alias="population"), "wh_votes": updaters.Tally("Wh_2020_cvap", alias="wh_votes"), 
-               "his_votes": updaters.Tally("His_2020_cvap", alias="his_votes"), "blc_votes": updaters.Tally("BlC_2020_cvap", alias="blc_votes"), "natc_votes": updaters.Tally("NatC_2020_cvap", alias="natc_votes"), 
-               "asnc_votes": updaters.Tally("AsnC_2020_cvap", alias="asnc_votes"), "pacc_votes": updaters.Tally("PacC_2020_cvap", alias="pacc_votes"), "geoArea": updaters.Tally('geographicArea', alias="geoArea")}
+my_updaters = {"population": updaters.Tally("Tot_2020_vap", alias="population"), "wh_votes": updaters.Tally("Wh_2020_vap", alias="wh_votes"), 
+               "his_votes": updaters.Tally("His_2020_vap", alias="his_votes"), "blc_votes": updaters.Tally("BlC_2020_vap", alias="blc_votes"), "natc_votes": updaters.Tally("NatC_2020_vap", alias="natc_votes"), 
+               "asnc_votes": updaters.Tally("AsnC_2020_vap", alias="asnc_votes"), "pacc_votes": updaters.Tally("PacC_2020_vap", alias="pacc_votes"), "geoArea": updaters.Tally('geographicArea', alias="geoArea")}
 
 initial_partition = GeographicPartition(graph, assignment="districtNum", updaters=my_updaters)
 
@@ -33,7 +33,7 @@ compactness_bound = constraints.UpperBound(
 ideal_population = sum(initial_partition["population"].values()) / len(initial_partition)
 
 proposal = partial(recom,
-                   pop_col="Tot_2020_cvap",
+                   pop_col="Tot_2020_vap",
                    pop_target=ideal_population,
                    epsilon=0.02,
                    node_repeats=2
@@ -49,7 +49,7 @@ chain = MarkovChain(
     ],
     accept=accept.always_accept,
     initial_state=initial_partition,
-    total_steps=10
+    total_steps=10000
 )
 
 for partition in chain:
@@ -76,13 +76,13 @@ for district, subgraph in partition.subgraphs.items():
 
 finalPlan = gpd.GeoDataFrame({
     'districtNum':district,
-    'Tot_2020_cvap':population[int(district)-1],
-    'Wh_2020_cvap':wh_votes[int(district)-1],
-    'His_2020_cvap':his_votes[int(district)-1],
-    'BlC_2020_cvap':blc_votes[int(district)-1],
-    'NatC_2020_cvap':natc_votes[int(district)-1],
-    'AsnC_2020_cvap':asnc_votes[int(district)-1],
-    'PacC_2020_cvap':pacc_votes[int(district)-1],
+    'Tot_2020_vap':population[int(district)-1],
+    'Wh_2020_vap':wh_votes[int(district)-1],
+    'His_2020_vap':his_votes[int(district)-1],
+    'BlC_2020_vap':blc_votes[int(district)-1],
+    'NatC_2020_vap':natc_votes[int(district)-1],
+    'AsnC_2020_vap':asnc_votes[int(district)-1],
+    'PacC_2020_vap':pacc_votes[int(district)-1],
     'geometry':geometry[int(district)-1]
 } for district, subgraphs in partition.subgraphs.items()
 )
