@@ -25,6 +25,9 @@ function DisplayToggle(){
         exclusive
         onChange={selectDisplayChange}
         aria-label="Platform"
+        sx={{
+          'marginTop': '10px'
+        }}
       >
         <ToggleButton value="BoxWhisker">Box and Whisker</ToggleButton>
         <ToggleButton value="SplitParty">Split Party View</ToggleButton>

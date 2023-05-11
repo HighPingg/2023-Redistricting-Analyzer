@@ -14,6 +14,7 @@ import EnsembleData from './components/EnsembleDataComponent';
 
 import Grid from '@mui/material/Grid';
 import DisplayToggle from './components/DisplayToggleComponent';
+import { Box } from '@mui/material';
 // import Item from '@mui/material/Item';
 
 function App() {
@@ -27,23 +28,28 @@ function App() {
     );
   } else {
     return (
-      <div className="App">
-        <Grid container spacing={2}>
-          <Grid item xs={7}> 
+      <div className="App"
+           style={{
+            display: 'flex',
+            'flexDirection': 'row',
+            'columnGap': '10px'
+           }}
+      >
+          <Box sx={{
+            "width": "50vw"
+          }}>
             <Map />
-          </Grid>
-          <Grid item xs={5}>
-            {/* <TableComponent/> */}
-            <EnsembleData/>
-          </Grid>
-          <Grid item xs={7}>
-          <DisplayToggle/>
+            
+            <DisplayToggle/>
             <Graph/>
-          </Grid>
-          <Grid item xs={5}>
-          <TableComponent/>
-          </Grid>
-        </Grid>
+          </Box>
+          <Box sx={{
+            "width": "50vw"
+          }}>
+            <EnsembleData/>
+
+            <TableComponent/>
+          </Box>
       </div>
     );
   }
