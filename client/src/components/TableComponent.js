@@ -82,26 +82,24 @@ function TableComponent() {
               <TableCell sx={titleStyle} >Incumbent</TableCell>
               <TableCell sx={titleStyle} >Party</TableCell>
               <TableCell sx={titleStyle} >{ map.currentDistrictPlan + " W/L" }</TableCell>
-              <TableCell sx={titleStyle} >Geographic Variation</TableCell>
-              <TableCell sx={titleStyle} >Population Variation</TableCell>
+              {
+                // Hide fields in 2020 plan
+                map.currentDistrictPlan != '2020' 
+                  ? <TableCell sx={titleStyle} >Geographic Variation</TableCell>
+                  : null
+              }
+              {
+                // Hide fields in 2020 plan
+                map.currentDistrictPlan != '2020' 
+                ? <TableCell sx={titleStyle} >Population Variation</TableCell>
+                : null
+              }
             </TableRow>
           </TableHead>
           <TableBody>
             {
-              incumbents.map((incumbent) => incumbent[1] === null ? 
-                // Display placeholder with no incumbent
-                <TableRow onClick={(event)=>tableCellClickHandler(event, incumbent[0])}
-                          key={incumbent[0]}
-                          hover={true}
-                          sx={{  '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell sx={rowStyle} >{ incumbent[0] }</TableCell>
-                  <TableCell sx={rowStyle} > No Incumbent </TableCell>
-                  <TableCell sx={rowStyle} ></TableCell>
-                  <TableCell sx={rowStyle} ></TableCell>
-                  <TableCell sx={rowStyle} ></TableCell>
-                  <TableCell sx={rowStyle} ></TableCell>
-                </TableRow>
+              incumbents.map((incumbent) => incumbent[1] === null 
+              ? null
               :
                 // Display normal cell with incumbent
               (<TableRow onClick={(event)=>tableCellClickHandler(event, incumbent[0].districtNumber)}
@@ -113,8 +111,18 @@ function TableComponent() {
                   <TableCell sx={rowStyle} >{ incumbent[1].name }</TableCell>
                   <TableCell sx={{ ...rowStyle, ...{"color": getPartyColor(incumbent[1].party) }}} >{ incumbent[1].party }</TableCell>
                   <TableCell sx={{ ...rowStyle, ...{"color": incumbent[1].winner ? "Green" : "Red" } }} >{ incumbent[1].winner ? "Winner" : "Loser" }</TableCell>
-                  <TableCell sx={rowStyle} >{ incumbent[0].geographicVariation }</TableCell>
-                  <TableCell sx={rowStyle} >{ incumbent[0].populationVariation }</TableCell>
+                  {
+                    // Hide fields in 2020 plan
+                    map.currentDistrictPlan != '2020' 
+                    ? <TableCell sx={rowStyle} >{ incumbent[0].geographicVariation }</TableCell>
+                    : null
+                  }
+                  {
+                    // Hide fields in 2020 plan
+                    map.currentDistrictPlan != '2020' 
+                    ? <TableCell sx={rowStyle} >{ incumbent[0].populationVariation }</TableCell>
+                    : null
+                  }
                 </TableRow>
               ))
             }
