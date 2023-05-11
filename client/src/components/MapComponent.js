@@ -170,7 +170,7 @@ function Map() {
                     zoomControl={false}
                     ref={mapRef}
                     style={{ width: map.currentDistrict === null ? "100%" : "97%",
-                             height: map.selectedState === null ? '100vh' : '50vh', zIndex: 0 ,
+                             height: map.selectedState === null ? '94vh' : '50vh', zIndex: 0 ,
                             //  border: '10px',
                             //  borderStyle: 'solid',
                             //  borderColor: 'purple'

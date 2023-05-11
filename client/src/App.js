@@ -24,6 +24,7 @@ function App() {
   if (map.selectedState === null) {
     return (
       <div className="App">
+        <AppBar />
         <Map />
       </div>
     );
