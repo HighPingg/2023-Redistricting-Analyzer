@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import BoxAndWhiskerGraph from './Graphs/BoxAndWhisker';
 import SplitPartyGraph from './Graphs/SplitPartyGraph';
 import DemographicGraph from './Graphs/DemographicGraph';
+import UnselectedGraph from './Graphs/UnselectedGraph';
 
 function Graph(){
     // Get selected state from reducer
@@ -21,7 +22,8 @@ function Graph(){
             return <DemographicGraph />;
             
         default:
-            return "Select a graph type to display";
+            
+            return <UnselectedGraph/>;
         };
     }
 }
