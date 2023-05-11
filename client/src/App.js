@@ -15,6 +15,7 @@ import EnsembleData from './components/EnsembleDataComponent';
 import Grid from '@mui/material/Grid';
 import DisplayToggle from './components/DisplayToggleComponent';
 import { Box } from '@mui/material';
+import DistrictTableComponent from './components/DistrictTableComponent';
 // import Item from '@mui/material/Item';
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
             <EnsembleData/>
 
             <TableComponent/>
+
+            <DistrictTableComponent/>
           </Box>
       </div>
     );
