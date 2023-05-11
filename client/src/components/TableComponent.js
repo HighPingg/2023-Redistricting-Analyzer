@@ -15,6 +15,8 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { IconButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function TableComponent() {
 
@@ -76,15 +78,30 @@ function TableComponent() {
   // Default view with all of the incumbents for each district
   return (
     <Box
-    sx = {{pb: '.5%'}}
+    sx = {{pb: '10px', width: '100%'}}
     >
-      <Typography
-      sx={{
-        fontWeight: 'bold',
-        fontSize: '2vw'
-        }}>
-        Incumbents
-      </Typography>
+      <div style={{ position: 'relative', width: '100%', margin: '10px' }} >
+        {
+          map.currentDistrict !== null
+          ? <IconButton style={{
+                position: 'absolute',
+                left: '10px'
+              }}
+              onClick={resetClickHandler}
+              disabled={map.currentDistrict === null}
+            >
+              <ArrowBackIcon />
+            </IconButton>
+          : null
+        }
+        <Typography
+        sx={{
+          fontWeight: 'bold',
+          fontSize: '2vw'
+          }}>
+          Incumbents
+        </Typography>
+      </div>
     <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
       <Table aria-aria-label='simple table' stickyHeader >
         <TableHead>
