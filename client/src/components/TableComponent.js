@@ -70,6 +70,7 @@ function TableComponent() {
       incumbents.push([district.districtNumber, null])
     }
   });
+  console.log(incumbents)
 
   // Default view with all of the incumbents for each district
   if (map.currentDistrict == null) {
@@ -92,6 +93,12 @@ function TableComponent() {
                 // Hide fields in 2020 plan
                 map.currentDistrictPlan != '2020' 
                 ? <TableCell sx={titleStyle} >Population Variation</TableCell>
+                : null
+              }
+              {
+                // Hide fields in 2020 plan
+                map.currentDistrictPlan != '2020' 
+                ? <TableCell sx={titleStyle} >Seat Safe?</TableCell>
                 : null
               }
             </TableRow>
@@ -121,6 +128,12 @@ function TableComponent() {
                     // Hide fields in 2020 plan
                     map.currentDistrictPlan != '2020' 
                     ? <TableCell sx={rowStyle} >{ incumbent[0].populationVariation }</TableCell>
+                    : null
+                  }
+                  {
+                    // Hide fields in 2020 plan
+                    map.currentDistrictPlan != '2020' 
+                    ? <TableCell sx={rowStyle} >{ incumbent[1].safeSeat ? 'Yes' : 'No' }</TableCell>
                     : null
                   }
                 </TableRow>
