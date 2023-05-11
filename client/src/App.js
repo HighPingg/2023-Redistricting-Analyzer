@@ -32,7 +32,8 @@ function App() {
            style={{
             display: 'flex',
             'flexDirection': 'row',
-            'columnGap': '10px'
+            'columnGap': '10px',
+            'height': '100vh'
            }}
       >
           <Box sx={{

@@ -34,6 +34,10 @@
   font-family: 'Montserrat', sans-serif !important;
 }
 
+body {
+  margin: 0;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
