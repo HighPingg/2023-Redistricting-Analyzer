@@ -9,10 +9,10 @@ import DistrictPlanToggle from './components/DistrictPlanToggleComponent'
 import Graph from './components/GraphComponent';
 import TableComponent from './components/TableComponent';
 import EnsembleData from './components/EnsembleDataComponent';
+import AppBar from './components/AppBar';
 
 //Visual imports
 
-import Grid from '@mui/material/Grid';
 import DisplayToggle from './components/DisplayToggleComponent';
 import { Box } from '@mui/material';
 import DistrictTableComponent from './components/DistrictTableComponent';
@@ -29,6 +29,9 @@ function App() {
     );
   } else {
     return (
+      <Box>
+        <AppBar/>
+
       <div className="App"
            style={{
             display: 'flex',
@@ -41,7 +44,6 @@ function App() {
             "width": "50vw"
           }}>
             <Map />
-            
             <DisplayToggle/>
             <Graph/>
           </Box>
@@ -55,6 +57,7 @@ function App() {
             <DistrictTableComponent/>
           </Box>
       </div>
+      </Box>
     );
   }
 }

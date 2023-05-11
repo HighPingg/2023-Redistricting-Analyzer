@@ -8,7 +8,7 @@ function UnselectedGraph(){
 				alignItems= 'center'
 				sx={{
 					pt: 2,
-					height: '40%',
+					height: '36%',
 					width: '100%',
 					borderRadius: 2,
 					backgroundColor: '#aaacad',

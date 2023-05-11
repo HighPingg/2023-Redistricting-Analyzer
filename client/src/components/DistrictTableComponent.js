@@ -71,7 +71,7 @@ function DistrictTableComponent() {
         alignItems= 'center'
         sx={{
             pt: 2,
-            height: '22%',
+            height: '19.5%',
             width: '100%',
             borderRadius: 2,
             backgroundColor: '#aaacad',
