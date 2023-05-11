@@ -1,4 +1,4 @@
-import { TableContainer, Table, TableHead, TableRow, TableCell, Paper, TableBody, Button, Box } from "@mui/material"
+import { TableContainer, Table, TableHead, TableRow, TableCell, Paper, TableBody, Button, Box, Typography } from "@mui/material"
 import { useSelector } from "react-redux";
 
 function DistrictTableComponent() {
@@ -28,7 +28,16 @@ function DistrictTableComponent() {
 
     return (
         map.currentDistrict !== null
-        ?   <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
+        ?   
+        <Box>
+            <Typography
+            sx={{
+                fontWeight: 'bold',
+                fontSize: '2vw'
+            }}>
+                Candidates
+            </Typography>
+            <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
                 <Table aria-aria-label='simple table' stickyHeader >
                     <TableHead>
                     <TableRow>
@@ -54,6 +63,7 @@ function DistrictTableComponent() {
                     </TableBody>
                 </Table>
             </TableContainer>
+        </Box>
         :           
         <Box
         display="flex"
