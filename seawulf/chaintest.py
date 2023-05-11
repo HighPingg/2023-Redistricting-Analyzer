@@ -9,11 +9,18 @@ import pandas
 import numpy as np
 from functools import partial
 import matplotlib.pyplot as plt
+import datetime
 
 shapefile = gpd.read_file(r'OhioPrecincts.geojson')
+shapefile = shapefile.to_crs(4326)
 
 shapefile['geometry'] = shapefile['geometry'].buffer(0.001)
-
+shapefile["Wh_2020_vap"] = shapefile["Wh_2020_vap"].fillna(0)
+shapefile["His_2020_vap"] = shapefile["His_2020_vap"].fillna(0)
+shapefile["BlC_2020_vap"] = shapefile["BlC_2020_vap"].fillna(0)
+shapefile["NatC_2020_vap"] = shapefile["NatC_2020_vap"].fillna(0)
+shapefile["AsnC_2020_vap"] = shapefile["AsnC_2020_vap"].fillna(0)
+shapefile["PacC_2020_vap"] = shapefile["PacC_2020_vap"].fillna(0)
 graph = Graph.from_geodataframe(shapefile)
 
 my_updaters = {"population": updaters.Tally("Tot_2020_vap", alias="population"), "wh_votes": updaters.Tally("Wh_2020_vap", alias="wh_votes"), 
@@ -52,7 +59,7 @@ chain = MarkovChain(
     total_steps=10000
 )
 
-for partition in chain:
+for partition in chain.with_progress_bar():
     population = list(partition['population'].values())
     wh_votes = list(partition['wh_votes'].values())
     his_votes = list(partition['his_votes'].values())
@@ -61,7 +68,6 @@ for partition in chain:
     asnc_votes = list(partition['asnc_votes'].values())
     pacc_votes = list(partition['pacc_votes'].values())
     district_order = list(partition.parts.keys())
-
 
 geometry = list()
 for district, subgraph in partition.subgraphs.items():
@@ -75,7 +81,7 @@ for district, subgraph in partition.subgraphs.items():
     geometry.append(dissolved.iloc[0]['geometry'])
 
 finalPlan = gpd.GeoDataFrame({
-    'districtNum':district,
+    'DISTRICT':int(district),
     'Tot_2020_vap':population[int(district)-1],
     'Wh_2020_vap':wh_votes[int(district)-1],
     'His_2020_vap':his_votes[int(district)-1],
@@ -87,4 +93,7 @@ finalPlan = gpd.GeoDataFrame({
 } for district, subgraphs in partition.subgraphs.items()
 )
 
-finalPlan.to_file('Ohio2020Seawulf.geojson', driver="GeoJSON")
+for vote in wh_votes:
+    print(vote)
+
+finalPlan.to_file(str(datetime.datetime.now())+' Ohio2020Seawulf.geojson', driver="GeoJSON")
