@@ -14,6 +14,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 function TableComponent() {
 
@@ -72,9 +73,10 @@ function TableComponent() {
   });
   console.log(incumbents)
 
+  let table;
   // Default view with all of the incumbents for each district
   if (map.currentDistrict == null) {
-    return (
+    table = (
       <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
         <Table aria-aria-label='simple table' stickyHeader >
           <TableHead>
@@ -147,7 +149,7 @@ function TableComponent() {
 
   // After selecting a district, we want to show all the candidates for that district instead.
   else {
-    return (
+    table = (
       <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
         <Table aria-aria-label='simple table' stickyHeader >
           <TableHead>
@@ -177,6 +179,17 @@ function TableComponent() {
       </TableContainer>
     );
   }
+  return(
+    <Box>
+      <Typography variant="h3"
+      sx={{fontWeight: 'bold'}}
+      >
+        Incumbents
+      </Typography>
+      {table}
+    </Box>
+
+  )
 }
 
 export default TableComponent;

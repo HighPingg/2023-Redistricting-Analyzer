@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 // Mui Imports
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 function EnsembleData(){
     const map = useSelector(state => state.map);
@@ -34,7 +34,10 @@ function EnsembleData(){
     if (map.selectedState!= null){
         return(
             <div>
-                <b>{'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}</b>
+                <Typography variant='h3'
+                sx={{fontWeight: 'bold'}}>
+                {'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}
+                </Typography>
                 <Box component="div" sx={style} >
                     <p style={outerTextStyle} > Number of District Plans: <span style={innerTextStyle} >{ map.ensembleData.numDistrictPlans }</span></p>
                 </Box>
