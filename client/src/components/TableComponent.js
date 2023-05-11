@@ -80,17 +80,20 @@ function TableComponent() {
     <Box
     sx = {{pb: '10px', width: '100%'}}
     >
-      <div style={{ position: 'relative', width: '100%' }} >
+      <div style={{ position: 'relative', width: '100%', marginBottom: '10px' }} >
         {
           map.currentDistrict !== null
           ? <IconButton style={{
                 position: 'absolute',
-                left: '10px'
+                left: '10px',
+                color: 'purple',
+                fontSize: '15pt'
               }}
               onClick={resetClickHandler}
               disabled={map.currentDistrict === null}
             >
               <ArrowBackIcon />
+              Reset
             </IconButton>
           : null
         }

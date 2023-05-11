@@ -23,12 +23,12 @@ function Map() {
   const map = useSelector(state => state.map);
   const dispatch = useDispatch();
 
-  var getColor = (feature, selectedState) => {
+  var getColor = (feature) => {
     if (map.currentDistrict !== null && map.currentDistrict === feature.properties.DISTRICT) {
       return {
-        fillColor: 'purple',
-        color:'white',
-        weight: 1,
+        fillColor: feature.properties.color,
+        color:'black',
+        weight: 5,
         fillOpacity: 1
       };
     } else {
@@ -153,11 +153,8 @@ function Map() {
 
   // Resets the style currently set to the state.
   function resetHighlight(e) {
-    geojsonRef.current.setStyle({
-      weight: 1,
-      color: "white",
-      fillOpacity: 0.8
-    })
+    console.log(e)
+    e.target.setStyle(getColor(e.target.feature))
 
     // Remove caption info.
     captionRef.current.innerHTML = null
@@ -170,10 +167,11 @@ function Map() {
                     zoomControl={false}
                     ref={mapRef}
                     style={{ width: map.currentDistrict === null ? "100%" : "97%",
-                             height: map.selectedState === null ? '94vh' : '50vh', zIndex: 0 ,
-                            //  border: '10px',
-                            //  borderStyle: 'solid',
-                            //  borderColor: 'purple'
+                             height: map.selectedState === null ? '94vh' : map.currentDistrict !== null ? '48vh' : '50vh',
+                             zIndex: 0,
+                             border: map.currentDistrict !== null ? '10px' : '0px',
+                             borderStyle: map.currentDistrict !== null ? 'solid' : 'none',
+                             borderColor: map.currentDistrict !== null ? 'purple' : 'white'
                     }}
                     center={[map.mapCenter.x, map.mapCenter.y]}
                     zoom={map.mapCenter.zoom}
