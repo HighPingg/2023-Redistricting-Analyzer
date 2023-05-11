@@ -7,7 +7,8 @@ function UnselectedGraph(){
 				justifyContent= 'center'
 				alignItems= 'center'
 				sx={{
-					height: '100%',
+					pt: 2,
+					height: '40%',
 					width: '100%',
 					borderRadius: 2,
 					backgroundColor: '#aaacad',

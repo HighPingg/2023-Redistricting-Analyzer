@@ -18,6 +18,7 @@ function DisplayToggle(){
   if (map.selectedState!= null){
   return(
     <Box
+    sx = {{pb: '.5%'}}
     >
       <ToggleButtonGroup
         color="primary"
