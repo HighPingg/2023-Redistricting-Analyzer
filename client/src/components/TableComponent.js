@@ -80,7 +80,7 @@ function TableComponent() {
     <Box
     sx = {{pb: '10px', width: '100%'}}
     >
-      <div style={{ position: 'relative', width: '100%', margin: '10px' }} >
+      <div style={{ position: 'relative', width: '100%' }} >
         {
           map.currentDistrict !== null
           ? <IconButton style={{
