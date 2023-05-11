@@ -75,6 +75,16 @@ function TableComponent() {
 
   // Default view with all of the incumbents for each district
   return (
+    <Box
+    sx = {{pb: '.5%'}}
+    >
+      <Typography
+      sx={{
+        fontWeight: 'bold',
+        fontSize: '2vw'
+        }}>
+        Incumbents
+      </Typography>
     <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
       <Table aria-aria-label='simple table' stickyHeader >
         <TableHead>
@@ -142,6 +152,7 @@ function TableComponent() {
         </TableBody>
       </Table>
     </TableContainer>
+    </Box>
   );
 }
 

@@ -34,8 +34,11 @@ function EnsembleData(){
     if (map.selectedState!= null){
         return(
             <div>
-                <Typography variant='h3'
-                sx={{fontWeight: 'bold'}}>
+                <Typography
+                sx={{
+                    fontWeight: 'bold',
+                    fontSize: '2vw'
+                }}>
                 {'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}
                 </Typography>
                 <Box component="div" sx={style} >

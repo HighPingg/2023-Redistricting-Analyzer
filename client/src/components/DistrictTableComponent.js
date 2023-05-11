@@ -54,9 +54,26 @@ function DistrictTableComponent() {
                     </TableBody>
                 </Table>
             </TableContainer>
-        :   <Box>
-                Select a District to Display
-            </Box>
+        :           
+        <Box
+        display="flex"
+        justifyContent= 'center'
+        alignItems= 'center'
+        sx={{
+            pt: 2,
+            height: '22%',
+            width: '100%',
+            borderRadius: 2,
+            backgroundColor: '#aaacad',
+            fontSize: 50,
+            fontWeight: 'bold'
+        }}
+        >
+        <Box
+        >
+        Select District To Display Candidates
+        </Box>
+</Box>
     );
 }
 
