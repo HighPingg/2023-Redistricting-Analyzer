@@ -38,6 +38,9 @@ function SplitPartyGraph() {
                 type: 'bar',
                 height: 350,
                 stacked: true,
+                toolbar:{
+                    show: false
+                }
             },
             plotOptions: {
                 bar: {

@@ -37,7 +37,10 @@ function BoxAndWhiskerGraph() {
         let options = {
             chart: {
                 type: 'boxPlot',
-                height: 350
+                height: 350,
+                toolbar:{
+                    show: false
+                }
             },
             title: {
                 text: data.graphTitle,

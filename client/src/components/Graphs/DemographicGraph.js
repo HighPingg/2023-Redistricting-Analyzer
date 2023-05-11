@@ -40,6 +40,9 @@ function DemographicGraph() {
             chart: {
                 width: 380,
                 type: 'pie',
+                toolbar:{
+                    show: false
+                }
             },
             labels: data.graphLabels,
             responsive: [{
