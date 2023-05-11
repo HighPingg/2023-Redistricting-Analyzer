@@ -166,10 +166,15 @@ function Map() {
 
   return (
     <Box>
-      <MapContainer key={map.selectedState + map.currentDistrictPlan}
+      <MapContainer key={map.selectedState + map.currentDistrictPlan + map.currentDistrict}
                     zoomControl={false}
                     ref={mapRef}
-                    style={{ width: "100%", height: map.selectedState === null ? '100vh' : '50vh', zIndex: 0 }}
+                    style={{ width: map.currentDistrict === null ? "100%" : "97%",
+                             height: map.selectedState === null ? '100vh' : '50vh', zIndex: 0 ,
+                            //  border: '10px',
+                            //  borderStyle: 'solid',
+                            //  borderColor: 'purple'
+                    }}
                     center={[map.mapCenter.x, map.mapCenter.y]}
                     zoom={map.mapCenter.zoom}
                     scrollWheelZoom={true}
