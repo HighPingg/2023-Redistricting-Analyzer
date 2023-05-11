@@ -5,6 +5,10 @@ import { setSelectedDisplay } from '../reducers/MapReducer';
 // Mui imports
 import { Box, ToggleButton , ToggleButtonGroup} from '@mui/material';
 
+let buttonStyle = {
+  fontWeight:'bold'
+}
+
 function DisplayToggle(){
   // Get map from MapReducer
   const map = useSelector(state => state.map)
@@ -27,12 +31,18 @@ function DisplayToggle(){
         onChange={selectDisplayChange}
         aria-label="Platform"
         sx={{
-          'marginTop': '10px'
+          marginTop: '10px',
         }}
       >
-        <ToggleButton value="BoxWhisker">Box and Whisker</ToggleButton>
-        <ToggleButton value="SplitParty">Split Party View</ToggleButton>
-        <ToggleButton value="Demographic">Demographic</ToggleButton>
+        <ToggleButton value="BoxWhisker" sx={buttonStyle}>
+          Box and Whisker
+          </ToggleButton>
+        <ToggleButton value="SplitParty" sx={buttonStyle}>
+          Split Party View
+          </ToggleButton>
+        <ToggleButton value="Demographic"sx={buttonStyle}>
+          Demographic
+          </ToggleButton>
       </ToggleButtonGroup>
       </Box>
   )}

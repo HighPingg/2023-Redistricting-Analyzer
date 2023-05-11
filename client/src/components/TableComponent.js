@@ -52,6 +52,20 @@ function TableComponent() {
     "padding": "15px"
   }
 
+  const rowStyleSelected = {
+    backgroundColor: "lightblue",
+    "padding": "15px"
+  }
+
+  let cellStyle = rowStyle
+
+  let getRowStyle = (districtNumber) => {
+    if (districtNumber == map.currentDistrict) {
+    return rowStyleSelected
+    }
+    return rowStyle
+  }
+
   // Filter out all of the incumbents
   let incumbents = []
   map.currentDistrictsInfo.forEach(district => {
@@ -142,30 +156,34 @@ function TableComponent() {
             (<TableRow onClick={(event)=>tableCellClickHandler(event, incumbent[0].districtNumber)}
                         key={incumbent[0].districtNumber}
                         hover={true}
-                        sx={{  '&:last-child td, &:last-child th': { border: 0 } }}
+                        sx={{  '&:last-child td, &:last-child th': { border: 0 }}}
               >
-                <TableCell sx={rowStyle} >{ incumbent[0].districtNumber }</TableCell>
-                <TableCell sx={rowStyle} >{ incumbent[1].name }</TableCell>
-                <TableCell sx={{ ...rowStyle, ...{"color": getPartyColor(incumbent[1].party) }}} >{ incumbent[1].party }</TableCell>
-                <TableCell sx={{ ...rowStyle, ...{"color": incumbent[1].winner ? "Green" : "Red" } }} >{ incumbent[1].winner ? "Winner" : "Loser" }</TableCell>
-                {
-                  // Hide fields in 2020 plan
-                  map.currentDistrictPlan != '2020' 
-                  ? <TableCell sx={rowStyle} >{ incumbent[0].geographicVariation }</TableCell>
-                  : null
-                }
-                {
-                  // Hide fields in 2020 plan
-                  map.currentDistrictPlan != '2020' 
-                  ? <TableCell sx={rowStyle} >{ incumbent[0].populationVariation }</TableCell>
-                  : null
-                }
-                {
-                  // Hide fields in 2020 plan
-                  map.currentDistrictPlan != '2020' 
-                  ? <TableCell sx={rowStyle} >{ incumbent[1].safeSeat ? 'Yes' : 'No' }</TableCell>
-                  : null
-                }
+                
+                  <TableCell sx={
+                    getRowStyle (incumbent[0].districtNumber)} >{ incumbent[0].districtNumber }
+                  </TableCell>
+                  <TableCell sx={getRowStyle (incumbent[0].districtNumber)} >{ incumbent[1].name }</TableCell>
+                  <TableCell sx={{ ...getRowStyle (incumbent[0].districtNumber), ...{"color": getPartyColor(incumbent[1].party) }}} >{ incumbent[1].party }</TableCell>
+                  <TableCell sx={{ ...getRowStyle (incumbent[0].districtNumber), ...{"color": incumbent[1].winner ? "Green" : "Red" } }} >{ incumbent[1].winner ? "Winner" : "Loser" }</TableCell>
+                  {
+                    // Hide fields in 2020 plan
+                    map.currentDistrictPlan != '2020' 
+                    ? <TableCell sx={getRowStyle (incumbent[0].districtNumber)} >{ incumbent[0].geographicVariation }</TableCell>
+                    : null
+                  }
+                  {
+                    // Hide fields in 2020 plan
+                    map.currentDistrictPlan != '2020' 
+                    ? <TableCell sx={getRowStyle (incumbent[0].districtNumber)} >{ incumbent[0].populationVariation }</TableCell>
+                    : null
+                  }
+                  {
+                    // Hide fields in 2020 plan
+                    map.currentDistrictPlan != '2020' 
+                    ? <TableCell sx={getRowStyle (incumbent[0].districtNumber)} >{ incumbent[1].safeSeat ? 'Yes' : 'No' }</TableCell>
+                    : null
+                  }
+                
               </TableRow>
             ))
           }
