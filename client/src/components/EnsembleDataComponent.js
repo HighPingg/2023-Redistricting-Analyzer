@@ -60,6 +60,14 @@ function EnsembleData(){
                 <Box component="div" sx={style} >
                     <p style={outerTextStyle} > Average Population Variation: <span style={innerTextStyle} >{ map.ensembleData.averagePopVariation }</span></p>
                 </Box>
+
+                {
+                    map.currentDistrictPlan === '2022'
+                    ? <Box component="div" sx={style} >
+                            <p style={outerTextStyle} > Most Influential Redistricting Party: <span style={innerTextStyle} >{ map.ensembleData.redistrictParty }</span></p>
+                      </Box>
+                    : null
+                }
             </div>
         )
     } else {
