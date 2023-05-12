@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Brightness1Icon from '@mui/icons-material/Brightness1';
 
 function TableComponent() {
 
@@ -163,7 +164,7 @@ function TableComponent() {
                     getRowStyle (incumbent[0].districtNumber)} >{ incumbent[0].districtNumber }
                   </TableCell>
                   <TableCell sx={getRowStyle (incumbent[0].districtNumber)} >{ incumbent[1].name }</TableCell>
-                  <TableCell sx={{ ...getRowStyle (incumbent[0].districtNumber), ...{"color": getPartyColor(incumbent[1].party) }}} >{ incumbent[1].party }</TableCell>
+                  <TableCell sx={ getRowStyle (incumbent[0].districtNumber) } > <Box sx ={{ display: 'flex', flexDirection: 'row', columnGap: '3px' }} ><Brightness1Icon fontSize={'5px'} sx={{ color: getPartyColor(incumbent[1].party) }} /> { incumbent[1].party }</ Box></TableCell>
                   <TableCell sx={{ ...getRowStyle (incumbent[0].districtNumber), ...{"color": incumbent[1].winner ? "Green" : "Red" } }} >{ incumbent[1].winner ? "Winner" : "Loser" }</TableCell>
                   {
                     // Hide fields in 2020 plan

@@ -1,4 +1,6 @@
 import { TableContainer, Table, TableHead, TableRow, TableCell, Paper, TableBody, Button, Box, Typography } from "@mui/material"
+import Brightness1Icon from '@mui/icons-material/Brightness1';
+
 import { useSelector } from "react-redux";
 
 function DistrictTableComponent() {
@@ -54,7 +56,7 @@ function DistrictTableComponent() {
                         <TableRow hover={true} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                             <TableCell sx={rowStyle} >{ map.currentDistrict }</TableCell>
                             <TableCell sx={rowStyle} >{ candidate.incumbent ? candidate.name + ' (incumbent)' : candidate.name }</TableCell>
-                            <TableCell sx={{ ...rowStyle, ...{"color": getPartyColor(candidate.party) }}} >{ candidate.party }</TableCell>
+                            <TableCell sx={rowStyle} ><Box sx ={{ display: 'flex', flexDirection: 'row', columnGap: '3px' }} ><Brightness1Icon fontSize={'5px'} sx={{ color: getPartyColor(candidate.party) }} /> { candidate.party }</ Box></TableCell>
                             <TableCell sx={{ ...rowStyle, ...{"color": candidate.winner ? "Green" : "Red" } }} >{ candidate.winner ? "Winner" : "Loser" }</TableCell>
                             <TableCell sx={rowStyle} >{ candidate.totalVotes }</TableCell>
                         </TableRow>
