@@ -16,11 +16,12 @@ public class Ensemble{
     public Ensemble() {
     }
 
-    public Ensemble(Integer numDistrictPlans, Integer numIncumbents, Integer numIncumbentsPredictedtoWin, Double averageGeoVariation, Double averagePopVariation) {
+    public Ensemble(Integer numDistrictPlans, Integer numIncumbents, Integer numIncumbentsPredictedtoWin, Double averageGeoVariation, Double averagePopVariation, String redistrictParty) {
         this.numDistrictPlans = numDistrictPlans;
         this.numIncumbents = numIncumbents;
         this.numIncumbentsPredictedtoWin = numIncumbentsPredictedtoWin;
         this.averageGeoVariation = averageGeoVariation;
         this.averagePopVariation = averagePopVariation;
+        this.redistrictParty = redistrictParty;
     }
 }
