@@ -1,10 +1,12 @@
 import { useSelector } from 'react-redux';
 
 // Mui Imports
+import Brightness1Icon from '@mui/icons-material/Brightness1';
 import { Box, Typography } from '@mui/material';
 
 function EnsembleData(){
     const map = useSelector(state => state.map);
+
     const style = {
         margin: 1.5,
         padding: 0.8,
@@ -26,10 +28,21 @@ function EnsembleData(){
     }
 
     const innerTextStyle = {
-        marginLeft: '8px',
         fontSize: '11pt',
         fontWeight: 'normal'
     }
+
+    const getPartyColor = (party) => {
+        switch (party) {
+          case "Democrat":
+            return "Blue";
+          case "Republican":
+            return "Red";
+          default:
+            return "Black";
+        }
+    }
+
 
     if (map.selectedState!= null){
         return(
@@ -42,29 +55,33 @@ function EnsembleData(){
                 {'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}
                 </Typography>
                 <Box component="div" sx={style} >
-                    <p style={outerTextStyle} > Number of District Plans: <span style={innerTextStyle} >{ map.ensembleData.numDistrictPlans }</span></p>
+                    <p style={outerTextStyle} > Number of District Plans:&#160; <span style={innerTextStyle} >{ map.ensembleData.numDistrictPlans }</span></p>
                 </Box>
 
                 <Box component="div" sx={style} >
-                    <p style={outerTextStyle} > Number of Incumbents: <span style={innerTextStyle} >{ map.ensembleData.numIncumbents }</span></p>
+                    <p style={outerTextStyle} > Number of Incumbents:&#160; <span style={innerTextStyle} >{ map.ensembleData.numIncumbents }</span></p>
                 </Box>
 
                 <Box component="div" sx={style} >
-                    <p style={outerTextStyle} > Incumbents Predicted To Win: <span style={innerTextStyle} >{ map.ensembleData.numIncumbentsPredictedtoWin }</span></p>
+                    <p style={outerTextStyle} > Incumbents Predicted To Win:&#160; <span style={innerTextStyle} >{ map.ensembleData.numIncumbentsPredictedtoWin }</span></p>
                 </Box>
 
                 <Box component="div" sx={style} >
-                    <p style={outerTextStyle} > Average Geographic Variation: <span style={innerTextStyle} >{ map.ensembleData.averageGeoVariation }</span></p>
+                    <p style={outerTextStyle} > Average Geographic Variation:&#160; <span style={innerTextStyle} >{ map.ensembleData.averageGeoVariation }</span></p>
                 </Box>
 
                 <Box component="div" sx={style} >
-                    <p style={outerTextStyle} > Average Population Variation: <span style={innerTextStyle} >{ map.ensembleData.averagePopVariation }</span></p>
+                    <p style={outerTextStyle} > Average Population Variation:&#160; <span style={innerTextStyle} >{ map.ensembleData.averagePopVariation }</span></p>
                 </Box>
 
                 {
                     map.currentDistrictPlan === '2022'
                     ? <Box component="div" sx={style} >
-                            <p style={outerTextStyle} > Most Influential Redistricting Party: <span style={innerTextStyle} >{ map.ensembleData.redistrictParty }</span></p>
+                            <p style={outerTextStyle} >
+                                Most Influential Redistricting Party:&#160;
+                                <Brightness1Icon fontSize={'5px'} sx={{ color: getPartyColor(map.ensembleData.redistrictParty) }} />
+                                <span style={innerTextStyle} >{ map.ensembleData.redistrictParty }</span>
+                            </p>
                       </Box>
                     : null
                 }
