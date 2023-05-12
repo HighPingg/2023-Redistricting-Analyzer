@@ -10,6 +10,7 @@ public class Ensemble{
     private Integer numIncumbentsPredictedtoWin;
     private Double averageGeoVariation;
     private Double averagePopVariation;
+    private String redistrictParty;
 
 
     public Ensemble() {
