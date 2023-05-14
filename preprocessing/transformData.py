@@ -1,8 +1,10 @@
 import geopandas as gpd
+gpd.options.use_pygeos = False
 import pandas as pd
 import numpy as np
+import json
 # import pygeos
-# import maup
+import maup
 
 from collections import defaultdict
 
@@ -64,6 +66,18 @@ def pushPopulationData(precinctinfo, precincts):
     precincts = precincts.loc[:, keep_columns]
     return precincts
 
+def pushElectionData(electionPerPrecinct, precincts, seperatedDistricts):
+    repubVotes = []
+    demoVotes = []
+    for districtNum in range(len(seperatedDistricts)):
+        repubVotes.append(int(electionPerPrecinct["Republican"].values[districtNum]/len(seperatedDistricts[districtNum])))
+        demoVotes.append(int(electionPerPrecinct["Democratic"].values[districtNum]/len(seperatedDistricts[districtNum])))
+    for district in range(len(seperatedDistricts)):
+        for precinct in seperatedDistricts[district]:
+            precincts.loc[precincts["VTDST20"] == precinct, "demVotes"] = demoVotes[district]
+            precincts.loc[precincts["VTDST20"] == precinct, "repVotes"] = repubVotes[district]
+    return precincts
+
 def findGeoVar(precincts, dist2020, dist2022):
     for i in range(len(dist2022)):
         # Sum all area precincts in 2022 plan
@@ -93,7 +107,7 @@ def findPopulationVar(precincts, dist2020, dist2022):
 def addInDistrictNum(precincts, sepDist):
     for district in range(len(sepDist)):
         for precinct in sepDist[district]:
-            precincts.loc[precincts["VTDST20"] == precinct, 'districtNum'] = district+1
+            precincts.loc[precincts["VTDST20"] == precinct, 'districtNum'] = int(district+1)
             # precincts[precincts["VTDST20"] == precinct]['districtNum'] = district
     return precincts
 
@@ -102,6 +116,35 @@ def addInArea(precincts):
         precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'geographicArea'] = row['geometry'].area
 
     return precincts
+
+# def changeToInt(precincts):
+#     for index, row in precincts.iterrows():
+#         precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'Tot_2020_vap'] = int(row['Tot_2020_vap'])
+#         precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'Wh_2020_vap'] = int(row['Wh_2020_vap'])
+#         precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'His_2020_vap'] = int(row['His_2020_vap'])
+#         precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'BlC_2020_vap'] = int(row['BlC_2020_vap'])
+#         precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'NatC_2020_vap'] = int(row['NatC_2020_vap'])
+#         precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'AsnC_2020_vap'] = int(row['AsnC_2020_vap'])
+#         precincts.loc[precincts["VTDST20"] == row["VTDST20"], 'PacC_2020_vap'] = int(row['PacC_2020_vap'])
+
+#     return precincts
+
+def parseElecData(filename):
+    elecData = pd.DataFrame(columns=["Republican", "Democratic"])
+    f = open(filename)
+
+    data = json.load(f)
+
+    for district in data:
+        elecDict={}
+        for candidate in district["candidates"]:
+            if candidate['party'] == "Republican":
+                elecDict['Republican'] = candidate["totalVotes"]
+            elif candidate['party'] == "Democratic":
+                elecDict['Democratic'] = candidate["totalVotes"]
+        elecData.loc[len(elecData)] = elecDict
+
+    return elecData
 
 # precincts = gpd.read_file('preprocessing/GeoJSON/OH_PRECINCTS_FIXED.json')
 # precincts = precincts.to_crs(3857)
@@ -113,21 +156,36 @@ def addInArea(precincts):
 # for v, n in zip(vid, neighbors):
 #     print(v, n)
 
-precincts = gpd.read_file('preprocessing/GeoJSON/OH_PRECINCTS_FIXED.json')
-districts2020 = gpd.read_file('preprocessing/GeoJSON/oh_pl2020.json')
-districts2022 = gpd.read_file('preprocessing/GeoJSON/ohio_21.json')
-precinct_info = pd.read_csv('preprocessing/2020_census_OH-3.csv')
+precincts = initializeData('preprocessing\GeoJSON\IL_PRECINCTS.geojson')
+districts2020 = gpd.read_file('preprocessing\GeoJSON\il_pl2020.json')
+# districts2022 = gpd.read_file('preprocessing/GeoJSON/ohio_21.json')
+precinct_info = pd.read_csv('preprocessing/2020_census_IL-3.csv')
 districts2020 = districts2020.to_crs(3857)
-districts2022 = districts2022.to_crs(3857)
+# districts2022 = districts2022.to_crs(3857)
 sep_dis2020 = separateDistricts(precincts, districts2020) # seperated distrcits for 2020
-sep_dis2022 = separateDistricts(precincts, districts2022) #for 2022
+# sep_dis2022 = separateDistricts(precincts, districts2022) #for 2022
 
+elecData = parseElecData(r"preprocessing\IL2020.json")
 
 precincts = pushPopulationData(precinct_info, precincts) #set the population
 precincts["Tot_2020_vap"] = precincts["Tot_2020_vap"].fillna(0)
-findGeoVar(precincts, sep_dis2020, sep_dis2022)
-findPopulationVar(precincts, sep_dis2020, sep_dis2022)
+precincts["Wh_2020_vap"] = precincts["Wh_2020_vap"].fillna(0)
+precincts["His_2020_vap"] = precincts["His_2020_vap"].fillna(0)
+precincts["BlC_2020_vap"] = precincts["BlC_2020_vap"].fillna(0)
+precincts["NatC_2020_vap"] = precincts["NatC_2020_vap"].fillna(0)
+precincts["AsnC_2020_vap"] = precincts["AsnC_2020_vap"].fillna(0)
+precincts["PacC_2020_vap"] = precincts["PacC_2020_vap"].fillna(0)
+# findGeoVar(precincts, sep_dis2020, sep_dis2022)
+# findPopulationVar(precincts, sep_dis2020, sep_dis2022)
 precincts = addInDistrictNum(precincts, sep_dis2020)
 precincts = addInArea(precincts)
+precincts = pushElectionData(elecData, precincts, sep_dis2020)
+precincts["Tot_2020_vap"] = precincts["Tot_2020_vap"].astype(int)
+precincts["Wh_2020_vap"] = precincts["Wh_2020_vap"].astype(int)
+precincts["His_2020_vap"] = precincts["His_2020_vap"].astype(int)
+precincts["BlC_2020_vap"] = precincts["BlC_2020_vap"].astype(int)
+precincts["NatC_2020_vap"] = precincts["NatC_2020_vap"].astype(int)
+precincts["AsnC_2020_vap"] = precincts["AsnC_2020_vap"].astype(int)
+precincts["PacC_2020_vap"] = precincts["PacC_2020_vap"].astype(int)
 
-exportToFile(precincts, "OhioPrecincts.geojson")
+exportToFile(precincts, "ILPrecinctsTest.geojson")
