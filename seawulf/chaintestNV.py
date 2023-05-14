@@ -16,10 +16,17 @@ import sys
 # sys.stdout = open('writingFiles.txt', 'a')
 
 
+NV_INC_PREC = {
+    '006605CLK': 'Dina Titus',
+    '000027DOU': 'Mark Amodel',
+    '007702CLK': 'Susie Lee',
+    '002722CLK': 'Steven Horsford'
+}
+
 STEPS = 100
 ENSEMBLE_SIZE = 1000
 FILENAME = "./NVPrecinctsTest.geojson"
-CORES = 6
+CORES = 5
 
 
 shapefile = gpd.read_file(FILENAME)
@@ -61,10 +68,21 @@ def export_plan(initPart, partition, precincts, desc):
     if(partition == None): return
     if(os.path.isfile(desc+" interesting plan.json")): return
 
+    incumbentForDist = {}
 
+    for key, value in NV_INC_PREC.items():
+        newDis = precincts.loc[precincts['VTDST20'] == key, 'districtNum'].values[0]
+        # print(newDis)
+        if not newDis in incumbentForDist:
+            incumbentForDist[newDis] = value
+    
     districts = precincts.dissolve('districtNum')
+    # print(districts)
     republicans = partition['election'].counts('Republican')
     democrats = partition['election'].counts('Democratic')
+
+    for key, value in incumbentForDist.items():
+        districts.loc[key, 'Incumbent'] = value
     
     for index, i in enumerate(partition['population'].items()):
         districts.loc[i[0], "Tot_2020_vap"] = i[1]
@@ -220,7 +238,7 @@ def planTime(seed):
         elif(partition['election'].seats('Democratic')>2):
             export_plan(initial_partition, partition, shapefile, "Democratic Favored ("+str(partition['election'].seats('Democratic'))+" wins)")
 
-        if (max(variation['popVar']) > 0.30):
+        if (max(variation['popVar']) > 0.50):
             export_plan(initial_partition, partition, shapefile, "High population variation ("+str(round(max(variation['popVar']),2))+" max)")
 
         if(max(variation['areaVar']) > 0.80):
@@ -231,7 +249,7 @@ def planTime(seed):
     return variation, elecData
 
 def reComTime():
-    boxWhisker = {'popVar':[], 'whVar':[], 'hisVar':[], 'blcVar':[], 'natcVar':[], 'asncVar':[], 'paccVar':[], 'areaVar':[]}
+    boxWhisker = {'elecData':[], 'popVar':[], 'whVar':[], 'hisVar':[], 'blcVar':[], 'natcVar':[], 'asncVar':[], 'paccVar':[], 'areaVar':[]}
 
     allNums =  range(ENSEMBLE_SIZE)
     badNums = {6, 23, 27, 54, 57, 63, 81, 88}
@@ -250,7 +268,8 @@ def reComTime():
     p.join()
     for result in results:
         variation = result.get()
-        # print(variation[0])
+        # print(variation[1])
+        boxWhisker['elecData'].append(sorted(variation[1]))
         boxWhisker['popVar'].append(sorted(variation[0]['popVar']))
         boxWhisker['whVar'].append(sorted(variation[0]['whVar']))
         boxWhisker['hisVar'].append(sorted(variation[0]['hisVar']))
@@ -261,6 +280,7 @@ def reComTime():
         boxWhisker['areaVar'].append(sorted(variation[0]['areaVar']))
 
     print("push into dataframe")
+    election_data = pd.DataFrame(data = boxWhisker['elecData'])
     population_data = pd.DataFrame(data = boxWhisker['popVar'])
     wh_data = pd.DataFrame(data = boxWhisker['whVar'])
     his_data = pd.DataFrame(data = boxWhisker['hisVar'])
@@ -270,7 +290,7 @@ def reComTime():
     pacc_data = pd.DataFrame(data = boxWhisker['paccVar'])
     area_data = pd.DataFrame(data = boxWhisker['areaVar'])
 
-    # electionBoxplotData = boxplot(election_data)
+    electionBoxplotData = boxplot(election_data)
     populationBoxplotData = boxplot(population_data)
     whBoxplotData = boxplot(wh_data)
     hisBoxplotData = boxplot(his_data)
@@ -282,7 +302,7 @@ def reComTime():
 
     print("Finished putting in the boxplot data")
     ensembleData = {
-        # "election":electionBoxplotData,
+        "election":electionBoxplotData,
         "popVar":populationBoxplotData,
         "whVar":whBoxplotData,
         "hisVar":hisBoxplotData,
