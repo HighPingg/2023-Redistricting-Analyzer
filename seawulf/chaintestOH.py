@@ -1,3 +1,5 @@
+from gerrychain.random import random
+random.seed(1234)
 import geopandas as gpd
 gpd.options.use_pygeos = False
 from gerrychain import GeographicPartition, Partition, Graph, MarkovChain, proposals, updaters, constraints, accept, Election
@@ -11,7 +13,7 @@ from functools import partial
 import matplotlib.pyplot as plt
 import datetime
 
-shapefile = gpd.read_file(r'OhioPrecincts.geojson')
+shapefile = gpd.read_file(r'OHPrecinctsTest.geojson')
 shapefile = shapefile.to_crs(4326)
 
 shapefile['geometry'] = shapefile['geometry'].buffer(0.001)
@@ -56,7 +58,7 @@ chain = MarkovChain(
     ],
     accept=accept.always_accept,
     initial_state=initial_partition,
-    total_steps=10000
+    total_steps=500
 )
 
 for partition in chain.with_progress_bar():
