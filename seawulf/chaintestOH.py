@@ -8,7 +8,7 @@ mostRepublicanFavored=0
 mostRepublicanFavoredDF=None
 mostDemocraticFavored=0
 mostDemocraticFavoredDF=None
-for seed in range(1, 8):
+for seed in range(1,10):
     print(seed)
     random.seed(seed)
     import signal
@@ -188,16 +188,20 @@ for seed in range(1, 8):
             mostRepublicanFavoredDF=finalPlan
 
 if type(highestPopVariationDF) != type(None):
-    print(highestPopVariationDF)
+    # print(highestPopVariationDF)
     highestPopVariationDF.to_file("Highest PopVar of " + str(highestPopVariation)+ ".geojson", driver="GeoJSON")
+    print("pop done")
 if type(highestGeoVariationDF) != type(None):
-    print(highestGeoVariationDF)
+    # print(highestGeoVariationDF)
     highestGeoVariationDF.to_file("Highest GeoVar of " + str(highestGeoVariation)+".geojson", driver="GeoJSON")
+    print("geo done")
 if type(mostDemocraticFavoredDF) != type(None):
-    print(mostDemocraticFavoredDF)
+    # print(mostDemocraticFavoredDF)
     mostDemocraticFavoredDF.to_file("Democratic Favored " + str(mostDemocraticFavored) + " seats.geojson", driver="GeoJSON")
+    print("demo done")
 if type(mostRepublicanFavoredDF) != type(None):
-    print(mostRepublicanFavoredDF)
-    mostRepublicanFavoredDF.to_file("Republic Favored" + str(mostRepublicanFavoredDF) + " seats.geojson", driver="GeoJSON")
+    # print(mostRepublicanFavoredDF)
+    mostRepublicanFavoredDF.to_file("Republic Favored " + str(mostRepublicanFavored) + " seats.geojson", driver="GeoJSON")
+    print("rep done")
 
 print(variations)
