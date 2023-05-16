@@ -6,6 +6,9 @@ import SplitPartyGraph from './Graphs/SplitPartyGraph';
 import DemographicGraph from './Graphs/DemographicGraph';
 import UnselectedGraph from './Graphs/UnselectedGraph';
 import BoxAndWhiskerPopGraph from './Graphs/BoxAndWhiskerPop';
+import BoxAndWhiskerRaceGraph from './Graphs/BoxAndWhiskerRace';
+import RacialDataPlanToggle from './RacialDataToggleComponent';
+import { Box } from '@mui/material';
 
 function Graph(){
     // Get selected state from reducer
@@ -26,7 +29,12 @@ function Graph(){
             return <SplitPartyGraph />;
 
         case "Demographic":
-            return <DemographicGraph />;
+            return(
+                <Box>
+                    <RacialDataPlanToggle />
+                    <BoxAndWhiskerRaceGraph />
+                </Box>
+            );
             
         default:
             

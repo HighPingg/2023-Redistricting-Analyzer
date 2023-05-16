@@ -26,7 +26,9 @@ const initialState = {
     ensembleData: null,
     mapCenter: {"x": 37.6, "y": -96, "zoom": 5},
     incumbentTable: null,
-    selectedEnsembleToggle: "ensemble"
+    selectedEnsembleToggle: "ensemble",
+    currentRacialData: 'whVar',
+    avaliableRacialData: ['whVar', 'hisVar', 'blcVar']
 }
 
 export const mapReducer = createSlice({
@@ -80,6 +82,8 @@ export const mapReducer = createSlice({
         },
         setSelectedDistrictPlan:(state, action) => {
             state.currentDistrictPlan = action.payload.planName;
+            if (action.payload.planName == '2020')
+                state.currentRacialData = null;
             switch (state.selectedState) {
                 case 'Illinois':
                     switch (action.payload.planName) {
@@ -143,10 +147,14 @@ export const mapReducer = createSlice({
         setSelectedEnsembleToggle:(state, action) => {
             state.selectedEnsembleToggle = action.payload;
             console.log(action.payload)
+        },
+        setSelectedRacialData:(state ,action) => {
+            state.currentRacialData = action.payload;
+            console.log(action.payload);
         }
     }
 })
 
-export const {setSelectedState, setCurrentGeoJSON, setSelectedDistrictPlan, setSelectedYear, setSelectedDistrict, setSelectedDisplay, setSelectedEnsembleToggle} = mapReducer.actions;
+export const {setSelectedState, setCurrentGeoJSON, setSelectedDistrictPlan, setSelectedYear, setSelectedDistrict, setSelectedDisplay, setSelectedEnsembleToggle, setSelectedRacialData} = mapReducer.actions;
 
 export default mapReducer.reducer;
