@@ -28,7 +28,6 @@ const initialState = {
     incumbentTable: null,
     selectedEnsembleToggle: "ensemble",
     currentRacialData: 'population',
-    avaliableRacialData: ['population', 'geographic', 'blcVar']
 }
 
 export const mapReducer = createSlice({

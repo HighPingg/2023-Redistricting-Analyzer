@@ -26,7 +26,7 @@ function RacialDataPlanToggle(){
         style={{backgroundColor: 'white'}}
         >
           {
-            map.availableRacialData.map((element) => (
+            ['population', 'geographic', 'blcVar'].map((element) => (
               <MenuItem value={element}>{element}</MenuItem>
             ))
           }
