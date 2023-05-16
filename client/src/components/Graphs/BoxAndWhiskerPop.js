@@ -89,4 +89,4 @@ function BoxAndWhiskerPopGraph() {
     }
 }
 
-export default BoxAndWhiskerGraph;
+export default BoxAndWhiskerPopGraph;
