@@ -53,6 +53,13 @@ function BoxAndWhiskerGraph() {
                     lower: '#A5978B'
                     }
                 }
+            },
+            xaxis:{
+                labels: {
+                    show: true,
+                    rotate: -45,
+                    rotateAlways: true
+                }
             }
         };
         
