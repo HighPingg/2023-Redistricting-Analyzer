@@ -126,7 +126,7 @@ function EnsembleData(){
 
                 :
                 <Box>
-                    <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
+                    <TableContainer component={Paper} sx={{ maxHeight: '30vh' }}>
                         <Table aria-aria-label='simple table' stickyHeader >
                             <TableHead>
                             <TableRow>
