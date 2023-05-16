@@ -34,8 +34,11 @@ function DisplayToggle(){
           marginTop: '10px',
         }}
       >
+        <ToggleButton value="Population" sx={buttonStyle}>
+          Population Variation
+          </ToggleButton>
         <ToggleButton value="BoxWhisker" sx={buttonStyle}>
-          Box and Whisker
+          Geometric Variation
           </ToggleButton>
         <ToggleButton value="SplitParty" sx={buttonStyle}>
           Split Party View
