@@ -138,12 +138,12 @@ function EnsembleData(){
                             </TableHead>
                             <TableBody>
                             {
-                                map.incumbentTable.candidates.map((candidate) => (
+                                map.incumbentTable.map((candidate) => (
                                 <TableRow hover={true} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                                     <TableCell sx={rowStyle} >{ candidate.name }</TableCell>
                                     <TableCell sx={rowStyle} ><Box sx ={{ display: 'flex', flexDirection: 'row', columnGap: '3px' }} ><Brightness1Icon fontSize={'5px'} sx={{ color: getPartyColor(candidate.party) }} /> { candidate.party }</ Box></TableCell>
-                                    <TableCell sx={rowStyle} >{ candidate.geographicVar }</TableCell>
-                                    <TableCell sx={rowStyle} >{ candidate.populationVar }</TableCell>
+                                    <TableCell sx={rowStyle} >{ candidate.geoVariation }</TableCell>
+                                    <TableCell sx={rowStyle} >{ candidate.popVariation }</TableCell>
                                 </TableRow>
                                 ))
                             }
