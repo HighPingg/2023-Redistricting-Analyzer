@@ -54,4 +54,21 @@ public class DistrictPlanController {
                 );
         }
     }
+
+    @RequestMapping(value = "/incumbentTable/{state}", produces="application/json")
+    public District getIncumbentTable(@PathVariable("state") String state) {
+        switch (state) {
+            case "IL":
+                return Illinois.getIncumbentTable();
+            case "OH":
+                return Ohio.getIncumbentTable();
+            case "NV":
+                return Nevada.getIncumbentTable();
+
+            default:
+                throw new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "xxx"
+                );
+        }
+    }
 }
