@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 // Mui Imports
 import Brightness1Icon from '@mui/icons-material/Brightness1';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 function EnsembleData(){
     const map = useSelector(state => state.map);
@@ -47,13 +47,43 @@ function EnsembleData(){
     if (map.selectedState!= null){
         return(
             <div>
-                <Typography
+                
+                {/* <Typography
                 sx={{
                     fontWeight: 'bold',
                     fontSize: '2vw'
                 }}>
                 {'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}
-                </Typography>
+                </Typography> */}
+
+                <ToggleButtonGroup
+                    // value={alignment} ADD STUFF FOR FUNCTIONALLIY
+                    exclusive
+                    // onChange={handleAlignment} ADD STUFF FOR
+                    aria-label="text alignment"
+                    >
+                    <ToggleButton value="left" aria-label="left aligned">
+                    <Typography
+                    sx={{
+                        fontWeight: 'bold',
+                        fontSize: '2vw'
+                    }}>
+                    {'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}
+                    </Typography>
+                    </ToggleButton>
+                    <ToggleButton value="center" aria-label="centered">
+                        <Typography
+                        sx={{
+                            fontWeight: 'bold',
+                            fontSize: '2vw'
+                        }}>
+                        {'Incumbent Table for ' + map.selectedState + ' ' + map.currentDistrictPlan}
+                        </Typography>
+                    </ToggleButton>
+                </ToggleButtonGroup>
+
+
+
                 <Box component="div" sx={style} >
                     <p style={outerTextStyle} > Number of District Plans:&#160; <span style={innerTextStyle} >{ map.ensembleData.numDistrictPlans }</span></p>
                 </Box>
