@@ -27,8 +27,8 @@ const initialState = {
     mapCenter: {"x": 37.6, "y": -96, "zoom": 5},
     incumbentTable: null,
     selectedEnsembleToggle: "ensemble",
-    currentRacialData: 'whVar',
-    avaliableRacialData: ['whVar', 'hisVar', 'blcVar']
+    currentRacialData: 'population',
+    avaliableRacialData: ['population', 'geographic', 'blcVar']
 }
 
 export const mapReducer = createSlice({

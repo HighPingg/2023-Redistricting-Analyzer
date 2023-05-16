@@ -39,4 +39,4 @@ function RacialDataPlanToggle(){
   }
 
 }
-export default DistrictPlanToggle
+export default RacialDataPlanToggle
