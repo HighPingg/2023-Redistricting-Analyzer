@@ -12,6 +12,8 @@ function Graph(){
     const map = useSelector(state => state.map);
 
     if (map.selectedState != null){
+        if (map.currentDistrictPlan == '2020')
+            return <UnselectedGraph />
       switch(map.currentDisplay){
         
         case "Population":

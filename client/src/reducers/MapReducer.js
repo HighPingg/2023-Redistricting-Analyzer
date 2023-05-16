@@ -76,6 +76,7 @@ export const mapReducer = createSlice({
             state.ensembleData = action.payload.ensemble;
             state.mapCenter = action.payload.mapCenter;
             state.currentDistrictsInfo = action.payload.districts;
+            state.currentDisplay = null;
         },
         setSelectedDistrict:(state, action) => {
             state.currentDistrict = action.payload;
