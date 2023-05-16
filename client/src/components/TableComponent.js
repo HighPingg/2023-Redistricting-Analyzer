@@ -117,10 +117,10 @@ function TableComponent() {
           fontWeight: 'bold',
           fontSize: '2vw'
           }}>
-          Incumbents
+          District Plan Summary
         </Typography>
       </div>
-    <TableContainer component={Paper} sx={{ maxHeight: '42vh' }}>
+    <TableContainer component={Paper} sx={{ maxHeight: '32vh' }}>
       <Table aria-aria-label='simple table' stickyHeader >
         <TableHead>
           <TableRow>
