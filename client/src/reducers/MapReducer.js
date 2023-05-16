@@ -7,6 +7,14 @@ import mapOverview from '../assets/geoJSON';
 // For Graph Component
 import graphingOverview from "../assets/graphData";
 
+// Import geojsons
+import IL_HIGH_POP from "../assets/GeoJSON/Illinois_High_Pop"
+import IL_HIGH_GEO from "../assets/GeoJSON/Illinois_Highest_GeoVar_of_0.5615"
+import OH_HIGH_POP from "../assets/GeoJSON/Ohio_Highest_PopVar_of_0.49225"
+import OH_HIGH_GEO from "../assets/GeoJSON/Ohio_Highest_GeoVar_of_0.5349375000000001"
+import NV_HIGH_POP from "../assets/GeoJSON/Nevada_Highest_PopVar_of_0.5"
+import NV_HIGH_GEO from "../assets/GeoJSON/Nevada_Highest_GeoVar_of_0.618"
+
 const initialState = {
     selectedState: null,
     currentGeoJSON: mapOverview,
@@ -72,7 +80,55 @@ export const mapReducer = createSlice({
         },
         setSelectedDistrictPlan:(state, action) => {
             state.currentDistrictPlan = action.payload.planName;
-            state.currentGeoJSON = action.payload.geoJSON;
+            switch (state.selectedState) {
+                case 'Illinois':
+                    switch (action.payload.planName) {
+                        case 'Most Geometric Variation':
+                            state.currentGeoJSON = IL_HIGH_GEO;
+                            break;
+                        case 'Most Population Variation':
+                            state.currentGeoJSON = IL_HIGH_POP;
+                            break;
+                        
+                        default:
+                            state.currentGeoJSON = action.payload.geoJSON;
+                            break;
+                    }
+                    break;
+                
+                case 'Ohio':
+                    switch (action.payload.planName) {
+                        case 'Highest Geographic Variation':
+                            state.currentGeoJSON = OH_HIGH_GEO;
+                            break;
+                        case 'Highest Population Variation':
+                            state.currentGeoJSON = OH_HIGH_POP;
+                            break;
+                        
+                        default:
+                            state.currentGeoJSON = action.payload.geoJSON;
+                            break;
+                    }
+                    break;
+
+                case 'Nevada':
+                    switch (action.payload.planName) {
+                        case 'Most Geometric Variation':
+                            state.currentGeoJSON = NV_HIGH_GEO;
+                            break;
+                        case 'Most Population Variation':
+                            state.currentGeoJSON = NV_HIGH_POP;
+                            break;
+                        
+                        default:
+                            state.currentGeoJSON = action.payload.geoJSON;
+                            break;
+                    }
+                    break;
+                        
+                default:
+                    break;
+            }
             state.ensembleData = action.payload.ensemble;
             state.mapCenter = action.payload.mapCenter;
             state.currentDistrictsInfo = action.payload.districts;
