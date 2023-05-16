@@ -56,7 +56,7 @@ public class DistrictPlanController {
     }
 
     @RequestMapping(value = "/incumbentTable/{state}", produces="application/json")
-    public District getIncumbentTable(@PathVariable("state") String state) {
+    public Object getIncumbentTable(@PathVariable("state") String state) {
         switch (state) {
             case "IL":
                 return Illinois.getIncumbentTable();

@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class State{
     private String name;
     private HashMap<String, DistrictPlan> districtPlans;
-    private District incumbentTable; //Averages of the all the plans for incumbents
+    private Object incumbentTable; //Averages of the all the plans for incumbents
 
     public State(String name, HashMap<String, DistrictPlan> districtPlans, District incumbentTable) {
         this.name = name;
