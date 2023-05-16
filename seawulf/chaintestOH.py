@@ -8,7 +8,8 @@ mostRepublicanFavored=0
 mostRepublicanFavoredDF=None
 mostDemocraticFavored=0
 mostDemocraticFavoredDF=None
-for seed in range(1,10):
+elecData=None
+for seed in range(1,2000):
     print(seed)
     random.seed(seed)
     import signal
@@ -18,6 +19,8 @@ for seed in range(1,10):
     from gerrychain.proposals import recom
     from functools import partial
     import numpy as np
+    import pandas as pd
+    import json
     
     class TimeoutException(Exception):   # Custom exception class
         pass
@@ -129,15 +132,16 @@ for seed in range(1,10):
             pacc_votes = list(partition['pacc_votes'].values())
             district_order = list(partition.parts.keys())
     except TimeoutException:
+        print("seed does not work: " + str(seed))
         continue # continue the for loop if function A takes more than 5 second
     else:
         signal.alarm(0)
-
+    elecData = sorted(partition['election'].percents('Republican'))
     variation = calc_var(initial_partition, partition)
     variations.append(variation)
-    popVar = np.average(variations[seed-1]['popVar'])
+    popVar = np.average(variations[-1]['popVar'])
     print(popVar)
-    areaVar = np.average(variations[seed-1]['areaVar'])
+    areaVar = np.average(variations[-1]['areaVar'])
     print(areaVar)
     desc = None
     if popVar > highestPopVariation:
@@ -186,6 +190,86 @@ for seed in range(1,10):
             mostDemocraticFavoredDF=finalPlan
         elif desc == "rep":
             mostRepublicanFavoredDF=finalPlan
+    def boxplot(df):
+        data = []
+        outliers = []
+        for column in df.columns:
+            max = df[column].max()
+            min = df[column].min()
+            median = df[column].median()
+            q1 = df[column].quantile(0.25)
+            q3 = df[column].quantile(0.75)
+            iqr = q3 - q1
+            outlier = df[column][(df[column] < (q1 - 1.5 * iqr)) | (df[column] > (q3 + 1.5 * iqr))]
+            data.append({
+                'x':column,
+                'y':[min,q1,median,q3,max],
+            })
+            for item in outlier:
+                outliers.append({'x':column, 'y':item})
+        box = {
+            'name': 'box',
+            'type':'boxPlot',
+            'data': data,
+            
+        }
+        scatter = {
+            'name': 'outliers',
+            'type':'scatter',
+            'data': outliers,
+        }
+        return [box, scatter]
+    
+    if seed == 1999:
+        print("final seed")
+        boxWhisker = {'elecData':[], 'popVar':[], 'whVar':[], 'hisVar':[], 'blcVar':[], 'natcVar':[], 'asncVar':[], 'paccVar':[], 'areaVar':[]}
+
+        boxWhisker['popVar'].append(sorted(variation['popVar']))
+        boxWhisker['whVar'].append(sorted(variation['whVar']))
+        boxWhisker['hisVar'].append(sorted(variation['hisVar']))
+        boxWhisker['blcVar'].append(sorted(variation['blcVar']))
+        boxWhisker['natcVar'].append(sorted(variation['natcVar']))
+        boxWhisker['asncVar'].append(sorted(variation['asncVar']))
+        boxWhisker['paccVar'].append(sorted(variation['paccVar']))
+        boxWhisker['areaVar'].append(sorted(variation['areaVar']))
+        boxWhisker['elecData'].append(sorted(elecData))
+
+        print("push into dataframe")
+        election_data = pd.DataFrame(data = boxWhisker['elecData'])
+        population_data = pd.DataFrame(data = boxWhisker['popVar'])
+        wh_data = pd.DataFrame(data = boxWhisker['whVar'])
+        his_data = pd.DataFrame(data = boxWhisker['hisVar'])
+        blc_data = pd.DataFrame(data = boxWhisker['blcVar'])
+        natc_data = pd.DataFrame(data = boxWhisker['natcVar'])
+        asnc_data = pd.DataFrame(data = boxWhisker['asncVar'])
+        pacc_data = pd.DataFrame(data = boxWhisker['paccVar'])
+        area_data = pd.DataFrame(data = boxWhisker['areaVar'])
+
+        electionBoxplotData = boxplot(election_data)
+        populationBoxplotData = boxplot(population_data)
+        whBoxplotData = boxplot(wh_data)
+        hisBoxplotData = boxplot(his_data)
+        blcBoxplotData = boxplot(blc_data)
+        natcBoxplotData = boxplot(natc_data)
+        asncBoxplotData = boxplot(asnc_data)
+        paccBoxplotData = boxplot(pacc_data)
+        areaBoxplotData = boxplot(area_data)
+
+        print("Finished putting in the boxplot data")
+        ensembleData = {
+            "election":electionBoxplotData,
+            "popVar":populationBoxplotData,
+            "whVar":whBoxplotData,
+            "hisVar":hisBoxplotData,
+            "blcVar":blcBoxplotData,
+            "natcVar":natcBoxplotData,
+            "asncVar":asncBoxplotData,
+            "paccVar":paccBoxplotData,
+            "areaVar":areaBoxplotData
+        }
+        print("Generated Ensemble Data")
+        with open('./ensemble.json', 'a') as f:
+            json.dump(ensembleData, f) 
 
 if type(highestPopVariationDF) != type(None):
     # print(highestPopVariationDF)
@@ -204,4 +288,7 @@ if type(mostRepublicanFavoredDF) != type(None):
     mostRepublicanFavoredDF.to_file("Republic Favored " + str(mostRepublicanFavored) + " seats.geojson", driver="GeoJSON")
     print("rep done")
 
-print(variations)
+
+
+
+# print(variations)
