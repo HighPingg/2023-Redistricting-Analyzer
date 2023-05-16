@@ -32,7 +32,7 @@ for seed in range(1,MAX_SEED+1):
     
     signal.signal(signal.SIGALRM, timeout_handler)
 
-    shapefile = gpd.read_file(r'OHPrecinctsTest.geojson')
+    shapefile = gpd.read_file(r'ILPrecinctsTest.geojson')
     shapefile = shapefile.to_crs(4326)
 
     shapefile['geometry'] = shapefile['geometry'].buffer(0.001)
@@ -66,11 +66,11 @@ for seed in range(1,MAX_SEED+1):
     proposal = partial(recom,
                     pop_col="Tot_2020_vap",
                     pop_target=ideal_population,
-                    epsilon=0.02,
+                    epsilon=0.55,
                     node_repeats=2
                     )
 
-    pop_constraint = constraints.within_percent_of_ideal_population(initial_partition, 0.10)
+    pop_constraint = constraints.within_percent_of_ideal_population(initial_partition, 0.50)
 
     def calc_var(initial_partition, new_partition):
         var = {'popVar': [],'whVar': [],'hisVar': [],'blcVar': [],'natcVar': [],'asncVar': [],'paccVar': [],'areaVar': []}
@@ -271,36 +271,37 @@ for seed in range(1,MAX_SEED+1):
     #         "areaVar":areaBoxplotData
     #     }
     #     print("Generated Ensemble Data")
-    #     with open('./ensembleOhio.json', 'a') as f:
+    #     with open('./ensembleIL.json', 'a') as f:
     #         json.dump(ensembleData, f) 
 
 if type(highestPopVariationDF) != type(None):
     # print(highestPopVariationDF)
-    highestPopVariationDF.to_file("Ohio Highest PopVar of " + str(highestPopVariation)+ ".geojson", driver="GeoJSON")
+    highestPopVariationDF.to_file("Illinois Highest PopVar of " + str(highestPopVariation)+ ".geojson", driver="GeoJSON")
     print("pop done")
 if type(highestGeoVariationDF) != type(None):
     # print(highestGeoVariationDF)
-    highestGeoVariationDF.to_file("Ohio Highest GeoVar of " + str(highestGeoVariation)+".geojson", driver="GeoJSON")
+    highestGeoVariationDF.to_file("Illinois Highest GeoVar of " + str(highestGeoVariation)+".geojson", driver="GeoJSON")
     print("geo done")
 if type(mostDemocraticFavoredDF) != type(None):
     # print(mostDemocraticFavoredDF)
-    mostDemocraticFavoredDF.to_file("Ohio Democratic Favored " + str(mostDemocraticFavored) + " seats.geojson", driver="GeoJSON")
+    mostDemocraticFavoredDF.to_file("Illinois Democratic Favored " + str(mostDemocraticFavored) + " seats.geojson", driver="GeoJSON")
     print("demo done")
 if type(mostRepublicanFavoredDF) != type(None):
     # print(mostRepublicanFavoredDF)
-    mostRepublicanFavoredDF.to_file("Ohio Republic Favored " + str(mostRepublicanFavored) + " seats.geojson", driver="GeoJSON")
+    mostRepublicanFavoredDF.to_file("Illinois Republic Favored " + str(mostRepublicanFavored) + " seats.geojson", driver="GeoJSON")
     print("rep done")
 
+
+print(variations)
+f = open('ILVariations.json', 'w')
+f.write(variations)
+f.close()
 
 print(elecDataRep)
 print()
 print(elecDataDem)
-with open('OhioElecRep.txt', 'w') as f:
+with open('ILElecRep.txt', 'w') as f:
     f.writelines(elecDataRep)
 
-with open('OhioElecDem.txt', 'w') as f:
+with open('ILElecDem.txt', 'w') as f:
     f.writelines(elecDataDem)
-
-# f = open('OhioVariations.json', 'w')
-# f.write(variations)
-# f.close()
