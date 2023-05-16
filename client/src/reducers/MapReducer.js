@@ -16,7 +16,9 @@ const initialState = {
     currentDisplay: null,
     availableDistrictPlans: [],
     ensembleData: null,
-    mapCenter: {"x": 37.6, "y": -96, "zoom": 5}
+    mapCenter: {"x": 37.6, "y": -96, "zoom": 5},
+    incumbentTable: null,
+    selectedEnsembleToggle: "ensemble"
 }
 
 export const mapReducer = createSlice({
@@ -28,6 +30,7 @@ export const mapReducer = createSlice({
             state.selectedState = action.payload.name;
             state.currentDistrictPlan = '2022';
             state.currentDisplay = null;
+            state.selectedEnsembleToggle = 'ensemble';
 
             switch (action.payload.name) {
                 case "Illinois":
@@ -36,6 +39,7 @@ export const mapReducer = createSlice({
                     state.ensembleData = action.payload.ensemble;
                     state.mapCenter = action.payload.mapCenter;
                     state.currentDistrictsInfo = action.payload.districts;
+                    state.incumbentTable = action.payload.incumbentTable;
                     break;
                 
                 case "Ohio":
@@ -44,6 +48,7 @@ export const mapReducer = createSlice({
                     state.ensembleData = action.payload.ensemble;
                     state.mapCenter = action.payload.mapCenter;
                     state.currentDistrictsInfo = action.payload.districts;
+                    state.incumbentTable = action.payload.incumbentTable;
                     break;
 
                 case "Nevada":
@@ -52,6 +57,7 @@ export const mapReducer = createSlice({
                     state.ensembleData = action.payload.ensemble;
                     state.mapCenter = action.payload.mapCenter;
                     state.currentDistrictsInfo = action.payload.districts;
+                    state.incumbentTable = action.payload.incumbentTable;
                     break;
             
                 default:
@@ -60,6 +66,7 @@ export const mapReducer = createSlice({
                     state.ensembleData = null;
                     state.mapCenter = {"x": 37.6, "y": -96, "zoom": 5};
                     state.currentDistrictsInfo = null;
+                    state.incumbentTable = null;
                     break;
             }
         },
@@ -75,10 +82,14 @@ export const mapReducer = createSlice({
         },
         setSelectedDisplay:(state, action) => {
             state.currentDisplay = action.payload;
+        },
+        setSelectedEnsembleToggle:(state, action) => {
+            state.selectedEnsembleToggle = action.payload;
+            console.log(action.payload)
         }
     }
 })
 
-export const {setSelectedState, setCurrentGeoJSON, setSelectedDistrictPlan, setSelectedYear, setSelectedDistrict, setSelectedDisplay} = mapReducer.actions;
+export const {setSelectedState, setCurrentGeoJSON, setSelectedDistrictPlan, setSelectedYear, setSelectedDistrict, setSelectedDisplay, setSelectedEnsembleToggle} = mapReducer.actions;
 
 export default mapReducer.reducer;

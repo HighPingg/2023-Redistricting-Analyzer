@@ -78,16 +78,28 @@ function Map() {
           })
             .then((response) => response.text())
             .then((plans) => {
-              let districtPlan = JSON.parse(data);
 
-              dispatch(setSelectedState({
-                "name": name,
-                "geoJSON": districtPlan.geoJson,
-                "plans": JSON.parse(plans),
-                "ensemble": districtPlan.ensemble,
-                "mapCenter": districtPlan.geoJSONCenter,
-                "districts": districtPlan.districts
-              }));
+              // Fetch the incumbent table
+              fetch("http://localhost:8080/incumbentTable/" + selectedState, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+              })
+                .then((response) => response.text())
+                .then((incumbentTable) => {
+                  let districtPlan = JSON.parse(data);
+
+                  dispatch(setSelectedState({
+                    "name": name,
+                    "geoJSON": districtPlan.geoJson,
+                    "plans": JSON.parse(plans),
+                    "ensemble": districtPlan.ensemble,
+                    "mapCenter": districtPlan.geoJSONCenter,
+                    "districts": districtPlan.districts,
+                    "incumbentTable": JSON.parse(incumbentTable)
+                  }));
+                })
             });
         });
 
