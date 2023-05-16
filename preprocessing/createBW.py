@@ -101,7 +101,7 @@ NV_INC_DIS = {
 
 # Output JSON
 def outputJSON(name, incumbentDistricts, var, incumbentVar):
-    with open(f'{name}') as f:
+    with open(f'{name}', 'w') as f:
         f.write('{')
         f.write(f'"graphTitle": "{name}",')
         f.write('"graphSeries": [')
@@ -244,7 +244,7 @@ for i, variations in enumerate(geoVar):
 # Find individual population variations of incumbents
 precincts = gpd.read_file('GeoJSON/OHPrecinctsTest.geojson')
 districts2020 = gpd.read_file('GeoJSON/oh_pl2020.json').to_crs(3857)
-randomPlan = gpd.read_file('GeoJSON/Ohio/Ohio_Highest_PopVar_of_0.49225.geojson').to_crs(3857)
+randomPlan = gpd.read_file('GeoJSON/Ohio/Ohio_Highest_GeoVar_of_0.5349375000000001.geojson').to_crs(3857)
 
 sepDistricts2020 = separateDistricts(precincts, districts2020)
 sepRandomPlan = separateDistricts(precincts, randomPlan)
@@ -261,7 +261,7 @@ for i, districts in enumerate(sepRandomPlan):
         incumbentDistricts.append(OH_INC_PREC[incumbentIDs[0]])
     else:
         incumbentDistricts.append(None)
-
+print(incumbentDistricts)
 # Output JSON
-# outputJSON('Population Difference by Incumbent', incumbentDistricts, popVar, incumbentPopVar)
-# outputJSON('Geographic Difference by Incumbent', incumbentDistricts, geoVar, incumbentGeoVar)
+outputJSON('Population Difference by Incumbent', incumbentDistricts, popVar, incumbentPopVar)
+outputJSON('Geographic Difference by Incumbent', incumbentDistricts, geoVar, incumbentGeoVar)
