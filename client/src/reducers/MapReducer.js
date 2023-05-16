@@ -148,7 +148,17 @@ export const mapReducer = createSlice({
             console.log(action.payload)
         },
         setSelectedRacialData:(state ,action) => {
-            state.currentRacialData = action.payload;
+            switch (action.payload){
+                case 'White Variation':
+                    state.currentRacialData = "whVar";
+                    break;
+                case 'Hispanic Variation':
+                    state.currentRacialData = "hisVar";
+                    break;
+                case 'Black Variation':
+                    state.currentRacialData = "blcVar";
+                    break;
+            }
             console.log(action.payload);
         }
     }
