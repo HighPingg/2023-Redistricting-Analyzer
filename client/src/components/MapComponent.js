@@ -190,7 +190,7 @@ function Map() {
                     scrollWheelZoom={true}
       >
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://%7Bs%7D.basemaps.cartocdn.com/light_all/%7Bz%7D/%7Bx%7D/%7By%7D%7Br%7D.png"
         />
         <GeoJSON key={map.selectedState}
                 ref={geojsonRef}
