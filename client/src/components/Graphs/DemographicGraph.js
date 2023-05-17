@@ -35,7 +35,8 @@ function DemographicGraph() {
     else if (!isLoading) {
         let options = {
             title:{
-                text: data.graphTitle
+                text: data.graphTitle,
+                align: 'center',
             },
             chart: {
                 width: 380,

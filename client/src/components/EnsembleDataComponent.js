@@ -61,7 +61,7 @@ function EnsembleData(){
         dispatch(setSelectedEnsembleToggle(event.target.value))
     }
     return(
-        <div>
+        <div >
             
             {/* <Typography
             sx={{
@@ -70,9 +70,29 @@ function EnsembleData(){
             }}>
             {'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}
             </Typography> */}
+            {/* <div style={{
+                display:"flex",
+                justifyContent: 'center',
+                alignItems: 'center',
+                width : '100%'
+            }}>
+                    <Box
+				display="flex"
+				justifyContent= 'center'
+				alignItems= 'center'
+				sx={{
+                    my: 1,
+					py: 2,
+                    width: '50%',
+					borderRadius: 2,
+					backgroundColor: '#ffedba',
+					fontSize: '1.5vw',
+					fontWeight: 'bold'
+				}}
+        >{map.selectedState}</Box>
+            </div> */}
 
-            <h1>{map.selectedState}</h1>
-
+            <h1>{map.selectedState}</h1><hr></hr>
             <ToggleButtonGroup
                 color="primary"
                 value={map.selectedEnsembleToggle}

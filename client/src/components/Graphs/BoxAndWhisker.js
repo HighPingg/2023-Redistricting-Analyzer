@@ -44,7 +44,7 @@ function BoxAndWhiskerGraph() {
             },
             title: {
                 text: data.graphTitle,
-                align: 'left'
+                align: 'center',
             },
             plotOptions: {
                 boxPlot: {

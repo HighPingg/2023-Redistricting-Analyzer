@@ -62,14 +62,12 @@ function SplitPartyGraph() {
                 colors: ['#fff']
             },
             title: {
-                text: data.graphTitle
+                text: data.graphTitle,
+                align: 'center',
             },
             xaxis: {
                 categories: ["Incumbent", "Open"],
                 labels: {
-                formatter: function (val) {
-                    return val + "K"
-                }
                 }
             },
             yaxis: {
@@ -79,9 +77,6 @@ function SplitPartyGraph() {
             },
             tooltip: {
                 y: {
-                formatter: function (val) {
-                    return val + "K"
-                }
                 }
             },
             fill: {
