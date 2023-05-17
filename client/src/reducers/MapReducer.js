@@ -116,10 +116,10 @@ export const mapReducer = createSlice({
 
                 case 'Nevada':
                     switch (action.payload.planName) {
-                        case 'Most Geometric Variation':
+                        case 'Highest Geographic Variation':
                             state.currentGeoJSON = NV_HIGH_GEO;
                             break;
-                        case 'Most Population Variation':
+                        case 'Highest Population Variation':
                             state.currentGeoJSON = NV_HIGH_POP;
                             break;
                         

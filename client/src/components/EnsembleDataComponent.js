@@ -130,7 +130,7 @@ function EnsembleData(){
                         <Table aria-aria-label='simple table' stickyHeader >
                             <TableHead>
                             <TableRow>
-                                <TableCell sx={titleStyle} >Candidate</TableCell>
+                                <TableCell sx={titleStyle} >Incumbent</TableCell>
                                 <TableCell sx={titleStyle} >Party</TableCell>
                                 <TableCell sx={titleStyle} >Geometric Variation</TableCell>
                                 <TableCell sx={titleStyle} >Population Variation</TableCell>
