@@ -1,6 +1,6 @@
 // Redux Imports
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentlyHovered, setSelectedDistrict, setSelectedState } from '../reducers/MapReducer';
+import { setSelectedDistrictPlan, setSelectedDistrict, setSelectedState } from '../reducers/MapReducer';
 
 // Leaflet Imports
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
@@ -107,6 +107,29 @@ function Map() {
     } else {
       dispatch(setSelectedState({"name": null}));
     }
+  }
+
+  var selectYearChange = (year) => {
+    const mappings = { "Nevada": "NV", "Ohio": "OH", "Illinois": "IL" }
+    
+    fetch("http://localhost:8080/districtPlan/" + mappings[map.selectedState] + "/" + year, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        let planData = JSON.parse(data)
+        
+        dispatch(setSelectedDistrictPlan({
+          "planName": year,
+          "geoJSON": planData.geoJson,
+          "ensemble": planData.ensemble,
+          "mapCenter": planData.geoJSONCenter,
+          "districts": planData.districts
+        }));
+      })
   }
 
   // Apply interactions to the map polygons
@@ -224,7 +247,7 @@ function Map() {
           {
             // Hide reset button when no state is selected.
             map.selectedState !== null && map.currentDistrictPlan !== '2022' && <Tooltip title="Reset Map" placement='right' arrow>
-                                            <IconButton onClick={() => handleSetSelectedState('2022')}>
+                                            <IconButton onClick={() => selectYearChange('2022')}>
                                                 <ReplayIcon style={{color: 'black'}}/>
                                             </IconButton>
                                           </Tooltip>
