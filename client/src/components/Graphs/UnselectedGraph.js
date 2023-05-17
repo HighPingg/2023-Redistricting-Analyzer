@@ -11,8 +11,8 @@ function UnselectedGraph(){
 					height: '36%',
 					width: '100%',
 					borderRadius: 2,
-					backgroundColor: '#aaacad',
-					fontSize: 50,
+					backgroundColor: '#FFFFFF',
+					fontSize: 20,
 					fontWeight: 'bold'
 				}}
         >

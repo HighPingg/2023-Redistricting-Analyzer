@@ -9,7 +9,8 @@ function DistrictTableComponent() {
     const titleStyle = {
         "fontWeight": "bold",
         "fontSize": "10pt",
-        "padding": "15px"
+        "padding": "15px",
+        'backgroundColor':"#ffedba"
       }
     
     const rowStyle = {
@@ -35,7 +36,7 @@ function DistrictTableComponent() {
             <Typography
             sx={{
                 fontWeight: 'bold',
-                fontSize: '2vw'
+                fontSize: '1.5vw'
             }}>
                 Candidates
             </Typography>
@@ -57,8 +58,8 @@ function DistrictTableComponent() {
                             <TableCell sx={rowStyle} >{ map.currentDistrict }</TableCell>
                             <TableCell sx={rowStyle} >{ candidate.incumbent ? candidate.name + ' (incumbent)' : candidate.name }</TableCell>
                             <TableCell sx={rowStyle} ><Box sx ={{ display: 'flex', flexDirection: 'row', columnGap: '3px' }} ><Brightness1Icon fontSize={'5px'} sx={{ color: getPartyColor(candidate.party) }} /> { candidate.party }</ Box></TableCell>
-                            <TableCell sx={{ ...rowStyle, ...{"color": candidate.winner ? "Green" : "Red" } }} >{ candidate.winner ? "Winner" : "Loser" }</TableCell>
-                            <TableCell sx={rowStyle} >{ candidate.totalVotes }</TableCell>
+                            <TableCell sx={{ ...rowStyle, ...{"color": candidate.winner ? "Green" : "Red" } }} >{ candidate.winner ? "Win" : "Loss" }</TableCell>
+                            <TableCell sx={rowStyle} >{ candidate.totalVotes.toLocaleString() }</TableCell>
                         </TableRow>
                         ))
                     }
@@ -76,8 +77,8 @@ function DistrictTableComponent() {
             height: '19.5%',
             width: '100%',
             borderRadius: 2,
-            backgroundColor: '#aaacad',
-            fontSize: 50,
+            backgroundColor: '#FFFFFF',
+            fontSize: 20,
             fontWeight: 'bold'
         }}
         >

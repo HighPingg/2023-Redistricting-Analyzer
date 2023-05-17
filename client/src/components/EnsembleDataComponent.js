@@ -57,9 +57,9 @@ function EnsembleData(){
 
     let handleChangeTable = (event) => {
         console.log(event.target.value)
+        console.log(map.currentDistrictsInfo)
         dispatch(setSelectedEnsembleToggle(event.target.value))
     }
-
     return(
         <div>
             
@@ -71,6 +71,8 @@ function EnsembleData(){
             {'Ensemble Data for ' + map.selectedState + ' ' + map.currentDistrictPlan}
             </Typography> */}
 
+            <h1>{map.selectedState}</h1>
+
             <ToggleButtonGroup
                 color="primary"
                 value={map.selectedEnsembleToggle}
@@ -78,11 +80,11 @@ function EnsembleData(){
                 onChange={handleChangeTable}
                 aria-label="text alignment"
             >
-                <ToggleButton value="ensemble" aria-label="left aligned" sx={{ fontWeight: 'bold', fontSize: '13pt' }} >
-                    {'Ensemble Data for ' + map.selectedState}
-                </ToggleButton>
                 <ToggleButton value="incumbent" aria-label="centered" sx={{ fontWeight: 'bold', fontSize: '13pt' }} >
-                    {'Incumbent Table for ' + map.selectedState}
+                    {'District Summary'}
+                </ToggleButton>
+                <ToggleButton value="ensemble" aria-label="left aligned" sx={{ fontWeight: 'bold', fontSize: '13pt' }} >
+                    {'Ensemble Summary'}
                 </ToggleButton>
             </ToggleButtonGroup>
 
@@ -91,16 +93,9 @@ function EnsembleData(){
                 map.selectedEnsembleToggle === 'ensemble'
                 ?
                 <>
+
                     <Box component="div" sx={style} >
                         <p style={outerTextStyle} > Number of District Plans:&#160; <span style={innerTextStyle} >{ map.ensembleData.numDistrictPlans }</span></p>
-                    </Box>
-
-                    <Box component="div" sx={style} >
-                        <p style={outerTextStyle} > Number of Incumbents:&#160; <span style={innerTextStyle} >{ map.ensembleData.numIncumbents }</span></p>
-                    </Box>
-
-                    <Box component="div" sx={style} >
-                        <p style={outerTextStyle} > Incumbents Predicted To Win:&#160; <span style={innerTextStyle} >{ map.ensembleData.numIncumbentsPredictedtoWin }</span></p>
                     </Box>
 
                     <Box component="div" sx={style} >
@@ -109,6 +104,23 @@ function EnsembleData(){
 
                     <Box component="div" sx={style} >
                         <p style={outerTextStyle} > Average Population Variation:&#160; <span style={innerTextStyle} >{ map.ensembleData.averagePopVariation }</span></p>
+                    </Box>
+                </>
+
+                :
+                <Box>
+
+<>
+                    <Box component="div" sx={style} >
+                        <p style={outerTextStyle} > Current District Plan:&#160; <span style={innerTextStyle} >{ map.currentDistrictPlan} District Plan </span></p>
+                    </Box>
+
+                    <Box component="div" sx={style} >
+                        <p style={outerTextStyle} > Number of Districts:&#160; <span style={innerTextStyle} >{ map.currentDistrictsInfo.length }</span></p>
+                    </Box>
+
+                    <Box component="div" sx={style} >
+                        <p style={outerTextStyle} > Number of Incumbents:&#160; <span style={innerTextStyle} >{ map.ensembleData.numIncumbents }</span></p>
                     </Box>
 
                     {
@@ -123,10 +135,7 @@ function EnsembleData(){
                         : null
                     }
                 </>
-
-                :
-                <Box>
-                    <TableContainer component={Paper} sx={{ maxHeight: '30vh' }}>
+                    {/* <TableContainer component={Paper} sx={{ maxHeight: '30vh' }}>
                         <Table aria-aria-label='simple table' stickyHeader >
                             <TableHead>
                             <TableRow>
@@ -149,7 +158,7 @@ function EnsembleData(){
                             }
                             </TableBody>
                         </Table>
-                    </TableContainer>
+                    </TableContainer> */}
                 </Box>
             }
             </div>

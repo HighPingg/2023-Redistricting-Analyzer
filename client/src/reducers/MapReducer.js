@@ -26,7 +26,7 @@ const initialState = {
     ensembleData: null,
     mapCenter: {"x": 37.6, "y": -96, "zoom": 5},
     incumbentTable: null,
-    selectedEnsembleToggle: "ensemble",
+    selectedEnsembleToggle: "incumbent",
     currentRacialData: 'population',
 }
 
@@ -39,7 +39,7 @@ export const mapReducer = createSlice({
             state.selectedState = action.payload.name;
             state.currentDistrictPlan = '2022';
             state.currentDisplay = null;
-            state.selectedEnsembleToggle = 'ensemble';
+            state.selectedEnsembleToggle = 'incumbent';
 
             switch (action.payload.name) {
                 case "Illinois":

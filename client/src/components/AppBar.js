@@ -11,7 +11,7 @@ function AppBar(){
                 pl: 3,
                 borderBottomLeftRadius: '15px',
                 borderBottomRightRadius: '15px',
-                backgroundColor: '#aaacad',
+                backgroundColor: '#febc01',
                 fontSize: 40,
                 fontWeight: 'bold',
                 height: '6vh'

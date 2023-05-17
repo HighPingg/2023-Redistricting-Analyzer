@@ -46,7 +46,9 @@ function TableComponent() {
   const titleStyle = {
     "fontWeight": "bold",
     "fontSize": "10pt",
-    "padding": "15px"
+    "padding": "15px",
+    'backgroundColor':"#ffedba"
+
   }
 
   const rowStyle = {
@@ -115,15 +117,17 @@ function TableComponent() {
         <Typography
         sx={{
           fontWeight: 'bold',
-          fontSize: '2vw'
+          fontSize: '1.5vw'
           }}>
-          District Plan Summary
+          Incumbent Table
         </Typography>
       </div>
     <TableContainer component={Paper} sx={{ maxHeight: '32vh' }}>
       <Table aria-aria-label='simple table' stickyHeader >
-        <TableHead>
-          <TableRow>
+        <TableHead
+        >
+          <TableRow
+          >
             <TableCell sx={titleStyle} >District</TableCell>
             <TableCell sx={titleStyle} >Incumbent</TableCell>
             <TableCell sx={titleStyle} >Party</TableCell>
@@ -165,7 +169,7 @@ function TableComponent() {
                   </TableCell>
                   <TableCell sx={getRowStyle (incumbent[0].districtNumber)} >{ incumbent[1].name }</TableCell>
                   <TableCell sx={ getRowStyle (incumbent[0].districtNumber) } > <Box sx ={{ display: 'flex', flexDirection: 'row', columnGap: '3px' }} ><Brightness1Icon fontSize={'5px'} sx={{ color: getPartyColor(incumbent[1].party) }} /> { incumbent[1].party }</ Box></TableCell>
-                  <TableCell sx={{ ...getRowStyle (incumbent[0].districtNumber), ...{"color": incumbent[1].winner ? "Green" : "Red" } }} >{ incumbent[1].winner ? "Winner" : "Loser" }</TableCell>
+                  <TableCell sx={{ ...getRowStyle (incumbent[0].districtNumber), ...{"color": incumbent[1].winner ? "Green" : "Red" } }} >{ incumbent[1].winner ? "Win" : "Loss" }</TableCell>
                   {
                     // Hide fields in 2020 plan
                     map.currentDistrictPlan != '2020' 
