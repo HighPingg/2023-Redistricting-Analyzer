@@ -146,6 +146,40 @@ def parseElecData(filename):
 
     return elecData
 
+def findDemocraticVotes(precincts, dist2020):
+    arr = []
+    for i in range(len(dist2020)):
+        # Sum all area precincts in 2022 plan
+        numerator = 0
+        for precinct in dist2020[i]:
+            numerator += precincts[precincts["VTDST20"] == precinct]['demVotes'].values[0]
+        arr.append(numerator)
+    return arr
+
+def findRepVotes(precincts, dist2020):
+    arr = []
+    for i in range(len(dist2020)):
+        # Sum all area precincts in 2022 plan
+        numerator = 0
+        for precinct in dist2020[i]:
+            numerator += precincts[precincts["VTDST20"] == precinct]['repVotes'].values[0]
+
+        arr.append(numerator)
+    return arr
+
+def findSafeSeats(demVotes, repVotes):
+    safeSeats = []
+    for i in range(len(demVotes)):
+        print("Dem Votes: " + str(demVotes[i]) + " Rep Votes: " + str(repVotes[i]))
+        if (demVotes[i]-repVotes[i])/(repVotes[i]+demVotes[i]) > .1:
+            safeSeats.append('D')
+        elif repVotes[i] > demVotes[i]*1.1:
+            safeSeats.append('R')
+        else:
+            safeSeats.append('N')
+    return safeSeats
+
+
 # precincts = gpd.read_file('preprocessing/GeoJSON/OH_PRECINCTS_FIXED.json')
 # precincts = precincts.to_crs(3857)
 
@@ -156,36 +190,64 @@ def parseElecData(filename):
 # for v, n in zip(vid, neighbors):
 #     print(v, n)
 
-precincts = initializeData('preprocessing\GeoJSON\IL_PRECINCTS.geojson')
-districts2020 = gpd.read_file('preprocessing\GeoJSON\il_pl2020.json')
-# districts2022 = gpd.read_file('preprocessing/GeoJSON/ohio_21.json')
-precinct_info = pd.read_csv('preprocessing/2020_census_IL-3.csv')
-districts2020 = districts2020.to_crs(3857)
-# districts2022 = districts2022.to_crs(3857)
-sep_dis2020 = separateDistricts(precincts, districts2020) # seperated distrcits for 2020
-# sep_dis2022 = separateDistricts(precincts, districts2022) #for 2022
+# precincts = initializeData('preprocessing\GeoJSON\IL_PRECINCTS.geojson')
+# districts2020 = gpd.read_file('preprocessing\GeoJSON\il_pl2020.json')
+# # districts2022 = gpd.read_file('preprocessing/GeoJSON/ohio_21.json')
+# precinct_info = pd.read_csv('preprocessing/2020_census_IL-3.csv')
+# districts2020 = districts2020.to_crs(3857)
+# # districts2022 = districts2022.to_crs(3857)
+# sep_dis2020 = separateDistricts(precincts, districts2020) # seperated distrcits for 2020
+# # sep_dis2022 = separateDistricts(precincts, districts2022) #for 2022
 
-elecData = parseElecData(r"preprocessing\IL2020.json")
+# elecData = parseElecData(r"preprocessing\IL2020.json")
 
-precincts = pushPopulationData(precinct_info, precincts) #set the population
-precincts["Tot_2020_vap"] = precincts["Tot_2020_vap"].fillna(0)
-precincts["Wh_2020_vap"] = precincts["Wh_2020_vap"].fillna(0)
-precincts["His_2020_vap"] = precincts["His_2020_vap"].fillna(0)
-precincts["BlC_2020_vap"] = precincts["BlC_2020_vap"].fillna(0)
-precincts["NatC_2020_vap"] = precincts["NatC_2020_vap"].fillna(0)
-precincts["AsnC_2020_vap"] = precincts["AsnC_2020_vap"].fillna(0)
-precincts["PacC_2020_vap"] = precincts["PacC_2020_vap"].fillna(0)
-# findGeoVar(precincts, sep_dis2020, sep_dis2022)
-# findPopulationVar(precincts, sep_dis2020, sep_dis2022)
-precincts = addInDistrictNum(precincts, sep_dis2020)
-precincts = addInArea(precincts)
-precincts = pushElectionData(elecData, precincts, sep_dis2020)
-precincts["Tot_2020_vap"] = precincts["Tot_2020_vap"].astype(int)
-precincts["Wh_2020_vap"] = precincts["Wh_2020_vap"].astype(int)
-precincts["His_2020_vap"] = precincts["His_2020_vap"].astype(int)
-precincts["BlC_2020_vap"] = precincts["BlC_2020_vap"].astype(int)
-precincts["NatC_2020_vap"] = precincts["NatC_2020_vap"].astype(int)
-precincts["AsnC_2020_vap"] = precincts["AsnC_2020_vap"].astype(int)
-precincts["PacC_2020_vap"] = precincts["PacC_2020_vap"].astype(int)
+# precincts = pushPopulationData(precinct_info, precincts) #set the population
+# precincts["Tot_2020_vap"] = precincts["Tot_2020_vap"].fillna(0)
+# precincts["Wh_2020_vap"] = precincts["Wh_2020_vap"].fillna(0)
+# precincts["His_2020_vap"] = precincts["His_2020_vap"].fillna(0)
+# precincts["BlC_2020_vap"] = precincts["BlC_2020_vap"].fillna(0)
+# precincts["NatC_2020_vap"] = precincts["NatC_2020_vap"].fillna(0)
+# precincts["AsnC_2020_vap"] = precincts["AsnC_2020_vap"].fillna(0)
+# precincts["PacC_2020_vap"] = precincts["PacC_2020_vap"].fillna(0)
+# # findGeoVar(precincts, sep_dis2020, sep_dis2022)
+# # findPopulationVar(precincts, sep_dis2020, sep_dis2022)
+# precincts = addInDistrictNum(precincts, sep_dis2020)
+# precincts = addInArea(precincts)
+# precincts = pushElectionData(elecData, precincts, sep_dis2020)
+# precincts["Tot_2020_vap"] = precincts["Tot_2020_vap"].astype(int)
+# precincts["Wh_2020_vap"] = precincts["Wh_2020_vap"].astype(int)
+# precincts["His_2020_vap"] = precincts["His_2020_vap"].astype(int)
+# precincts["BlC_2020_vap"] = precincts["BlC_2020_vap"].astype(int)
+# precincts["NatC_2020_vap"] = precincts["NatC_2020_vap"].astype(int)
+# precincts["AsnC_2020_vap"] = precincts["AsnC_2020_vap"].astype(int)
+# precincts["PacC_2020_vap"] = precincts["PacC_2020_vap"].astype(int)
 
-exportToFile(precincts, "ILPrecinctsTest.geojson")
+# exportToFile(precincts, "ILPrecinctsTest.geojson")
+
+precincts = gpd.read_file('OHPrecinctsTest.geojson')
+districtsPop = gpd.read_file(r'GeoJSON\Ohio_Highest_PopVar_of_0.49225.geojson')
+districtsGeo = gpd.read_file(r'GeoJSON\Ohio_Highest_GeoVar_of_0.5349375000000001.geojson')
+
+precincts = precincts.to_crs(3857)
+districtsGeo = districtsGeo.to_crs(3857)
+districtsPop = districtsPop.to_crs(3857)
+
+sepDistPop = separateDistricts(precincts, districtsPop)
+sepDistGeo = separateDistricts(precincts, districtsGeo)
+
+popDem = findDemocraticVotes(precincts, sepDistPop)
+popRep = findRepVotes(precincts, sepDistPop)
+
+geoDem = findDemocraticVotes(precincts, sepDistGeo)
+geoRep = findRepVotes(precincts, sepDistGeo)
+
+safeSeatsPop = findSafeSeats(popDem, popRep)
+safeSeatsGeo = findSafeSeats(geoDem, geoRep)
+
+
+
+with open('OHSafeSeatsMostPopulation.txt', 'w') as f:
+    json.dump(safeSeatsPop, f)
+
+with open('OHSafeSeatsMostGeographic.txt', 'w') as f:
+    json.dump(safeSeatsGeo, f)
