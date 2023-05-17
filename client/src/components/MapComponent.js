@@ -181,7 +181,6 @@ function Map() {
     } else {
       captionRef.current.innerHTML =  `<span>
                                         <span style="font-weight: bold;" >District ${feature.properties.DISTRICT}</span><br />
-                                        ${feature.properties.color}
                                       </span>`
     }
   }

@@ -60,6 +60,25 @@ function EnsembleData(){
         console.log(map.currentDistrictsInfo)
         dispatch(setSelectedEnsembleToggle(event.target.value))
     }
+    let incumbentCount = 0
+
+    if (map && map.currentDistrictsInfo) {
+        const planInfo = map.currentDistrictsInfo;
+    
+        let incumbentNumber = 0;
+    
+        for (let i = 0; i < planInfo.length; i++) {
+          const district = planInfo[i];
+    
+          district.candidates.forEach(function (candidate) {
+            if (candidate.incumbent) {
+              incumbentNumber += 1;
+            }
+          });
+        }
+        incumbentCount = incumbentNumber
+    }
+
     return(
         <div >
             
@@ -140,7 +159,7 @@ function EnsembleData(){
                     </Box>
 
                     <Box component="div" sx={style} >
-                        <p style={outerTextStyle} > Number of Incumbents:&#160; <span style={innerTextStyle} >{ map.ensembleData.numIncumbents }</span></p>
+                        <p style={outerTextStyle} > Number of Incumbents:&#160; <span style={innerTextStyle} >{ incumbentCount }</span></p>
                     </Box>
 
                     {

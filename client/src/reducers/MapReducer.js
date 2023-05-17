@@ -28,6 +28,7 @@ const initialState = {
     incumbentTable: null,
     selectedEnsembleToggle: "incumbent",
     currentRacialData: "White Variation",
+    numIncumbent:null,
 }
 
 export const mapReducer = createSlice({
