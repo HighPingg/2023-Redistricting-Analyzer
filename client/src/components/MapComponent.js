@@ -223,8 +223,8 @@ function Map() {
 
           {
             // Hide reset button when no state is selected.
-            map.selectedState !== null && <Tooltip title="Reset Map" placement='right' arrow>
-                                            <IconButton onClick={() => handleSetSelectedState(null)}>
+            map.selectedState !== null && map.currentDistrictPlan !== '2022' && <Tooltip title="Reset Map" placement='right' arrow>
+                                            <IconButton onClick={() => handleSetSelectedState('2022')}>
                                                 <ReplayIcon style={{color: 'black'}}/>
                                             </IconButton>
                                           </Tooltip>

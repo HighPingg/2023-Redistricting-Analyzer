@@ -35,14 +35,14 @@ function DisplayToggle(){
               marginTop: '10px',
             }}
           >
+            <ToggleButton disabled={true} value="Safe Seats" sx={buttonStyle}>
+              Seat Information
+              </ToggleButton>
             <ToggleButton disabled={true} value="Population" sx={buttonStyle}>
               Population Variation
               </ToggleButton>
             <ToggleButton disabled={true} value="BoxWhisker" sx={buttonStyle}>
               Geometric Variation
-              </ToggleButton>
-            <ToggleButton disabled={true}  value="SplitParty" sx={buttonStyle}>
-              Split Party View
               </ToggleButton>
             <ToggleButton disabled={true}  value="Demographic"sx={buttonStyle}>
               Demographic
@@ -65,14 +65,14 @@ function DisplayToggle(){
           marginTop: '10px',
         }}
       >
+        <ToggleButton value="Safe Seats" sx={buttonStyle}>
+          Seat Information
+        </ToggleButton>
         <ToggleButton value="Population" sx={buttonStyle}>
           Population Variation
           </ToggleButton>
         <ToggleButton value="BoxWhisker" sx={buttonStyle}>
           Geometric Variation
-          </ToggleButton>
-        <ToggleButton value="SplitParty" sx={buttonStyle}>
-          Split Party View
           </ToggleButton>
         <ToggleButton value="Demographic"sx={buttonStyle}>
           Demographic

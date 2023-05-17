@@ -27,7 +27,7 @@ const initialState = {
     mapCenter: {"x": 37.6, "y": -96, "zoom": 5},
     incumbentTable: null,
     selectedEnsembleToggle: "incumbent",
-    currentRacialData: 'population',
+    currentRacialData: "White Variation",
 }
 
 export const mapReducer = createSlice({
@@ -38,7 +38,7 @@ export const mapReducer = createSlice({
             state.currentDistrict = null;
             state.selectedState = action.payload.name;
             state.currentDistrictPlan = '2022';
-            state.currentDisplay = null;
+            state.currentDisplay = 'Safe Seats';
             state.selectedEnsembleToggle = 'incumbent';
 
             switch (action.payload.name) {
@@ -81,8 +81,14 @@ export const mapReducer = createSlice({
         },
         setSelectedDistrictPlan:(state, action) => {
             state.currentDistrictPlan = action.payload.planName;
-            if (action.payload.planName == '2020')
+            state.currentDisplay = null;
+            if (action.payload.planName == '2020') {
                 state.currentRacialData = null;
+            }
+            else {
+                console.log("Changing the display")
+                state.currentDisplay = "Safe Seats";
+            }
             switch (state.selectedState) {
                 case 'Illinois':
                     switch (action.payload.planName) {
@@ -135,7 +141,7 @@ export const mapReducer = createSlice({
             state.ensembleData = action.payload.ensemble;
             state.mapCenter = action.payload.mapCenter;
             state.currentDistrictsInfo = action.payload.districts;
-            state.currentDisplay = null;
+            // state.currentDisplay = null;
         },
         setSelectedDistrict:(state, action) => {
             state.currentDistrict = action.payload;
@@ -148,17 +154,7 @@ export const mapReducer = createSlice({
             console.log(action.payload)
         },
         setSelectedRacialData:(state ,action) => {
-            switch (action.payload){
-                case 'White Variation':
-                    state.currentRacialData = "white";
-                    break;
-                case 'Hispanic Variation':
-                    state.currentRacialData = "hispanic";
-                    break;
-                case 'Black Variation':
-                    state.currentRacialData = "black";
-                    break;
-            }
+            state.currentRacialData = action.payload;
             console.log(action.payload);
         }
     }

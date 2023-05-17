@@ -30,7 +30,17 @@ function BoxAndWhiskerRaceGraph() {
 
     let selectedRace = null;
     if (map.currentRacialData != null)
-        selectedRace = map.currentRacialData
+        switch(map.currentRacialData) {
+            case 'White Variation':
+                selectedRace = "white";
+                break;
+            case 'Hispanic Variation':
+                selectedRace = "hispanic";
+                break;
+            case 'Black Variation':
+                selectedRace = "black";
+                break;
+        }
 
     const { data, error, isLoading } = useSWR('http://localhost:8080/graph/'+ selectedState +'/'+ map.currentDistrictPlan + '/' + selectedRace, fetcher)
 

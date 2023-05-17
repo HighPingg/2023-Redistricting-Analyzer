@@ -8,6 +8,7 @@ import UnselectedGraph from './Graphs/UnselectedGraph';
 import BoxAndWhiskerPopGraph from './Graphs/BoxAndWhiskerPop';
 import BoxAndWhiskerRaceGraph from './Graphs/BoxAndWhiskerRace';
 import RacialDataPlanToggle from './RacialDataToggleComponent';
+import SafeSeatsGraph from './Graphs/SafeSeatsGraph';
 import { Box } from '@mui/material';
 
 function Graph(){
@@ -18,6 +19,9 @@ function Graph(){
         if (map.currentDistrictPlan == '2020')
             return <UnselectedGraph />
       switch(map.currentDisplay){
+
+        case "Safe Seats":
+            return <SafeSeatsGraph />
         
         case "Population":
             return <BoxAndWhiskerPopGraph />

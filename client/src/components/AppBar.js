@@ -1,8 +1,13 @@
 import { Box } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setSelectedState } from '../reducers/MapReducer';
 
 import { ReactComponent as Logo } from '../assets/CougarCartoon.svg';
 
 function AppBar(){
+    const dispatch = useDispatch();
+
     return(
         <Box display="flex"
              justifyContent= 'left'
@@ -17,7 +22,7 @@ function AppBar(){
                 height: '6vh'
              }}
         >
-            <Box sx={{ pr : 3 }} >
+            <Box sx={{ pr : 3 }} onClick={ () => dispatch(setSelectedState({"name": null})) } >
                 Cougars
             </Box>
 

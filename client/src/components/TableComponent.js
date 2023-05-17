@@ -144,12 +144,12 @@ function TableComponent() {
               ? <TableCell sx={titleStyle} >Population Variation</TableCell>
               : null
             }
-            {
+            {/* {
               // Hide fields in 2020 plan
               map.currentDistrictPlan != '2020' 
               ? <TableCell sx={titleStyle} >Seat Safe?</TableCell>
               : null
-            }
+            } */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -182,12 +182,12 @@ function TableComponent() {
                     ? <TableCell sx={getRowStyle (incumbent[0].districtNumber)} >{ incumbent[0].populationVariation }</TableCell>
                     : null
                   }
-                  {
+                  {/* {
                     // Hide fields in 2020 plan
                     map.currentDistrictPlan != '2020' 
                     ? <TableCell sx={getRowStyle (incumbent[0].districtNumber)} >{ incumbent[1].safeSeat ? 'Yes' : 'No' }</TableCell>
                     : null
-                  }
+                  } */}
                 
               </TableRow>
             ))
