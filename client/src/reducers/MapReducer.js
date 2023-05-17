@@ -150,13 +150,13 @@ export const mapReducer = createSlice({
         setSelectedRacialData:(state ,action) => {
             switch (action.payload){
                 case 'White Variation':
-                    state.currentRacialData = "whVar";
+                    state.currentRacialData = "white";
                     break;
                 case 'Hispanic Variation':
-                    state.currentRacialData = "hisVar";
+                    state.currentRacialData = "hispanic";
                     break;
                 case 'Black Variation':
-                    state.currentRacialData = "blcVar";
+                    state.currentRacialData = "black";
                     break;
             }
             console.log(action.payload);
